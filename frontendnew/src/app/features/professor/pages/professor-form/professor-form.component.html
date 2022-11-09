@@ -1,0 +1,36 @@
+<form [formGroup]="professorForm" (ngSubmit)="onSave()" *ngIf="professorForm" >
+
+    <div class="d-flex flex-column mt-3 col-lg-6 col-md-8 col-sm-10 m-3">
+        <div class="d-flex flex-column">
+          <label for="name">{{'COMMON.NAME' }}</label>
+          <input class="form-control" type="text" id="id" formControlName="id" >
+          <!-- TODO:  Handle errors  -->
+        </div>
+
+        <div class="d-flex flex-column">
+            <label for="firstName">{{' PROFESSOR.firstName'}}</label>
+            <input class="form-control"  type="text" id="firstName" formControlName="firstName" >
+            <!-- TODO:  Handle errors  -->
+        </div>
+
+        <div class="d-flex flex-column">
+            <label for="city_id">City</label>
+            <select class="form-control" type="text" id="city_id" formControlName="city" >
+                <option *ngFor="let city of cities$|async" [ngValue]="city.postalCode" >
+                    {{city.name}}
+                </option>
+            </select>
+            <!-- TODO:  Handle errors  -->
+          </div>
+    
+        <div class="d-flex flex-row-reverse justify-content-around mt-3">
+          <button type="submit" class="btn btn-outline-primary"  >{{'COMMON.SAVE'}}</button>
+          <button type="button" class="btn btn-outline-danger" [routerLink]="['/professor/professor-list']" queryParamsHandling="preserve" >{{'COMMON.CANCEL' }}</button>
+        </div>
+    
+    
+      </div>
+
+
+
+</form>

@@ -1,0 +1,11 @@
+<div class="toast-container d-flex flex-column" >
+    <ng-content select=".header" ></ng-content>
+    <ng-container >
+      <div class="toast-body">
+        <ng-content></ng-content>
+      </div>
+
+  
+    </ng-container>
+    <ng-content select=".footer" ></ng-content>
+  </div>

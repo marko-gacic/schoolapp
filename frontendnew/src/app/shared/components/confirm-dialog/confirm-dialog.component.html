@@ -1,0 +1,12 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{header}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close(confirmOptions.CANCEL)"></button>
+  </div>
+  <div class="modal-body">
+    <p [innerHtml]="message"></p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="activeModal.close(confirmOptions.NO)">No</button>
+    <button type="button" class="btn btn-outline-success" (click)="activeModal.close(confirmOptions.YES)">Yes</button>
+  </div>
+  

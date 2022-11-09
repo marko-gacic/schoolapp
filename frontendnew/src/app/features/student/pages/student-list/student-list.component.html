@@ -1,0 +1,69 @@
+<h2>Student list</h2>
+
+
+<div class="m-2">
+  <button type="button" class="btn btn-outline-primary" [routerLink]="['/student/student-form']" ><bi name="plus"></bi>Add Student</button>
+</div>
+
+<table class="table table-strped">
+  <thead>
+    <tr>
+      <!-- <th>#</th> -->
+      <th sortable="id" (sort)="onSort($event)">ID</th>
+      <th sortable="indexNumber" (sort)="onSort($event)">Index Number</th>
+      <th sortable="indexYear" (sort)="onSort($event)">Index Year</th>
+      <th sortable="firstName" (sort)="onSort($event)"> Name</th>
+    <th sortable="lastName" (sort)="onSort($event)">Last Name</th>
+    <th sortable="email" (sort)="onSort($event)">Email</th>
+    <th sortable="address" (sort)="onSort($event)">Address</th>
+    <th sortable="currentYearOfStudy" (sort)="onSort($event)" >Current Year Of Study</th>
+     <th sortable="city_id" (sort)="onSort($event)" >City</th>
+    
+
+      
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let stu of students; let i = index">
+      <!-- <td>{{ i + 1 }}</td> -->
+      <td>{{ stu.id }}</td>
+      <td>{{ stu.indexNumber }}</td>
+      <td>{{ stu.indexYear }}</td>
+      <td>{{ stu.firstName }}</td>
+      <td>{{ stu.lastName }}</td>
+      <td>{{ stu.email }}</td>
+      <td>{{ stu.address }}</td>
+      <td>{{ stu.currentYearOfStudy  }}</td>
+      <!-- <td>{{ stu.city_id }}</td> -->
+      <td>{{ cityMap.get(stu.city_id.postalCode)?.name }}</td>
+      <td>
+        <button class="btn btn-outline-primary" 
+            [routerLink]="['/student/student-form', stu.id]"         
+            [queryParams]="{'page': currentPage.page, 'size': currentPage.size, 'orderBy': currentPage.orderBy, 'order': currentPage.order}"
+            >
+          <bi name="pencil"></bi>Edit
+        </button>
+        <button class="btn btn-outline-primary"  >
+          <bi name="card-text"></bi>Details
+        </button>
+        <button class="btn btn-outline-danger">
+          <bi name="trash"></bi>Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-center">
+
+  <ngb-pagination
+    [collectionSize]="currentPage.totalItems"
+    [pageSize]="currentPage.size"
+    [(page)]="currentPage.page"
+    [boundaryLinks]="true"
+    (pageChange)="loadStudents()"
+  >
+
+  </ngb-pagination>
+</div>

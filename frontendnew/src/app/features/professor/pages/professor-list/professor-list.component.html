@@ -1,0 +1,66 @@
+<h2>Professor list</h2>
+
+
+<div class="m-2">
+  <button type="button" class="btn btn-outline-primary" [routerLink]="['/professor/professor-form']" ><bi name="plus"></bi>Add Professor</button>
+</div>
+
+<table class="table table-strped">
+  <thead>
+    <tr>
+      <!-- <th>#</th> -->
+      <th sortable="id" (sort)="onSort($event)">ID</th>
+      <th sortable="firstName" (sort)="onSort($event)">First Name</th>
+      <th sortable="lastName" (sort)="onSort($event)">Last Name</th>
+      <th sortable="email" (sort)="onSort($event)">Email</th>
+        <th sortable="address" (sort)="onSort($event)">Address</th>
+        <th sortable="phone" (sort)="onSort($event)">Phone</th>
+        <th sortable="relocationDate" (sort)="onSort($event)" >Relocation Date</th>
+        <th sortable="city_id" (sort)="onSort($event)" >City</th>
+    
+
+      
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pro of professors; let i = index">
+      <!-- <td>{{ i + 1 }}</td> -->
+      <td>{{ pro.id }}</td>
+      <td>{{ pro.firstName }}</td>
+      <td>{{ pro.lastName }}</td>
+      <td>{{ pro.email }}</td>
+      <td>{{ pro.address }}</td>
+      <td>{{ pro.phone }}</td>
+      <td>{{ pro.relocationDate | date : format }}</td>
+      <td>{{ cityMap.get(pro.city_id.postalCode)?.name }}</td>
+      <td>
+        <button class="btn btn-outline-primary" 
+            [routerLink]="['/professor/professor-form', pro.id]"         
+            [queryParams]="{'page': currentPage.page, 'size': currentPage.size, 'orderBy': currentPage.orderBy, 'order': currentPage.order}"
+            >
+          <bi name="pencil"></bi>Edit
+        </button>
+        <button class="btn btn-outline-primary"  >
+          <bi name="card-text"></bi>Details
+        </button>
+        <button class="btn btn-outline-danger">
+          <bi name="trash"></bi>Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-center">
+
+  <ngb-pagination
+    [collectionSize]="currentPage.totalItems"
+    [pageSize]="currentPage.size"
+    [(page)]="currentPage.page"
+    [boundaryLinks]="true"
+    (pageChange)="loadProfessors()"
+  >
+
+  </ngb-pagination>
+</div>
