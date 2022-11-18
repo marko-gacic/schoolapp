@@ -7,7 +7,7 @@ export interface Student {
     email: string;
     address: string;
     currentYearOfStudy: number;
-    city_id: City;
+    city: City;
 
 }
 
@@ -20,7 +20,7 @@ export interface StudentDTO {
     email: string;
     address: string;
     currentYearOfStudy: number;
-    city_id: number;
+    city: number;
 
 }
 
@@ -32,7 +32,7 @@ export interface Professor {
     address: string;
     phone: number;
     relocationDate: Date;
-    city_id: City;
+    city: City;
 }
 
 export interface ProfessorDTO {
@@ -43,12 +43,13 @@ export interface ProfessorDTO {
     address: string;
     phone: number;
     relocationDate: Date;
-    city_id: number;
+    city: number;
 }
 
 export interface City {
+    zip_code: number;
     name: string;
-    postalCode: number;
+    
 }
 
 export interface User {

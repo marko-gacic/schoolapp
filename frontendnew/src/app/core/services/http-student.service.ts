@@ -37,6 +37,10 @@ export class HttpStudentService {
     put(student: StudentDTO): Observable<Response> {
         return this.httpClient.put<Response>(`${this.endpointBasePath}/${student.id}`, student);
     }
+
+    delete(id: number) {
+        return this.httpClient.delete<Response>(`${this.endpointBasePath}/${id}`);
+    }
     get endpointBasePath() {
         return `${environment.serverUrl}/${this.endpointPrefix}`;
     }

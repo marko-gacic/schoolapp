@@ -1,0 +1,92 @@
+<h2>{{ 'CITY.LIST_TITLE'  }}</h2>
+
+<div class="m-2">
+  <button class="btn btn-outline-primary" routerLink="/city/city-form" ><bi name="plus"></bi>Add City</button>
+</div>
+
+<table class="table table-strped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th sortable="zip_code" (sort)="onSort($event)" >{{'CITY.ZIP_CODE' }}</th>
+      <th sortable="name" (sort)="onSort($event)" >{{'CITY.NAME' }}</th>
+      <th>{{ 'COMMON.ACTIONS'  }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let city of cities; let i=index">
+      <td>{{i + 1}}</td>
+      <td>{{city.zip_code}}</td>
+      <td>{{city.name}}</td>
+      <td>
+        <button class="btn btn-outline-primary"
+                [routerLink]="['/city/city-form', city.zip_code]"
+                [queryParams]="{'page': currentPage.page, 'size': currentPage.size, 'orderBy': currentPage.orderBy, 'order': currentPage.order}"
+                >
+          <bi name="pencil"></bi><span class="btn-text-responsive" >{{ 'COMMON.EDIT'  }}</span>
+        </button>
+        <button class="btn btn-outline-primary"
+                (click)="onDetailsClick(city, cityDetailsTemplate)">
+          <bi name="card-text"></bi><span class="btn-text-responsive"  >{{ 'COMMON.DETAILS'  }}</span>
+        </button>
+        <button class="btn btn-outline-danger" (click)="onDeleteClick(city)">
+          <bi name="trash"></bi><span class="btn-text-responsive" >{{ 'COMMON.DELETE'  }}</span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-center">
+
+  <ngb-pagination
+    [collectionSize]="currentPage.totalItems"
+    [pageSize]="currentPage.size"
+    [(page)]="currentPage.page"
+    [boundaryLinks]="true"
+    (pageChange)="loadCitiesByPage()"
+  >
+
+  </ngb-pagination>
+</div>
+
+
+<div *ngIf="selectedCity" >
+  <h4>City details imbedded</h4>
+  <ng-container
+      *ngTemplateOutlet="cityTemplate;context:{$implicit: selectedCity}">
+  >
+  </ng-container>
+
+</div>
+
+<ng-template #cityTemplate let-city  >
+  context: {{city | json}}
+  <div class="modal-body">
+
+    <ul class="list-unstyled">
+      <li>Zip code: {{ city?.zip_code }}</li>
+      <li>Name: {{ city?.name }}</li>
+    </ul>
+</div>
+</ng-template>
+
+
+
+
+<ng-template #cityDetailsTemplate let-modal  >
+  <div class="modal-body">
+    <h4>City details</h4>
+    <ul class="list-unstyled">
+      <li>Zip code: {{ selectedCity?.zip_code }}</li>
+      <li>Name: {{ selectedCity?.name }}</li>
+    </ul>
+    <div class="mt-2 d-flex flex-row-reverse">
+      <button (click)="modal.close('OK')">Ok</button>
+    </div>
+  </div>
+</ng-template>
+
+<div class="d-flex">
+  <span *ngFor="let c of ( allCities$ | async)">{{c.name}} </span>
+</div>

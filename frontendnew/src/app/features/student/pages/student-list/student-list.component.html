@@ -17,7 +17,7 @@
     <th sortable="email" (sort)="onSort($event)">Email</th>
     <th sortable="address" (sort)="onSort($event)">Address</th>
     <th sortable="currentYearOfStudy" (sort)="onSort($event)" >Current Year Of Study</th>
-     <th sortable="city_id" (sort)="onSort($event)" >City</th>
+     <th sortable="city" (sort)="onSort($event)" >City</th>
     
 
       
@@ -36,7 +36,7 @@
       <td>{{ stu.address }}</td>
       <td>{{ stu.currentYearOfStudy  }}</td>
       <!-- <td>{{ stu.city_id }}</td> -->
-      <td>{{ cityMap.get(stu.city_id.postalCode)?.name }}</td>
+      <td>{{ cityMap.get(stu.city.zip_code)?.name }}</td>
       <td>
         <button class="btn btn-outline-primary" 
             [routerLink]="['/student/student-form', stu.id]"         

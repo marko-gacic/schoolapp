@@ -30,20 +30,20 @@ export class HttpCityService {
 
     }
 
-    deleteCity(postalCode: number) {
-        return this.httpClient.delete<any>(`${this.endpointBasePath}/${postalCode}`);
+    deleteCity(zipCode: number) {
+        return this.httpClient.delete<any>(`${this.endpointBasePath}/${zipCode}`);
     }
 
-    getCity(postalCode: number) {
-        return this.httpClient.get<City>(`${this.endpointBasePath}/${postalCode}`);
+    getCity(zipCode: number) {
+        return this.httpClient.get<City>(`${this.endpointBasePath}/${zipCode}`);
     }
 
     insertCity(city: City) {
         return this.httpClient.post<any>(`${this.endpointBasePath}`, city);
     }
 
-    updateCity(oldPostalCode: number, city: City) {
-        return this.httpClient.put<any>(`${this.endpointBasePath}/${oldPostalCode}`, city);
+    updateCity(oldZipCode: number, city: City) {
+        return this.httpClient.put<any>(`${this.endpointBasePath}/${oldZipCode}`, city);
     }
 
     get endpointBasePath() {

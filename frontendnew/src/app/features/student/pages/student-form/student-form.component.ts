@@ -42,7 +42,7 @@ export class StudentFormComponent implements OnInit {
             email: [student?.email, Validators.required],
             address: [student?.address, Validators.required],
             currentYearOfStudy: [student?.currentYearOfStudy, Validators.required],
-            city_id: [student?.city_id, Validators.required]
+            city: [student?.city, Validators.required]
         });
     }
     loadCities() {

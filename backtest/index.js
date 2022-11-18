@@ -5,6 +5,8 @@ var userRouter = require('./routes/users');
 const cors = require('cors');
 var professorRouter = require('./routes/professor');
 const port = 3000;
+var cityRouter = require('./routes/cities');
+var subjectRouter = require('./routes/subject');
 
 
 var app = express();
@@ -18,6 +20,8 @@ app.use('/dashboard', dashboard);
 app.use('/student', studentRouter);
 app.use('/user', userRouter);
 app.use('/professor', professorRouter);
+app.use('/city', cityRouter);
+app.use('/subject', subjectRouter);
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;

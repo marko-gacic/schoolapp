@@ -4,7 +4,7 @@ const config = {
         user: "root",
 		connectionLimit: 10000000,
         password: "123456",
-        database: "mydb"
+        database: "project1"
     }
 }
 

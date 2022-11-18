@@ -40,7 +40,7 @@ ngOnInit(): void {
         address: [professor?.address, Validators.required],
         phone : [professor?.phone, Validators.required],
         relocationDate: [professor?.relocationDate, Validators.required],
-        city_id: [professor?.city_id, Validators.required]
+        city: [professor?.city, Validators.required]
     });
     }
 

@@ -32,7 +32,7 @@ router.get('/page',async function ( req, res, next) {
 
 router.get('/:id', async function (req, res, next) {
     try {
-        res.json(await professorService.getById(req.params.id));
+        res.json(await professorService.get(req.params.id));
     } catch (err) {
         console.error(`Error while getting professor `, err.message);
         next(err);
@@ -56,6 +56,9 @@ router.put('/:id', async function (req, res, next) {
         next(err);
     }
 });
+
+
+
 
 router.delete('/:id', async function (req, res, next) {
     try {

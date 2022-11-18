@@ -26,7 +26,7 @@
         <div class="d-flex flex-column">
             <label for="city_id">City</label>
             <select class="form-control" type="text" id="city_id" formControlName="city_id" >
-                <option *ngFor="let city of cities$|async" [ngValue]="city.postalCode" >
+                <option *ngFor="let city of cities$|async" [ngValue]="city.zip_code" >
                     {{city.name}}
                 </option>
             </select>

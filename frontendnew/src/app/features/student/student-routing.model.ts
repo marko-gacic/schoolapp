@@ -1,6 +1,5 @@
 
 import { NgModule } from "@angular/core";
-import { NgModel } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
 import { StudentFormComponent } from "./pages/student-form/student-form.component";
 import { StudentListComponent } from "./pages/student-list/student-list.component";

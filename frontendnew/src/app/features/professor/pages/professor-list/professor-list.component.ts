@@ -18,7 +18,7 @@ import { SortableHeaderDirective, SortEvent } from 'src/app/shared/directives/so
 })
 export class ProfessorListComponent implements OnInit {
     cityMap: Map<number, City> = new Map();
-    currentPage: Page = {page:1, size: 5, orderBy: 'id', order: 'asc', totalItems: 10};
+    currentPage: Page = {page:1, size: 5, orderBy: 'name', order: 'asc', totalItems: 10};
     professors?: Professor[];
     availablePageSizes = [3,5, 10, 15, 20, 25, 30, 50, 100];
     @ViewChildren(SortableHeaderDirective)
@@ -33,7 +33,7 @@ export class ProfessorListComponent implements OnInit {
 
     ngOnInit(): void {
         this.loadPageFromQueryParams();
-        this.loadCities();
+         this.loadCities();
         this.loadProfessors();
     }
 
@@ -58,7 +58,7 @@ export class ProfessorListComponent implements OnInit {
 
     loadCities() {
      this.httpCity.getAll().subscribe(
-            cities => cities.forEach(city => this.cityMap.set(city.postalCode,city))
+             cities => cities.forEach(city => this.cityMap.set(city.zip_code,city))
      )
     }
 

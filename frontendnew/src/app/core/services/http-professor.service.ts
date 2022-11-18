@@ -40,4 +40,8 @@ export class HttpProfessorService {
     get endpointBasePath() {
         return `${environment.serverUrl}/${this.endpointPrefix}`;
     }
+
+    delete(id: number) {
+        return this.httpClient.delete<Response>(`${this.endpointBasePath}/${id}`);
+    }
 }
