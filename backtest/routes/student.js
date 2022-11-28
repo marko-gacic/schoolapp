@@ -30,7 +30,7 @@ router.get('/page', async function (req, res, next) {
 
 router.get('/:id', async function (req, res, next) {
     try {
-        res.json(await studentService.getById(req.params.id));
+        res.json(await studentService.get(req.params.id));
     } catch (err) {
         console.error(`Error while getting student with id = ${id} `, err.message);
         next(err);

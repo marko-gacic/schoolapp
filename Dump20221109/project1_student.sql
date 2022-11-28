@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
 --
--- Host: localhost    Database: mydb
+-- Host: localhost    Database: project1
 -- ------------------------------------------------------
 -- Server version	8.0.30
 
@@ -16,29 +16,40 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `city`
+-- Table structure for table `student`
 --
 
-DROP TABLE IF EXISTS `city`;
+DROP TABLE IF EXISTS `student`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `city` (
+CREATE TABLE `student` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `postalCode` int DEFAULT NULL,
+  `indexNumber` int NOT NULL,
+  `indexYear` int NOT NULL,
+  `firstName` varchar(30) NOT NULL,
+  `lastName` varchar(30) NOT NULL,
+  `email` varchar(30) DEFAULT NULL,
+  `address` varchar(45) DEFAULT NULL,
+  `currentYearOfStudy` int NOT NULL,
+  `city` int unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `idcity_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+  UNIQUE KEY `indexNumber_UNIQUE` (`indexNumber`),
+  UNIQUE KEY `idstudent_UNIQUE` (`id`),
+  UNIQUE KEY `indexYear_UNIQUE` (`indexYear`),
+  UNIQUE KEY `email_UNIQUE` (`email`),
+  KEY `fk_student_city1_idx` (`city`),
+  CONSTRAINT `fk_student_city1` FOREIGN KEY (`city`) REFERENCES `city` (`zip_code`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `city`
+-- Dumping data for table `student`
 --
 
-LOCK TABLES `city` WRITE;
-/*!40000 ALTER TABLE `city` DISABLE KEYS */;
-INSERT INTO `city` VALUES (1,'Beograd',11000),(2,'Novi Sad',21000);
-/*!40000 ALTER TABLE `city` ENABLE KEYS */;
+LOCK TABLES `student` WRITE;
+/*!40000 ALTER TABLE `student` DISABLE KEYS */;
+INSERT INTO `student` VALUES (3,123,123,'Jovana','Babic','babic.jovana@gmail.com','Ljubicka',2,11000),(4,111,121,'Jelena','Babic','jelena.b@gmail.com','Ljubicka',3,34303),(5,133,133,'Dejan','Radulov','deki.r@gmail.com','none',1,11000),(6,22,122,'Nikola','Petrovic','nik@gmail.com','none',3,11000),(7,213,2131,'Marko','Gacic','poslovnogacic@gmail.com','none',121,21000),(11,222,222,'Marko','Gacic','poslovnogacic91@gmail.com','none',12,25260);
+/*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-09 16:16:52
+-- Dump completed on 2022-11-28 12:28:54

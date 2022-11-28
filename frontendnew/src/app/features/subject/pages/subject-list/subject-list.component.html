@@ -1,0 +1,44 @@
+<h2>Subject List</h2>
+
+<div class="m-2">
+  <button type="button" class="btn btn-outline-primary" [routerLink]="['/subject/subject-form']" ><bi name="plus"></bi>Add Subject</button>
+</div>
+
+<table class="table table-strped">
+  <thead>
+    <tr>
+      <th sortable="id" (sort)="onSort($event)">ID</th>
+      <th sortable="name" (sort)="onSort($event)">Name</th>
+      <th sortable="description" (sort)="onSort($event)">Description</th>
+        <th sortable="noOfESP" (sort)="onSort($event)">NoOfESP </th>
+        <th sortable="yearOfStudy" (sort)="onSort($event)">Year Of Study</th>
+      <th sortable="semester" (sort)="onSort($event)">Semester</th>
+      
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let sub of subjects; let i = index">
+      <td>{{ sub.id }}</td>
+      <td>{{ sub.name }}</td>
+      <td>{{ sub.description }}</td>
+        <td>{{ sub.noOfESP }}</td>
+        <td>{{ sub.yearOfStudy }}</td>
+      <td>{{ sub.semester }}</td>
+     
+      <td>
+        <button class="btn btn-outline-primary" 
+            [routerLink]="['/subject/subject-form', sub.id]"         
+            [queryParams]="{'page': currentPage.page, 'size': currentPage.size, 'orderBy': currentPage.orderBy, 'order': currentPage.order}"
+            >
+          <bi name="pencil"></bi>Edit
+        </button>
+        <button class="btn btn-outline-primary"  >
+          <bi name="card-text"></bi>Details
+        </button>
+        <button class="btn btn-outline-danger">
+          <bi name="trash"></bi>Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>

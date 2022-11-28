@@ -9,6 +9,9 @@ import { GlobalToastComponent } from './components/global-toast/global-toast.com
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { BootstrapIconsPickModule } from './bootstrap-icons/bootstrap-icons-pick.module';
 import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -29,7 +32,11 @@ import { MatCardModule } from '@angular/material/card';
     NgbToastModule,
     NgbModalModule,
     BootstrapIconsPickModule,
-    MatCardModule
+    MatCardModule,
+    MatFormFieldModule,
+    MatDatepickerModule
+
+    
   ],
   exports: [
     CommonModule,
@@ -43,7 +50,13 @@ import { MatCardModule } from '@angular/material/card';
     SortableHeaderDirective,
     HeaderComponent,
     GlobalToastComponent,
-    BootstrapIconsPickModule
+    BootstrapIconsPickModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatCardModule,
+    MatNativeDateModule,
+  
+
   ]
 })
 export class SharedModule { }

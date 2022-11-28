@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
 --
--- Host: localhost    Database: mydb
+-- Host: localhost    Database: project1
 -- ------------------------------------------------------
 -- Server version	8.0.30
 
@@ -30,13 +30,13 @@ CREATE TABLE `professor` (
   `address` varchar(45) DEFAULT NULL,
   `phone` int DEFAULT NULL,
   `relocationDate` date NOT NULL,
-  `city_id` int NOT NULL,
+  `city` int unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `idprofessor_UNIQUE` (`id`),
   UNIQUE KEY `email_UNIQUE` (`email`),
-  KEY `fk_professor_city1_idx` (`city_id`),
-  CONSTRAINT `fk_professor_city1` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+  KEY `fk_professor_city1_idx` (`city`),
+  CONSTRAINT `fk_professor_city1` FOREIGN KEY (`city`) REFERENCES `city` (`zip_code`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `professor` (
 
 LOCK TABLES `professor` WRITE;
 /*!40000 ALTER TABLE `professor` DISABLE KEYS */;
-INSERT INTO `professor` VALUES (1,'Marko','Gacic','poslovnogacic@gmail.com','Novi Sad',6000112,'2022-02-18',1),(2,'Nikola','Drazic','nikdrazic@gmail.com','Beograd',6000112,'2022-02-18',2),(3,'Jelena','Babic','babicjelena@gmail.com','Beograd',324234,'2022-01-27',2),(4,'Jovana','Babic','jovanababic@gmail.com','Beograd',21234455,'2022-05-22',2),(5,'Jelena','Stefanovic','stefke@gmail.com','Beograd',1123445,'2022-04-01',2),(6,'Dejan','Radulov','dejanr@gmail.com','Beograd',6345345,'2022-03-15',2);
+INSERT INTO `professor` VALUES (1,'Marko','Gacic','poslovnogacic@gmail.com','Mileve Maric',123456,'1992-05-12',21000),(2,'Nikola','Petrovic','nik.petrovic@gmail.com','NN',222222,'1992-01-25',11000),(3,'Jovana ','Babic','babic.j@gmail.com','NN',333333,'1995-04-20',11000),(4,'Stojan','Vujosevic','stojke@gmail.com','NN',44444,'2000-05-22',21000),(5,'Dejan ','Radulov','deki@gmail.com','NN',55555,'2000-04-21',21000),(6,'Jelena','Babic','jelenab@gmail.com','NN',6666,'2021-02-04',11000),(7,'Marko','Gacic','poslovnogacic91@gmail.com','none',222222222,'1998-12-31',18220),(8,'Biljana','Stanic','stanic.b@gmail.com','asdasd',1111123,'1992-01-20',25260),(11,'Stojan','Vujosevic','stojke111@gmail.com','test',21312312,'2022-10-31',18220);
 /*!40000 ALTER TABLE `professor` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-09 16:16:52
+-- Dump completed on 2022-11-28 12:28:54

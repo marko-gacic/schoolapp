@@ -46,6 +46,24 @@ export interface ProfessorDTO {
     city: number;
 }
 
+export interface Sub {
+    id: number;
+    name: string;
+    description: string;
+    noOfESP: number;
+    yearOfStudy: number;
+    semester: number;
+}
+
+export interface SubDTO {
+    id: number;
+    name: string;
+    description: string;
+    noOfESP: number;
+    yearOfStudy: number;
+    semester: number;
+}
+
 export interface City {
     zip_code: number;
     name: string;

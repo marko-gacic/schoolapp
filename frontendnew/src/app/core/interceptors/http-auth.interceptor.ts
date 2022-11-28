@@ -14,7 +14,7 @@ export class HttpAuthInterceptor implements HttpInterceptor {
   constructor(private userAuthData: UserAuthDataService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log('HttpAuth - Intercepror');
+    console.log('HttpAuth - Interceptor');
     const token = this.userAuthData.token;
 
     if (token) {

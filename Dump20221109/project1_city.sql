@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
 --
--- Host: localhost    Database: mydb
+-- Host: localhost    Database: project1
 -- ------------------------------------------------------
 -- Server version	8.0.30
 
@@ -16,31 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `professor_title`
+-- Table structure for table `city`
 --
 
-DROP TABLE IF EXISTS `professor_title`;
+DROP TABLE IF EXISTS `city`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `professor_title` (
-  `title_id` int NOT NULL,
-  `professor_id` int NOT NULL,
-  PRIMARY KEY (`title_id`,`professor_id`),
-  KEY `fk_title_has_professor_professor1_idx` (`professor_id`),
-  KEY `fk_title_has_professor_title1_idx` (`title_id`),
-  CONSTRAINT `fk_title_has_professor_professor1` FOREIGN KEY (`professor_id`) REFERENCES `professor` (`id`),
-  CONSTRAINT `fk_title_has_professor_title1` FOREIGN KEY (`title_id`) REFERENCES `title` (`id`)
+CREATE TABLE `city` (
+  `name` varchar(45) DEFAULT NULL,
+  `zip_code` int unsigned NOT NULL,
+  PRIMARY KEY (`zip_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `professor_title`
+-- Dumping data for table `city`
 --
 
-LOCK TABLES `professor_title` WRITE;
-/*!40000 ALTER TABLE `professor_title` DISABLE KEYS */;
-INSERT INTO `professor_title` VALUES (1,1);
-/*!40000 ALTER TABLE `professor_title` ENABLE KEYS */;
+LOCK TABLES `city` WRITE;
+/*!40000 ALTER TABLE `city` DISABLE KEYS */;
+INSERT INTO `city` VALUES ('Beograd',11000),('Aleksinac',18220),('Novi Sad',21000),('Ada',24430),('Apatin',25260),('Arandjelovac',34303);
+/*!40000 ALTER TABLE `city` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-09 16:16:52
+-- Dump completed on 2022-11-28 12:28:54

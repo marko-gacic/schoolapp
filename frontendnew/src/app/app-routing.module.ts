@@ -14,6 +14,9 @@ const routes: Routes = [
 {path: 'city',
 loadChildren: () => import('./features/city/city.module').then(m => m.CityModule)
 },
+{path: 'subject', 
+loadChildren: () => import('./features/subject/subject.module').then(m => m.SubjectModule)
+},
 ];
 
 @NgModule({

@@ -8,7 +8,6 @@
 <table class="table table-strped">
   <thead>
     <tr>
-      <!-- <th>#</th> -->
       <th sortable="id" (sort)="onSort($event)">ID</th>
       <th sortable="firstName" (sort)="onSort($event)">First Name</th>
       <th sortable="lastName" (sort)="onSort($event)">Last Name</th>
@@ -22,7 +21,6 @@
   </thead>
   <tbody>
     <tr *ngFor="let pro of professors; let i = index">
-      <!-- <td>{{ i + 1 }}</td> -->
       <td>{{ pro.id }}</td>
       <td>{{ pro.firstName }}</td>
       <td>{{ pro.lastName }}</td>

@@ -5,6 +5,8 @@
     <li ngbNavItem *ngIf="userAuthData.loggedUser" >
       <a ngbNavLink routerLink="/professor" >Professors</a>
     </li>
+    <li ngbNavItem *ngIf="userAuthData.loggedUser" >
+      <a ngbNavLink routerLink="/subject" >Subject</a>
   
     <li ngbNavItem *ngIf="userAuthData.loggedUser" class="flex-grow-1 flex-shirnk-1 text-center" >
       <a ngbNavLink routerLink="/home"  >Home</a>
