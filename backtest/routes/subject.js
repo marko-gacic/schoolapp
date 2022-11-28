@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const subjectService = require('../routes/subject');
+const subjectService = require('../service/subjectService');
 const { isLoggedIn } = require('../auth/authMiddleware');
 router.use(isLoggedIn);
 
