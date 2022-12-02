@@ -32,7 +32,7 @@ router.get('/:id', async function (req, res, next) {
     try {
         res.json(await subjectService.get(req.params.id));
     } catch (err) {
-        console.error(`Error while getting subject `, err.message);
+        console.error(`Error while getting subject with id = ${id} `, err.message);
         next(err);
     }
 });
@@ -50,7 +50,7 @@ router.put('/:id', async function (req, res, next) {
     try {
         res.json(await subjectService.update(req.params.id, req.body));
     } catch (err) {
-        console.error(`Error while updating subject `, err.message);
+        console.error(`Error while updating subject with id = ${id} `, err.message);
         next(err);
     }
 });
@@ -59,7 +59,7 @@ router.delete('/:id', async function (req, res, next) {
     try {
         res.json(await subjectService.remove(req.params.id));
     } catch (err) {
-        console.error(`Error while deleting subject `, err.message);
+        console.error('Error while deleting subject', err.message);
         next(err);
     }
 }

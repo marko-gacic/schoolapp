@@ -14,7 +14,7 @@ async function getByPage(page, size, orderBy, order) {
     page = page <= lastPage ? lastPage : page;
     const offset = (page - 1) * size;
     const query = `SELECT * FROM subject ORDER BY ${orderBy} ${order} LIMIT ${size} OFFSET ${offset}`;
-    const data = await db.query(query);
+    let data = await db.query(query);
 
     const pageResponse = {
         content: data,
@@ -26,7 +26,7 @@ async function getByPage(page, size, orderBy, order) {
     return pageResponse;
 }
 
-async function get(id) { 
+async function get(id) {
     const data = await db.query(`SELECT * FROM subject WHERE id = ${id}`);
     if (data && data.length > 0) {
         return data[0];
@@ -36,18 +36,35 @@ async function get(id) {
 }
 
 async function create(subject) {
-    const data = await db.query(`INSERT INTO subject (name, description,noOfESP, yearOfStudy, semester, ) VALUES ('${subject.name}', '${subject.description}', '${subject.noOfESP}', '${subject.semester}')`);
+    const query = "INSERT INTO subject (name,description,noOfESP,yearOfStudy,semester) VALUES (?,?,?,?,?)";
+    const result = await db.query(query, [
+        subject.name,
+        subject.description,
+        subject.noOfESP,
+        subject.yearOfStudy,
+        subject.semester
+    ]);
     let err = 'Error in creating subject';
-    if (data.affectedRows) {
+    if (result.affectedRows) {
         err = 'Subject created successfully';
     }
     return { err };
 }
 
 async function update(id, subject) {
-    const data = await db.query(`UPDATE subject SET name = '${subject.name}', description = '${subject.description}', noOfESP = '${subject.noOfESP}', yearOfStudy = '${subject.yearOfStudy}', semester = '${subject.semester}' WHERE id = ${id}`);
+    const query = "UPDATE subject SET name = ?, description = ?, noOfESP = ?, yearOfStudy = ?, semester = ? WHERE id = ?";
+    const result
+        = await
+            db.query(query, [
+                subject.name,
+                subject.description,
+                subject.noOfESP,
+                subject.yearOfStudy,
+                subject.semester,
+                id
+            ]);
     let err = 'Error in updating subject';
-    if (data.affectedRows) {
+    if (result.affectedRows) {
         err = 'Subject updated successfully';
     }
     return { err };

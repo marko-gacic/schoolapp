@@ -10,7 +10,7 @@ import { ToastService } from "src/app/core/services/toast.service";
 
 
 
-@Component ({
+@Component({
     selector: 'app-student-form',
     templateUrl: './student-form.component.html',
     styleUrls: ['./student-form.component.css']
@@ -52,20 +52,21 @@ export class StudentFormComponent implements OnInit {
         const student = this.studentForm?.getRawValue();
         if (!student.id) {
             return this.httpStudent.post(student)
-        }else{
+        } else {
             return this.httpStudent.put(student);
         }
     }
-    onSave(){
-        this.saveStudent().pipe(take(1)).subscribe((message : any) => {
-            this.toastService.showToast({
-                message: message.message,
-                classNames: 'bg-success',
-                header: 'Success',
-            });
-                this.router.navigate(['/student/student-list'],{
-                    queryParamsHandling: 'preserve'
+    onSave() {
+        this.saveStudent().pipe(take(1)).subscribe((message: any) => {
+            this.toastService.showToast(
+                {
+                    message: message.message,
+                    classNames: 'bg-success',
+                    header: 'Success',
+                });
+            this.router.navigate(['/student/student-list'], {
+                queryParamsHandling: 'preserve'
             });
         });
     }
-    }
+}

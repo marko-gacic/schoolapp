@@ -8,8 +8,8 @@
   <thead>
     <tr>
       <th>#</th>
-      <th sortable="zip_code" (sort)="onSort($event)" >{{'CITY.ZIP_CODE' }}</th>
-      <th sortable="name" (sort)="onSort($event)" >{{'CITY.NAME' }}</th>
+      <th sortable="zip_code" (sort)="onSort($event)" >{{'ZIP_CODE' }}</th>
+      <th sortable="name" (sort)="onSort($event)" >{{'NAME' }}</th>
       <th>{{ 'COMMON.ACTIONS'  }}</th>
     </tr>
   </thead>
@@ -23,14 +23,14 @@
                 [routerLink]="['/city/city-form', city.zip_code]"
                 [queryParams]="{'page': currentPage.page, 'size': currentPage.size, 'orderBy': currentPage.orderBy, 'order': currentPage.order}"
                 >
-          <bi name="pencil"></bi><span class="btn-text-responsive" >{{ 'COMMON.EDIT'  }}</span>
+          <bi name="pencil"></bi><span class="btn-text-responsive" >{{ 'EDIT'  }}</span>
         </button>
         <button class="btn btn-outline-primary"
                 (click)="onDetailsClick(city, cityDetailsTemplate)">
-          <bi name="card-text"></bi><span class="btn-text-responsive"  >{{ 'COMMON.DETAILS'  }}</span>
+          <bi name="card-text"></bi><span class="btn-text-responsive"  >{{ 'DETAILS'  }}</span>
         </button>
         <button class="btn btn-outline-danger" (click)="onDeleteClick(city)">
-          <bi name="trash"></bi><span class="btn-text-responsive" >{{ 'COMMON.DELETE'  }}</span>
+          <bi name="trash"></bi><span class="btn-text-responsive" >{{ 'DELETE'  }}</span>
         </button>
       </td>
     </tr>

@@ -2,7 +2,9 @@
 
 
 <div class="m-2">
-  <button type="button" class="btn btn-outline-primary" [routerLink]="['/professor/professor-form']" ><bi name="plus"></bi>Add Professor</button>
+  <button type="button" class="btn btn-outline-primary" [routerLink]="['/professor/professor-form']">
+    <bi name="plus"></bi>Add Professor
+  </button>
 </div>
 
 <table class="table table-strped">
@@ -12,10 +14,10 @@
       <th sortable="firstName" (sort)="onSort($event)">First Name</th>
       <th sortable="lastName" (sort)="onSort($event)">Last Name</th>
       <th sortable="email" (sort)="onSort($event)">Email</th>
-        <th sortable="address" (sort)="onSort($event)">Address</th>
-        <th sortable="phone" (sort)="onSort($event)">Phone</th>
-        <th sortable="relocationDate" (sort)="onSort($event)" >Relocation Date</th>
-        <th sortable="city" (sort)="onSort($event)" >City</th>
+      <th sortable="address" (sort)="onSort($event)">Address</th>
+      <th sortable="phone" (sort)="onSort($event)">Phone</th>
+      <th sortable="relocationDate" (sort)="onSort($event)">Relocation Date</th>
+      <th sortable="city" (sort)="onSort($event)">City</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -30,32 +32,40 @@
       <td>{{ pro.relocationDate | date : format }}</td>
       <td>{{ cityMap.get(pro.city.zip_code)?.name}}</td>
       <td>
-        <button class="btn btn-outline-primary" 
-            [routerLink]="['/professor/professor-form', pro.id]"         
-            [queryParams]="{'page': currentPage.page, 'size': currentPage.size, 'orderBy': currentPage.orderBy, 'order': currentPage.order}"
-            >
-          <bi name="pencil"></bi>Edit
+        <button class="btn btn-outline-primary" [routerLink]="['/professor/professor-form', pro.id]"
+          [queryParams]="{'page': currentPage.page, 'size': currentPage.size, 'orderBy': currentPage.orderBy, 'order': currentPage.order}">
+          <bi name="pencil"></bi><span class="btn-text-responsive">Edit</span>
         </button>
-        <button class="btn btn-outline-primary"  >
-          <bi name="card-text"></bi>Details
+        <button class="btn btn-outline-primary" (click)="onDetailsClick(pro, proDetailsTemplate)" >
+          <bi name="card-text"></bi><span class="btn-text-responsive">Details</span>
         </button>
-        <button class="btn btn-outline-danger">
+        <button class="btn btn-outline-danger" (click)="onDeleteClick(pro)" >
           <bi name="trash"></bi>Delete
         </button>
       </td>
     </tr>
   </tbody>
 </table>
-
 <div class="d-flex justify-content-center">
-
-  <ngb-pagination
-    [collectionSize]="currentPage.totalItems"
-    [pageSize]="currentPage.size"
-    [(page)]="currentPage.page"
-    [boundaryLinks]="true"
-    (pageChange)="loadProfessors()"
-  >
-
+  <ngb-pagination [collectionSize]="currentPage.totalItems" [pageSize]="currentPage.size" [(page)]="currentPage.page"
+    [boundaryLinks]="true" (pageChange)="loadProfessors()">
   </ngb-pagination>
 </div>
+<ng-template #proDetailsTemplate let-modal>
+  <div class="modal-body">
+    <h4>Professor Details</h4>
+    <ul class="list-unstyled">
+      <li>ID: {{ selectedProfessor?.id }}</li>
+      <li>First Name: {{ selectedProfessor?.firstName }}</li>
+      <li>Last Name: {{ selectedProfessor?.lastName }}</li>
+      <li>Email: {{ selectedProfessor?.email }}</li>
+      <li>Address: {{ selectedProfessor?.address }}</li>
+      <li>Phone: {{ selectedProfessor?.phone }}</li>
+      <li>Relocation Date: {{ selectedProfessor?.relocationDate | date : format }}</li>
+      <li>City: {{selectedProfessor?.city?.name}} </li>
+    </ul>
+    <div class="mt-2 d-flex flex-row-reverse">
+      <button (click)="modal.close('OK')">Ok</button>
+    </div>
+  </div>
+</ng-template>

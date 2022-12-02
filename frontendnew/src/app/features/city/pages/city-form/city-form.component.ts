@@ -69,7 +69,9 @@ export class CityFormComponent implements OnInit, OnDestroy {
                 message: message.message,
                 classNames:'bg-success' }
               );
-            this.router.navigate(['/city/city-list'], { queryParamsHandling:'preserve' });
+            this.router.navigate(['/city/city-list'], { 
+              queryParamsHandling:'preserve' 
+            });
           }
     );
   }

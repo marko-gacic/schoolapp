@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder,FormGroup,Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, take } from 'rxjs';
 import { City, Professor } from 'src/app/core/models';
@@ -15,7 +15,7 @@ import { ToastService } from "src/app/core/services/toast.service";
 export class ProfessorFormComponent implements OnInit {
     professorForm?: FormGroup;
     cities$?: Observable<City[]>;
-    
+
     constructor(
         private httpProfessor: HttpProfessorService,
         private formBuilder: FormBuilder,
@@ -26,22 +26,22 @@ export class ProfessorFormComponent implements OnInit {
     ) {
         const professor = this.activatedRoute.snapshot.data['professor'];
         this.buildForm(professor);
-     }
-ngOnInit(): void {
+    }
+    ngOnInit(): void {
         this.loadCities();
-  }
+    }
 
-  buildForm(professor?: Professor) {
-    this.professorForm = this.formBuilder.group({
-        id: [professor?.id],
-        firstName: [professor?.firstName, Validators.required],
-        lastName: [professor?.lastName, Validators.required],
-        email: [professor?.email, Validators.required],
-        address: [professor?.address, Validators.required],
-        phone : [professor?.phone, Validators.required],
-        relocationDate: [professor?.relocationDate, Validators.required],
-        city: [professor?.city, Validators.required]
-    });
+    buildForm(professor?: Professor) {
+        this.professorForm = this.formBuilder.group({
+            id: [professor?.id],
+            firstName: [professor?.firstName, Validators.required],
+            lastName: [professor?.lastName, Validators.required],
+            email: [professor?.email, Validators.required],
+            address: [professor?.address, Validators.required],
+            phone: [professor?.phone, Validators.required],
+            relocationDate: [professor?.relocationDate, Validators.required],
+            city: [professor?.city, Validators.required]
+        });
     }
 
     loadCities() {
@@ -52,21 +52,21 @@ ngOnInit(): void {
         const professor = this.professorForm?.getRawValue();
         if (!professor.id) {
             return this.httpProfessor.post(professor)
-    }else{
-        return this.httpProfessor.put(professor);
+        } else {
+            return this.httpProfessor.put(professor);
+        }
     }
-}
 
-onSave(){
-    this.saveProfessor().pipe(take(1)).subscribe((message : any) => {
-        this.toastService.showToast({
-            message: message.message,
-            classNames: 'bg-success',
-            header: ""
+    onSave() {
+        this.saveProfessor().pipe(take(1)).subscribe((message: any) => {
+            this.toastService.showToast({
+                message: message.message,
+                classNames: 'bg-success',
+                header: ""
+            });
+            this.router.navigate(['/professor/professor-list'], {
+                queryParamsHandling: 'preserve'
+            });
         });
-        this.router.navigate(['/professor/professor-list'],{
-            queryParamsHandling: 'preserve'
-        });
-    });
-}
+    }
 }

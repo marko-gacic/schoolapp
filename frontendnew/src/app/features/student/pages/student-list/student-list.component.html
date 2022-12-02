@@ -1,32 +1,27 @@
 <h2>Student list</h2>
-
-
 <div class="m-2">
-  <button type="button" class="btn btn-outline-primary" [routerLink]="['/student/student-form']" ><bi name="plus"></bi>Add Student</button>
+  <button type="button" class="btn btn-outline-primary" [routerLink]="['/student/student-form']">
+    <bi name="plus"></bi>Add Student
+  </button>
 </div>
 
 <table class="table table-strped">
   <thead>
     <tr>
-      <!-- <th>#</th> -->
       <th sortable="id" (sort)="onSort($event)">ID</th>
       <th sortable="indexNumber" (sort)="onSort($event)">Index Number</th>
       <th sortable="indexYear" (sort)="onSort($event)">Index Year</th>
       <th sortable="firstName" (sort)="onSort($event)"> Name</th>
-    <th sortable="lastName" (sort)="onSort($event)">Last Name</th>
-    <th sortable="email" (sort)="onSort($event)">Email</th>
-    <th sortable="address" (sort)="onSort($event)">Address</th>
-    <th sortable="currentYearOfStudy" (sort)="onSort($event)" >Current Year Of Study</th>
-     <th sortable="city" (sort)="onSort($event)" >City</th>
-    
-
-      
+      <th sortable="lastName" (sort)="onSort($event)">Last Name</th>
+      <th sortable="email" (sort)="onSort($event)">Email</th>
+      <th sortable="address" (sort)="onSort($event)">Address</th>
+      <th sortable="currentYearOfStudy" (sort)="onSort($event)">Current Year Of Study</th>
+      <th sortable="city" (sort)="onSort($event)">City</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let stu of students; let i = index">
-      <!-- <td>{{ i + 1 }}</td> -->
       <td>{{ stu.id }}</td>
       <td>{{ stu.indexNumber }}</td>
       <td>{{ stu.indexYear }}</td>
@@ -34,35 +29,44 @@
       <td>{{ stu.lastName }}</td>
       <td>{{ stu.email }}</td>
       <td>{{ stu.address }}</td>
-      <td>{{ stu.currentYearOfStudy  }}</td>
+      <td>{{ stu.currentYearOfStudy }}</td>
       <td>{{ cityMap.get(stu.city.zip_code)?.name }}</td>
       <td>
-        <button class="btn btn-outline-primary" 
-            [routerLink]="['/student/student-form', stu.id]"         
-            [queryParams]="{'page': currentPage.page, 'size': currentPage.size, 'orderBy': currentPage.orderBy, 'order': currentPage.order}"
-            >
-          <bi name="pencil"></bi>Edit
+        <button class="btn btn-outline-primary" [routerLink]="['/student/student-form', stu.id]"
+          [queryParams]="{'page': currentPage.page, 'size': currentPage.size, 'orderBy': currentPage.orderBy, 'order': currentPage.order}">
+          <bi name="pencil"></bi><span class="btn-text-responsive">{{'Edit'}}</span>
         </button>
-        <button class="btn btn-outline-primary"  >
-          <bi name="card-text"></bi>Details
+        <button class="btn btn-outline-primary" (click)="onDetailsClick(stu, studentDetailsTemplate)">
+          <bi name="card-text"></bi><span class="btn-text-responsive">{{'Details'}}</span>
         </button>
-        <button class="btn btn-outline-danger">
-          <bi name="trash"></bi>Delete
+        <button class="btn btn-outline-danger" (click)="onDeleteClick(stu)">
+          <bi name="trash"></bi><span class="btn-text-responsive">{{'Delete'}}</span>
         </button>
       </td>
     </tr>
   </tbody>
 </table>
-
 <div class="d-flex justify-content-center">
-
-  <ngb-pagination
-    [collectionSize]="currentPage.totalItems"
-    [pageSize]="currentPage.size"
-    [(page)]="currentPage.page"
-    [boundaryLinks]="true"
-    (pageChange)="loadStudents()"
-  >
-
+  <ngb-pagination [collectionSize]="currentPage.totalItems" [pageSize]="currentPage.size" [(page)]="currentPage.page"
+    [boundaryLinks]="true" (pageChange)="loadStudents()">
   </ngb-pagination>
 </div>
+<ng-template #studentDetailsTemplate let-modal>
+  <div class="modal-body">
+    <h4>Student Details</h4>
+    <ul class="list-unstyled">
+      <li>ID: {{ selectedStudent?.id }}</li>
+      <li>Index Number: {{ selectedStudent?.indexNumber }}</li>
+      <li>Index Year: {{ selectedStudent?.indexYear }}</li>
+      <li>First Name: {{ selectedStudent?.firstName }}</li>
+      <li>Last Name: {{ selectedStudent?.lastName }}</li>
+      <li>Email: {{ selectedStudent?.email }}</li>
+      <li>Address: {{ selectedStudent?.address }}</li>
+      <li>Current Year Of Study: {{ selectedStudent?.currentYearOfStudy }}</li>
+      <li>City: {{selectedStudent?.city?.name}}</li>
+    </ul>
+    <div class="mt-2 d-flex flex-row-reverse">
+      <button (click)="modal.close('OK')">Ok</button>
+    </div>
+  </div>
+</ng-template>

@@ -1,15 +1,15 @@
-import { Component, OnInit, QueryList, ViewChildren } from "@angular/core";
+import { Component, OnInit, QueryList, TemplateRef, ViewChildren } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { Observable, Subscription } from "rxjs";
 import { City, Professor } from "src/app/core/models";
 import { Page } from "src/app/core/models/dtos";
+import { ConfirmOptions } from "src/app/core/models/enums";
 import { HttpCityService } from "src/app/core/services/http-city.service";
 import { HttpProfessorService } from "src/app/core/services/http-professor.service";
+import { ToastService } from "src/app/core/services/toast.service";
+import { ConfirmDialogComponent } from "src/app/shared/components/confirm-dialog/confirm-dialog.component";
 import { SortableHeaderDirective, SortEvent } from 'src/app/shared/directives/sortable-header.directive';
-
-
-
-
-
 
 @Component({
     selector: "app-professor-list",
@@ -24,11 +24,18 @@ export class ProfessorListComponent implements OnInit {
     @ViewChildren(SortableHeaderDirective)
     sortableHeaders?: QueryList<SortableHeaderDirective>;
     format: string = 'dd/MM/yyyy';
+    subscriptions = new Subscription();
+    allProfessors$?: Observable<Professor[]>;
+    selectedProfessor?: Professor;
+   
 
     constructor(
         private httpCity: HttpCityService,
         private httpProfessor: HttpProfessorService,
         private activatedRoute: ActivatedRoute,
+        private modalService: NgbModal,
+        private toastService: ToastService
+
     ) {}
 
     ngOnInit(): void {
@@ -85,4 +92,35 @@ export class ProfessorListComponent implements OnInit {
         this.currentPage = {page: 1, size: this.currentPage.size, orderBy: sortEvent.columnName, order: sortEvent.direction, totalItems: 0};
         this.loadProfessors();
     }
+
+    onDeleteClick(professor: Professor) {
+        const modalRef = this.modalService.open(ConfirmDialogComponent);
+        modalRef.componentInstance.header = 'Delete Professor';
+        modalRef.componentInstance.message = `Are you sure you want to delete ${professor.firstName}?`;
+        modalRef.result.then(
+            (result) => (result === ConfirmOptions) && (this.deleteProfessor(professor))
+        )
+    }
+    deleteProfessor(professor: Professor) {
+        const subscription = this.httpProfessor.delete(professor.id).subscribe(
+            {
+                next: (response) => {
+                    this.toastService.showToast({ header: 'Deleting Professor', message: 'Professor Deleted', delay: 2000, classNames: 'bg-success' });
+                    this.loadProfessors();
+                },
+            }
+        );
+            this.subscriptions.add(subscription);
+    }
+
+    onDetailsClick(professor: Professor, professorDetailsTemplate: TemplateRef<any>) {
+        this.selectedProfessor = professor;
+        this.modalService.open(professorDetailsTemplate);
+    }
+
+    get tempContext() {
+        return {number : 10};
+
+}
+
 }

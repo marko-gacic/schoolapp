@@ -6,11 +6,6 @@ import { Sub } from "src/app/core/models";
 import { HttpSubjectService } from "src/app/core/services/http-subject.service";
 import { ToastService } from "src/app/core/services/toast.service";
 
-
-
-
-
-
 @Component({
     selector: 'app-subject-form',
     templateUrl: './subject-form.component.html',
@@ -18,67 +13,75 @@ import { ToastService } from "src/app/core/services/toast.service";
 })
 export class SubjectFormComponent implements OnInit, OnDestroy {
 
-    
     subForm?: FormGroup;
+    sub?: Sub;
 
     destroy$ = new Subject<boolean>();
 
-    constructor(private activeRoute: ActivatedRoute,
-                private fb: FormBuilder,
-                private httpSubject: HttpSubjectService,
-                private toastService: ToastService,
-                private router: Router,
-                ) {
+    constructor(
+        private activeRoute: ActivatedRoute,
+        private formBuilder: FormBuilder,
+        private httpSubject: HttpSubjectService,
+        private toastService: ToastService,
+        private router: Router,
+    ) {
 
-        const sub = this.activeRoute.snapshot.data['sub'];
-        this.buildForm(sub);
-
-        this.destroy$.subscribe( value => console.log('Value from destroy ', value, new Date()))
+        this.sub = this.activeRoute.snapshot.data['sub'];
+        this.destroy$.subscribe(value => console.log('Value from destroy ', value, new Date()))
+        
     }
 
     ngOnInit(): void {
-        this.buildForm();
+         this.buildForm();
     }
 
     ngOnDestroy(): void {
         this.destroy$.next(true)
     }
 
-    buildForm(sub?: Sub) {
-        this.subForm = this.fb.group({
-            name: [sub?.name, Validators.required],
-            description: [sub?.description, Validators.required],
-            noOfESP: [sub?.noOfESP, Validators.required],
-            yearOfStudy: [sub?.yearOfStudy, Validators.required],
-            semester: [sub?.semester, Validators.required],
+    buildForm() {
+        this.subForm = this.formBuilder.group({
+            id: [this.sub?.id],
+            name: [this.sub?.name, Validators.required],
+            description: [this.sub?.description, Validators.required],
+            noOfESP: [this.sub?.noOfESP, Validators.required],
+            yearOfStudy: [this.sub?.yearOfStudy, Validators.required],
+            semester: [this.sub?.semester, Validators.required],
         })
     }
 
-    saveSubject() {
-        const sub = this.subForm?.getRawValue();
-        if (!sub.id) {
-            return this.httpSubject.updateSubject(sub);
+    saveSubject( sub: Sub, id?: number) {
+        if (this.sub && id) {
+            return this.httpSubject.updateSubject(id, sub);
         } else {
             return this.httpSubject.insertSubject(sub);
         }
     }
 
- onSave() {
-  this.saveSubject().pipe(take(1)).subscribe((message: any) => {
-    this.toastService.showToast(
-        {
-            message: message.message,
-            classNames: 'bg-success ',
-            header: 'Success',
+    onSave() {
+        if (!this.subForm) return;
+
+        this.saveSubject(this.subForm.value, this.sub?.id)
+            .pipe(
+                takeUntil(this.destroy$)
+            )
+            .subscribe(
+                (message:any) => {
+                    this.toastService.showToast(
+                {
+                    header: 'Success',
+                    message: message.message,
+                    classNames:'bg-success'
+                   
+                })
+            this.router.navigate(['/subject/subject-list'], {
+                queryParamsHandling: 'preserve'
+            });
         })
-    this.router.navigate(['/subject/subject-list'],{queryParamsHandling: 'preserve'});
-  })
- }
-   
+    }
 }
 
 
 
 
 
-    

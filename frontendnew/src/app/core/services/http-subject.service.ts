@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
-import { Sub } from "../models";
+import { Sub, SubDTO } from "../models";
 import { Page, PageResponse } from "../models/dtos";
 
 @Injectable({
@@ -16,8 +16,9 @@ export class HttpSubjectService {
     constructor(private httpClient: HttpClient) { }
 
     getAll() {
-        return this.httpClient.get<Sub[]>(`${this.endpointBasePath}`); //, { headers});
+        return this.httpClient.get<SubDTO[]>(`${this.endpointBasePath}`);
     }
+
 
     getByPage(page: Page) {
 
@@ -32,25 +33,22 @@ export class HttpSubjectService {
     }
 
     deleteSubject(id: number) {
-        return this.httpClient.delete<any>(`${this.endpointBasePath}/${id}`);
+        return this.httpClient.delete<Response>(`${this.endpointBasePath}/${id}`);
     }
 
     getSubject(id: number) {
-        return this.httpClient.get<Sub>(`${this.endpointBasePath}/${id}`);
+        return this.httpClient.get<SubDTO>(`${this.endpointBasePath}/${id}`);
     }
 
-    insertSubject(subject: Sub) {
-        return this.httpClient.post<any>(`${this.endpointBasePath}`, subject);
+    insertSubject(sub: SubDTO): Observable<Response> {
+        return this.httpClient.post<Response>(`${this.endpointBasePath}`, sub);
     }
 
-    updateSubject(subject: Sub) {
-        return this.httpClient.put<any>(`${this.endpointBasePath}/${subject.id}`, subject);
+    updateSubject(id: number, sub: SubDTO): Observable<Response> {
+        return this.httpClient.put<Response>(`${this.endpointBasePath}/${id}`, sub);
     }
 
     get endpointBasePath() {
         return `${environment.serverUrl}/${this.endpointPrefix}`;
     }
 }
-
-
-

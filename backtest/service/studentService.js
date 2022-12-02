@@ -16,7 +16,7 @@ async function getByPage(page, size, orderBy, order) {
     let data = await db.query(query);
 
     data = data.map(man => {
-        const newobj = {...man,city:{zip_code: man.city, name: man.cityName}};
+        const newobj = { ...man, city: { zip_code: man.city, name: man.cityName } };
         delete newobj.cityName;
         return newobj;
     });
@@ -27,9 +27,9 @@ async function getByPage(page, size, orderBy, order) {
         totalItems: total.totalItems,
         page: page,
         size: size,
-}
+    }
 
-return pageResponse;
+    return pageResponse;
 }
 
 async function get(id) {
@@ -39,12 +39,22 @@ async function get(id) {
     }
     let err = `Invalid id ${id}`;
     return { err };
-    
+
 }
 
 async function create(student) {
-    const data = await db.query(`INSERT INTO student (indexNumber, indexYear,firstName,lastName,email,address,currentYearOfStudy,city) VALUES ('${student.indexNumber}', '${student.indexYear}','${student.firstName}','${student.lastName}','${student.email}','${student.address}','${student.currentYearOfStudy}','${student.city}')`);
-    const result = await db.query(query);
+    const query = "INSERT INTO student (indexNumber, indexYear, firstName, lastName, email, address, currentYearOfStudy, city) VALUES (?, ?, ?, ?, ?, ?,?,?)"
+    const result
+        = await
+            db.query(query, [
+                student.indexNumber,
+                student.indexYear,
+                student.firstName,
+                student.lastName,
+                student.email,
+                student.address,
+                student.currentYearOfStudy,
+                student.city]);
     let err = 'Error in creating student';
     if (result.affectedRows) {
         err = 'Student created successfully';
@@ -53,13 +63,26 @@ async function create(student) {
 }
 
 async function update(id, student) {
-    const data = await db.query(`UPDATE student SET indexNumber = '${student.indexNumber}', indexYear = '${student.indexYear}', firstName = '${student.firstName}', lastName = '${student.lastName}', email = '${student.email}', address = '${student.address}', currentYearOfStudy = '${student.currentYearOfStudy}', city = '${student.city}' WHERE id = ${id}`);
+    const query = "UPDATE student SET indexNumber = ?, indexYear = ?, firstName = ?, lastName = ?, email = ?, address = ?, currentYearOfStudy = ?, city = ? WHERE id = ?";
+    const result
+        = await
+            db.query(query, [
+                student.indexNumber,
+                student.indexYear,
+                student.firstName,
+                student.lastName,
+                student.email,
+                student.address,
+                student.currentYearOfStudy,
+                student.city,
+                id]);
     let err = 'Error in updating student';
-    if (data.affectedRows) {
+    if (result.affectedRows) {
         err = 'Student updated successfully';
     }
     return { err };
 }
+
 
 async function remove(id) {
     const data = await db.query(`DELETE FROM student WHERE id = ${id}`);
@@ -68,7 +91,7 @@ async function remove(id) {
         err = 'Student deleted successfully';
     }
     return { err };
-}   
+}
 
 module.exports = {
     getAll,
