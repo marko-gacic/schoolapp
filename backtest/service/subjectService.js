@@ -8,13 +8,14 @@ async function getAll() {
 
 
 async function getByPage(page, size, orderBy, order) {
+    console.log(page, size, orderBy, order);
     const queryTotal = 'SELECT COUNT(*) as totalItems FROM subject';
     const [total] = await db.query(queryTotal);
     const lastPage = Math.ceil(total.totalItems / size);
     page = page <= lastPage ? lastPage : page;
     const offset = (page - 1) * size;
     const query = `SELECT * FROM subject ORDER BY ${orderBy} ${order} LIMIT ${size} OFFSET ${offset}`;
-    let data = await db.query(query);
+    const data = await db.query(query);
 
     const pageResponse = {
         content: data,
@@ -34,6 +35,8 @@ async function get(id) {
     let err = `Invalid id ${id}`;
     return { err };
 }
+
+
 
 async function create(subject) {
     const query = "INSERT INTO subject (name,description,noOfESP,yearOfStudy,semester) VALUES (?,?,?,?,?)";
@@ -71,7 +74,7 @@ async function update(id, subject) {
 }
 
 async function remove(id) {
-    const data = await db.query(`DELETE FROM subjects WHERE id = ${id}`);
+    const data = await db.query(`DELETE FROM subject WHERE id = ${id}`);
     let err = 'Error in deleting subject';
     if (data.affectedRows) {
         err = 'Subject deleted successfully';

@@ -15,10 +15,10 @@ import { HttpSubjectService } from "src/app/core/services/http-subject.service";
 })
 export class SubjectResolver implements Resolve<SubDTO> {
 
-    constructor (
-        private httpSubjectService: HttpSubjectService) {}
-    resolve(route:ActivatedRouteSnapshot, state:RouterStateSnapshot):Observable<SubDTO> {
-    const id = Number(route.paramMap.get('id'));
-    return this.httpSubjectService.getSubject(id);
+    constructor(
+        private httpSubjectService: HttpSubjectService) { }
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<SubDTO> {
+        const id = Number(route.paramMap.get('id'));
+        return this.httpSubjectService.get(id);
     }
 }

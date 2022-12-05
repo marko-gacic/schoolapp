@@ -36,11 +36,11 @@
           [queryParams]="{'page': currentPage.page, 'size': currentPage.size, 'orderBy': currentPage.orderBy, 'order': currentPage.order}">
           <bi name="pencil"></bi><span class="btn-text-responsive">Edit</span>
         </button>
-        <button class="btn btn-outline-primary" (click)="onDetailsClick(pro, proDetailsTemplate)" >
+        <button class="btn btn-outline-primary" (click)="onDetailsClick(pro, proDetailsTemplate)">
           <bi name="card-text"></bi><span class="btn-text-responsive">Details</span>
         </button>
-        <button class="btn btn-outline-danger" (click)="onDeleteClick(pro)" >
-          <bi name="trash"></bi>Delete
+        <button class="btn btn-outline-danger" (click)="onDeleteClick(pro)">
+          <bi name="trash"></bi><span class="btn-text-responsive">{{'Delete'}}</span>
         </button>
       </td>
     </tr>

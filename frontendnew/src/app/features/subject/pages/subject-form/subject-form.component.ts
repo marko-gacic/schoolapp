@@ -28,11 +28,11 @@ export class SubjectFormComponent implements OnInit, OnDestroy {
 
         this.sub = this.activeRoute.snapshot.data['sub'];
         this.destroy$.subscribe(value => console.log('Value from destroy ', value, new Date()))
-        
+
     }
 
     ngOnInit(): void {
-         this.buildForm();
+        this.buildForm();
     }
 
     ngOnDestroy(): void {
@@ -50,34 +50,35 @@ export class SubjectFormComponent implements OnInit, OnDestroy {
         })
     }
 
-    saveSubject( sub: Sub, id?: number) {
-        if (this.sub && id) {
-            return this.httpSubject.updateSubject(id, sub);
+    saveSubject() {
+        const sub = this.subForm?.getRawValue();
+        if (!sub.id) {
+            return this.httpSubject.create(sub);
         } else {
-            return this.httpSubject.insertSubject(sub);
+            return this.httpSubject.update(sub);
         }
     }
 
     onSave() {
         if (!this.subForm) return;
 
-        this.saveSubject(this.subForm.value, this.sub?.id)
+        this.saveSubject()
             .pipe(
                 takeUntil(this.destroy$)
             )
             .subscribe(
-                (message:any) => {
+                (message: any) => {
                     this.toastService.showToast(
-                {
-                    header: 'Success',
-                    message: message.message,
-                    classNames:'bg-success'
-                   
+                        {
+                            header: 'Success',
+                            message: message.message,
+                            classNames: 'bg-success'
+
+                        })
+                    this.router.navigate(['/subject/subject-list'], {
+                        queryParamsHandling: 'preserve'
+                    });
                 })
-            this.router.navigate(['/subject/subject-list'], {
-                queryParamsHandling: 'preserve'
-            });
-        })
     }
 }
 

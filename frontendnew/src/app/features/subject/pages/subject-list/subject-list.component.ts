@@ -17,7 +17,7 @@ import { ToastService } from "src/app/core/services/toast.service";
 })
 export class SubjectListComponent implements OnInit {
     currentPage: Page = { page: 1, size: 5, orderBy: 'name', order: 'asc', totalItems: 10 };
-    subjects?: Sub[];
+    subject?: Sub[];
     availablePageSizes = [3, 5, 10, 15, 20, 25, 30, 50, 100];
     @ViewChildren(SortableHeaderDirective)
     sortableHeaders?: QueryList<SortableHeaderDirective>;
@@ -35,7 +35,7 @@ export class SubjectListComponent implements OnInit {
 
     ngOnInit(): void {
         this.allSub$ = this.httpSubject.getAll();
-        this.loadSubjects();
+        this.loadSubject();
         this.loadPageFromQueryParams();
     }
 
@@ -61,12 +61,12 @@ export class SubjectListComponent implements OnInit {
         this.subscriptions.unsubscribe();
     }
 
-    loadSubjects() {
+    loadSubject() {
         this.httpSubject.getByPage(this.currentPage).subscribe(
-            subjectsPage => {
-                this.subjects = subjectsPage.content;
-                this.currentPage.page = subjectsPage.page;
-                this.currentPage.totalItems = subjectsPage.totalItems;
+            subjectPage => {
+                this.subject = subjectPage.content;
+                this.currentPage.page = subjectPage.page;
+                this.currentPage.totalItems = subjectPage.totalItems;
 
             }
         );
@@ -79,8 +79,8 @@ export class SubjectListComponent implements OnInit {
                     sortableHeader.direction = '';
                 }
             });
-            this.currentPage = {page: 1, size: this.currentPage.size, orderBy: sortEvent.columnName, order: sortEvent.direction, totalItems: 0};
-        this.loadSubjects();
+        this.currentPage = { page: 1, size: this.currentPage.size, orderBy: sortEvent.columnName, order: sortEvent.direction, totalItems: 0 };
+        this.loadSubject();
     }
 
     onDeleteClick(subToDelete: Sub) {
@@ -94,11 +94,11 @@ export class SubjectListComponent implements OnInit {
     }
 
     deleteSubject(subToDelete: Sub) {
-        const subscription = this.httpSubject.deleteSubject(subToDelete.id).subscribe(
+        const subscription = this.httpSubject.delete(subToDelete.id).subscribe(
             {
                 next: (response) => {
                     this.toastService.showToast({ header: 'Deleting Subject', message: 'Subject Deleted', delay: 2000, classNames: 'bg-success' });
-                    this.loadSubjects();
+                    this.loadSubject();
                 },
                 error: (error) => {
                     this.toastService.showToast({ header: 'Deleting Subject', message: 'Error Deleting Subject', delay: 2000, classNames: 'bg-danger' });

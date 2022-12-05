@@ -8,7 +8,7 @@ router.get('/', async function (req, res, next) {
     try {
         res.json(await subjectService.getAll());
     } catch (err) {
-        console.error(`Error while getting subjects `, err.message);
+        console.error(`Error while getting subject `, err.message);
         next(err);
     }
 });
@@ -23,7 +23,7 @@ router.get('/page', async function (req, res, next) {
         console.log('page', req.query.page, page, size, orderBy, order);
         res.json(await subjectService.getByPage(page, size, orderBy, order));
     } catch (err) {
-        console.error(`Error while getting subjects `, err.message);
+        console.error(`Error while getting subject `, err.message);
         next(err);
     }
 });

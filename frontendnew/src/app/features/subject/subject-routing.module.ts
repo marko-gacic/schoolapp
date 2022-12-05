@@ -5,10 +5,10 @@ import { SubjectListComponent } from './pages/subject-list/subject-list.componen
 import { SubjectResolver } from './resolvers/subject.resolver';
 
 const routes: Routes = [
-    {path : 'subject-list', component: SubjectListComponent},
-    {path : 'subject-form', component: SubjectFormComponent},
-    {path : 'subject-form/:id', component: SubjectFormComponent, resolve: {subject: SubjectResolver}},
-    {path : '', pathMatch: 'full', redirectTo: 'subject-list'}
+    { path: 'subject-list', component: SubjectListComponent },
+    { path: 'subject-form', component: SubjectFormComponent },
+    { path: 'subject-form/:id', component: SubjectFormComponent, resolve: { subject: SubjectResolver } },
+    { path: '', redirectTo: 'subject-list', pathMatch: 'full' }
 ];
 
 @NgModule({

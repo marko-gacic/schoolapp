@@ -52,7 +52,7 @@ export interface Sub {
     description: string;
     noOfESP: number;
     yearOfStudy: number;
-    semester: number;
+    semester: string;
 }
 
 export interface SubDTO {
@@ -61,13 +61,13 @@ export interface SubDTO {
     description: string;
     noOfESP: number;
     yearOfStudy: number;
-    semester: number;
+    semester: string;
 }
 
 export interface City {
     zip_code: number;
     name: string;
-    
+
 }
 
 export interface User {

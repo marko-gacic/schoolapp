@@ -18,16 +18,16 @@ import { SortableHeaderDirective, SortEvent } from 'src/app/shared/directives/so
 })
 export class ProfessorListComponent implements OnInit {
     cityMap: Map<number, City> = new Map();
-    currentPage: Page = {page:1, size: 5, orderBy: 'name', order: 'asc', totalItems: 10};
+    currentPage: Page = { page: 1, size: 5, orderBy: 'name', order: 'asc', totalItems: 10 };
     professors?: Professor[];
-    availablePageSizes = [3,5, 10, 15, 20, 25, 30, 50, 100];
+    availablePageSizes = [3, 5, 10, 15, 20, 25, 30, 50, 100];
     @ViewChildren(SortableHeaderDirective)
     sortableHeaders?: QueryList<SortableHeaderDirective>;
     format: string = 'dd/MM/yyyy';
     subscriptions = new Subscription();
     allProfessors$?: Observable<Professor[]>;
     selectedProfessor?: Professor;
-   
+
 
     constructor(
         private httpCity: HttpCityService,
@@ -36,11 +36,11 @@ export class ProfessorListComponent implements OnInit {
         private modalService: NgbModal,
         private toastService: ToastService
 
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         this.loadPageFromQueryParams();
-         this.loadCities();
+        this.loadCities();
         this.loadProfessors();
     }
 
@@ -64,9 +64,9 @@ export class ProfessorListComponent implements OnInit {
     }
 
     loadCities() {
-     this.httpCity.getAll().subscribe(
-             cities => cities.forEach(city => this.cityMap.set(city.zip_code,city))
-     )
+        this.httpCity.getAll().subscribe(
+            cities => cities.forEach(city => this.cityMap.set(city.zip_code, city))
+        )
     }
 
     loadProfessors() {
@@ -80,7 +80,7 @@ export class ProfessorListComponent implements OnInit {
     }
 
     onSort(sortEvent: SortEvent) {
-        console.log(sortEvent,'sortEvent');
+        console.log(sortEvent, 'sortEvent');
 
         this.sortableHeaders?.forEach(
             sortableHeader => {
@@ -89,7 +89,7 @@ export class ProfessorListComponent implements OnInit {
                 }
             }
         )
-        this.currentPage = {page: 1, size: this.currentPage.size, orderBy: sortEvent.columnName, order: sortEvent.direction, totalItems: 0};
+        this.currentPage = { page: 1, size: this.currentPage.size, orderBy: sortEvent.columnName, order: sortEvent.direction, totalItems: 0 };
         this.loadProfessors();
     }
 
@@ -98,29 +98,32 @@ export class ProfessorListComponent implements OnInit {
         modalRef.componentInstance.header = 'Delete Professor';
         modalRef.componentInstance.message = `Are you sure you want to delete ${professor.firstName}?`;
         modalRef.result.then(
-            (result) => (result === ConfirmOptions) && (this.deleteProfessor(professor))
-        )
+            (result) => (result === ConfirmOptions.YES) && (this.deleteStudent(professor))
+
+        );
     }
-    deleteProfessor(professor: Professor) {
+
+    deleteStudent(professor: Professor) {
         const subscription = this.httpProfessor.delete(professor.id).subscribe(
             {
                 next: (response) => {
-                    this.toastService.showToast({ header: 'Deleting Professor', message: 'Professor Deleted', delay: 2000, classNames: 'bg-success' });
+                    this.toastService.showToast({ header: 'Deleting Professor', message: 'Student Professor', delay: 2000, classNames: 'bg-success' });
                     this.loadProfessors();
                 },
+                error: (error) => {
+                    this.toastService.showToast({ header: 'Deleting Professor', message: 'Error Deleting Professor', delay: 2000, classNames: 'bg-danger' });
+                }
             }
         );
-            this.subscriptions.add(subscription);
+        this.subscriptions.add(subscription);
     }
 
-    onDetailsClick(professor: Professor, professorDetailsTemplate: TemplateRef<any>) {
+    onDetailsClick(professor: Professor, studentDetailsTemplate: TemplateRef<any>) {
         this.selectedProfessor = professor;
-        this.modalService.open(professorDetailsTemplate);
+        this.modalService.open(studentDetailsTemplate);
     }
 
     get tempContext() {
-        return {number : 10};
-
-}
-
+        return { number: 10 }
+    }
 }

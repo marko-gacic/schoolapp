@@ -5,11 +5,7 @@ import { StudentFormComponent } from "./pages/student-form/student-form.componen
 import { StudentListComponent } from "./pages/student-list/student-list.component";
 import { StudentRoutingModule } from "./student-routing.model";
 
-
-
-
-
-@NgModule ({
+@NgModule({
     declarations: [
         StudentFormComponent,
         StudentListComponent

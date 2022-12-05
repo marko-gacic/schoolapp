@@ -18,7 +18,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let sub of subjects; let i = index">
+    <tr *ngFor="let sub of subject; let i = index">
       <td>{{ sub.id }}</td>
       <td>{{ sub.name }}</td>
       <td>{{ sub.description }}</td>
@@ -26,8 +26,7 @@
       <td>{{ sub.yearOfStudy }}</td>
       <td>{{ sub.semester }}</td>
       <td>
-        <button class="btn btn-outline-primary" 
-        [routerLink]="['/subject/subject-form', sub.id]"
+        <button class="btn btn-outline-primary" [routerLink]="['/subject/subject-form', sub.id]"
           [queryParams]="{'page': currentPage.page, 'size': currentPage.size, 'orderBy': currentPage.orderBy, 'order': currentPage.order}">
           <bi name="pencil"></bi><span class="btn-text-responsive">{{'Edit'}}</span>
         </button>
@@ -43,7 +42,7 @@
 </table>
 <div class="d-flex justify-content-center">
   <ngb-pagination [collectionSize]="currentPage.totalItems" [pageSize]="currentPage.size" [(page)]="currentPage.page"
-    [boundaryLinks]="true" (pageChange)="loadSubjects()">
+    [boundaryLinks]="true" (pageChange)="loadSubject()">
   </ngb-pagination>
 </div>
 <ng-template #subDetailsTemplate let-modal>

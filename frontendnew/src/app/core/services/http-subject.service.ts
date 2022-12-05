@@ -15,11 +15,6 @@ export class HttpSubjectService {
 
     constructor(private httpClient: HttpClient) { }
 
-    getAll() {
-        return this.httpClient.get<SubDTO[]>(`${this.endpointBasePath}`);
-    }
-
-
     getByPage(page: Page) {
 
         const params = new HttpParams()
@@ -32,20 +27,24 @@ export class HttpSubjectService {
 
     }
 
-    deleteSubject(id: number) {
-        return this.httpClient.delete<Response>(`${this.endpointBasePath}/${id}`);
-    }
-
-    getSubject(id: number) {
+    get(id: number): Observable<SubDTO> {
         return this.httpClient.get<SubDTO>(`${this.endpointBasePath}/${id}`);
     }
 
-    insertSubject(sub: SubDTO): Observable<Response> {
+    getAll(): Observable<Sub[]> {
+        return this.httpClient.get<Sub[]>(`${this.endpointBasePath}`);
+    }
+
+    create(sub: SubDTO): Observable<Response> {
         return this.httpClient.post<Response>(`${this.endpointBasePath}`, sub);
     }
 
-    updateSubject(id: number, sub: SubDTO): Observable<Response> {
-        return this.httpClient.put<Response>(`${this.endpointBasePath}/${id}`, sub);
+    update(sub: SubDTO): Observable<Response> {
+        return this.httpClient.put<Response>(`${this.endpointBasePath}`, sub);
+    }
+
+    delete(id: number) {
+        return this.httpClient.delete<any>(`${this.endpointBasePath}/${id}`);
     }
 
     get endpointBasePath() {

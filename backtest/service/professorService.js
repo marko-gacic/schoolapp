@@ -83,7 +83,7 @@ async function update(id, professor) {
 }
 
 async function remove(id) {
-    const result = await db.query(`delete from professor where id = ${id}`);
+    const result = await db.query(`DELETE FROM professor WHERE id = ${id}`);
     let err = 'Error in deleting professor';
     if (result.affectedRows) {
         err = 'Professor deleted successfully';
