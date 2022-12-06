@@ -34,31 +34,23 @@ export class SubjectListComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.allSub$ = this.httpSubject.getAll();
         this.loadSubject();
         this.loadPageFromQueryParams();
     }
 
     loadPageFromQueryParams() {
-        const page = Number(this.activatedRoute.snapshot.queryParamMap.get('page'));
-        if (page) {
-            this.currentPage.page = page;
-        }
-        const size = Number(this.activatedRoute.snapshot.queryParamMap.get('size'));
-        if (size) {
-            this.currentPage.size = size;
-        }
-        const orderBy = this.activatedRoute.snapshot.queryParamMap.get('orderBy');
-        if (orderBy) {
-            this.currentPage.orderBy = orderBy;
-        }
-        const order = this.activatedRoute.snapshot.queryParamMap.get('order');
-        if (order) {
-            this.currentPage.order = order;
-        }
-    }
-    ngOnDestroy(): void {
-        this.subscriptions.unsubscribe();
+        const page = Number(this.activatedRoute.snapshot.queryParams['page']);
+        if (page) { this.currentPage.page = page; }
+
+        const size = Number(this.activatedRoute.snapshot.queryParams['size']);
+        if (size) { this.currentPage.size = size; }
+
+        const orderBy = this.activatedRoute.snapshot.queryParams['orderBy'];
+        if (orderBy) { this.currentPage.orderBy = orderBy; }
+
+        const order = this.activatedRoute.snapshot.queryParams['order'];
+        if (order) { this.currentPage.order = order; }
+
     }
 
     loadSubject() {
@@ -67,9 +59,8 @@ export class SubjectListComponent implements OnInit {
                 this.subject = subjectPage.content;
                 this.currentPage.page = subjectPage.page;
                 this.currentPage.totalItems = subjectPage.totalItems;
-
             }
-        );
+        )
     }
 
     onSort(sortEvent: SortEvent) {

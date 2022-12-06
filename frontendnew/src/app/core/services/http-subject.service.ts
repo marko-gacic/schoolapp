@@ -27,24 +27,24 @@ export class HttpSubjectService {
 
     }
 
-    get(id: number): Observable<SubDTO> {
+    get(id: number) {
         return this.httpClient.get<SubDTO>(`${this.endpointBasePath}/${id}`);
     }
 
-    getAll(): Observable<Sub[]> {
-        return this.httpClient.get<Sub[]>(`${this.endpointBasePath}`);
-    }
+    // getAll(): Observable<Sub[]> {
+    //     return this.httpClient.get<Sub[]>(`${this.endpointBasePath}`);
+    // }
 
-    create(sub: SubDTO): Observable<Response> {
+    post(sub: SubDTO): Observable<Response> {
         return this.httpClient.post<Response>(`${this.endpointBasePath}`, sub);
     }
 
-    update(sub: SubDTO): Observable<Response> {
-        return this.httpClient.put<Response>(`${this.endpointBasePath}`, sub);
+    put(sub: SubDTO): Observable<Response> {
+        return this.httpClient.put<Response>(`${this.endpointBasePath}/${sub.id}`, sub);
     }
 
     delete(id: number) {
-        return this.httpClient.delete<any>(`${this.endpointBasePath}/${id}`);
+        return this.httpClient.delete<Response>(`${this.endpointBasePath}/${id}`);
     }
 
     get endpointBasePath() {
