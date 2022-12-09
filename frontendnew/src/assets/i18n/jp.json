@@ -1,0 +1,88 @@
+{
+    "APP_TITLE": "クラッド",
+    "COMMON": {
+        "EDIT": "編集",
+        "DETAILS": "詳細",
+        "DELETE": "削除",
+        "SAVE": "保存",
+        "ACTIONS": "行動",
+        "CANCEL": "キャンセル",
+        "NAME": "名前",
+        "STUDENT": "学生",
+        "PROFESSOR": "教授",
+        "SUBJECT": "科目",
+        "ADD_STUDENT": "学生を追加",
+        "ADD_PROFESSOR": "教授を追加",
+        "ADD_SUBJECT": "科目を追加"
+    },
+    "CITY": {
+        "LIST_TITLE": "都市リスト",
+        "ZIP_CODE": "郵便番号",
+        "NAME": "名前",
+        "SAVING_CITY_HEADER": "都市を保存しています",
+        "SAVING_CITY_MESSAGE": "都市が正常に保存されました"
+    },
+    "PROFESSOR": {
+        "LIST_TITLE": "教授リスト",
+        "FIRST_NAME": "名",
+        "LAST_NAME": "姓",
+        "EMAIL": "メール",
+        "ADDRESS": "住所",
+        "PHONE": "  電話",
+        "RELOCATION_DATE": "移動日",
+        "CITY": "都市",
+        "PROFESSOR_DETAILS": "教授の詳細",
+        "SAVING_PROFESSOR_HEADER": "教授を保存しています",
+        "SAVING_PROFESSOR_MESSAGE": "教授が正常に保存されました"
+    },
+    "STUDENT": {
+        "LIST_TITLE": "学生リスト",
+        "INDEX_NUMBER": "インデックス番号",
+        "INDEX_YEAR": "インデックス年",
+        "FIRST_NAME": "名",
+        "LAST_NAME": "姓",
+        "EMAIL": "メール",
+        "ADDRESS": "住所",
+        "CURRENT_YEAR_OF_STUDY": "現在の学年",
+        "CITY": "都市",
+        "STUDENT_DETAILS": "学生の詳細",
+        "SAVING_STUDENT_HEADER": "学生を保存しています",
+        "SAVING_STUDENT_MESSAGE": "学生が正常に保存されました"
+    },
+    "SUBJECT": {
+        "LIST_TITLE": "科目リスト",
+        "NAME": "名前",
+        "DESCRIPTION": "説明",
+        "NO_OF_ESP": "ESPの数",
+        "YEAR_OF_STUDY": "学年",
+        "SEMESTER": "学期",
+        "SUBJECT_DETAILS": "科目の詳細",
+        "SAVING_COURSE_HEADER": "科目を保存しています",
+        "SAVING_COURSE_MESSAGE": "科目が正常に保存されました"
+    },
+    "HOME": {
+        "TITLE": "ホーム",
+        "WELCOME": "ようこそ",
+        "STUDENT": "学生",
+        "PROFESSOR": "教授",
+        "SUBJECT": "科目",
+        "VIEW_STUDENT": "学生を表示、追加、編集",
+        "VIEW_PROFESSOR": "教授を表示、追加、編集",
+        "VIEW_SUBJECT": "科目を表示、追加、編集"
+    },
+    "LOGIN": {
+        "TITLE": "ログイン",
+        "USERNAME": "ユーザー名",
+        "PASSWORD": "パスワード",
+        "LOGIN": "ログイン",
+        "LOGIN_ERROR": "ユーザー名またはパスワードが間違っています"
+    },
+    "MENU": {
+        "HOME": "ホーム",
+        "STUDENT": "学生",
+        "PROFESSOR": "教授",
+        "SUBJECT": "科目",
+        "CITY": "都市",
+        "LOGOUT": "ログアウト"
+    }
+}

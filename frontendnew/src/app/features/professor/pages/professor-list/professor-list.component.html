@@ -1,9 +1,9 @@
-<h2>Professor list</h2>
+<h2>{{'PROFESSOR.LIST_TITLE' | translate}}</h2>
 
 
 <div class="m-2">
   <button type="button" class="btn btn-outline-primary" [routerLink]="['/professor/professor-form']">
-    <bi name="plus"></bi>Add Professor
+    <bi name="plus"></bi>{{'PROFESSOR.PROFESSOR_DETAILS' | translate}}
   </button>
 </div>
 
@@ -11,13 +11,13 @@
   <thead>
     <tr>
       <th sortable="id" (sort)="onSort($event)">ID</th>
-      <th sortable="firstName" (sort)="onSort($event)">First Name</th>
-      <th sortable="lastName" (sort)="onSort($event)">Last Name</th>
-      <th sortable="email" (sort)="onSort($event)">Email</th>
-      <th sortable="address" (sort)="onSort($event)">Address</th>
-      <th sortable="phone" (sort)="onSort($event)">Phone</th>
-      <th sortable="relocationDate" (sort)="onSort($event)">Relocation Date</th>
-      <th sortable="city" (sort)="onSort($event)">City</th>
+      <th sortable="firstName" (sort)="onSort($event)">{{'PROFESSOR.FIRST_NAME' | translate}}</th>
+      <th sortable="lastName" (sort)="onSort($event)">{{'PROFESSOR.LAST_NAME' | translate}}</th>
+      <th sortable="email" (sort)="onSort($event)">{{'PROFESSOR.EMAIL' | translate}}</th>
+      <th sortable="address" (sort)="onSort($event)">{{'PROFESSOR.ADDRESS' | translate}}</th>
+      <th sortable="phone" (sort)="onSort($event)">{{'PROFESSOR.PHONE' | translate}}</th>
+      <th sortable="relocationDate" (sort)="onSort($event)">{{'PROFESSOR.RELOCATION_DATE' | translate}}</th>
+      <th sortable="city" (sort)="onSort($event)">{{'PROFESSOR.CITY' | translate}}</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -34,13 +34,13 @@
       <td>
         <button class="btn btn-outline-primary" [routerLink]="['/professor/professor-form', pro.id]"
           [queryParams]="{'page': currentPage.page, 'size': currentPage.size, 'orderBy': currentPage.orderBy, 'order': currentPage.order}">
-          <bi name="pencil"></bi><span class="btn-text-responsive">Edit</span>
+          <bi name="pencil"></bi><span class="btn-text-responsive">{{'COMMON.EDIT' | translate}}</span>
         </button>
         <button class="btn btn-outline-primary" (click)="onDetailsClick(pro, proDetailsTemplate)">
-          <bi name="card-text"></bi><span class="btn-text-responsive">Details</span>
+          <bi name="card-text"></bi><span class="btn-text-responsive">{{'COMMON.DETAILS' | translate}}</span>
         </button>
         <button class="btn btn-outline-danger" (click)="onDeleteClick(pro)">
-          <bi name="trash"></bi><span class="btn-text-responsive">{{'Delete'}}</span>
+          <bi name="trash"></bi><span class="btn-text-responsive">{{'COMMON.DELETE' | translate}}</span>
         </button>
       </td>
     </tr>
@@ -53,7 +53,7 @@
 </div>
 <ng-template #proDetailsTemplate let-modal>
   <div class="modal-body">
-    <h4>Professor Details</h4>
+    <h4>{{'PROFESSOR.PROFESSOR_DETAILS' | translate}}</h4>
     <ul class="list-unstyled">
       <li>ID: {{ selectedProfessor?.id }}</li>
       <li>First Name: {{ selectedProfessor?.firstName }}</li>

@@ -7,6 +7,7 @@ var professorRouter = require('./routes/professor');
 const port = 3000;
 var cityRouter = require('./routes/cities');
 var subjectRouter = require('./routes/subject');
+var titleRouter = require('./routes/title');
 
 
 var app = express();
@@ -22,15 +23,16 @@ app.use('/user', userRouter);
 app.use('/professor', professorRouter);
 app.use('/city', cityRouter);
 app.use('/subject', subjectRouter);
+app.use('/title', titleRouter);
 
 app.use((err, req, res, next) => {
-    const statusCode = err.statusCode || 500;
-    console.error(err.message, err.stack);
-    res.status(statusCode).json({ message: err.message });
-    return;
+  const statusCode = err.statusCode || 500;
+  console.error(err.message, err.stack);
+  res.status(statusCode).json({ message: err.message });
+  return;
 });
 
 
 app.listen(port, () => {
-    console.log(`Test backend at http://localhost:${port}`);
+  console.log(`Test backend at http://localhost:${port}`);
 });

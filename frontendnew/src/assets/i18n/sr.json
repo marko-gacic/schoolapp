@@ -1,0 +1,88 @@
+{
+    "APP_TITLE": "CRUD",
+    "COMMON": {
+        "EDIT": "Izmeni",
+        "DETAILS": "Detalji",
+        "DELETE": "Obrisi",
+        "SAVE": "Sacuvaj",
+        "ACTIONS": "Akcije",
+        "CANCEL": "Odustani",
+        "NAME": "Naziv",
+        "STUDENT": "Student",
+        "PROFESSOR": "Profesor",
+        "SUBJECT": "Predmet",
+        "ADD_STUDENT": "Dodaj Studenta",
+        "ADD_PROFESSOR": "Dodaj Profesora",
+        "ADD_SUBJECT": "Dodaj Predmet"
+    },
+    "CITY": {
+        "LIST_TITLE": "Liste Gradova",
+        "ZIP_CODE": "Postanski broj",
+        "NAME": "Naziv",
+        "SAVING_CITY_HEADER": "Sacuvaj grad",
+        "SAVING_CITY_MESSAGE": "Grad je sacuvan"
+    },
+    "PROFESSOR": {
+        "LIST_TITLE": "Liste Profesora",
+        "FIRST_NAME": "Ime",
+        "LAST_NAME": "Prezime",
+        "EMAIL": "Email",
+        "ADDRESS": "Adresa",
+        "PHONE": "Telefon",
+        "RELOCATION_DATE": "Datum prelaska",
+        "CITY": "Grad",
+        "PROFESSOR_DETAILS": "Detalji profesora",
+        "SAVING_PROFESSOR_HEADER": "Sacuvaj profesora",
+        "SAVING_PROFESSOR_MESSAGE": "Profesor je sacuvan"
+    },
+    "STUDENT": {
+        "LIST_TITLE": "Lista Studenata",
+        "INDEX_NUMBER": "Broj Indeksa",
+        "INDEX_YEAR": "Godina Indeksa",
+        "FIRST_NAME": "Ime",
+        "LAST_NAME": "Prezime",
+        "EMAIL": "Email",
+        "ADDRESS": "Adresa",
+        "CURRENT_YEAR_OF_STUDY": "Trenutna Godina Studija",
+        "CITY": "Grad",
+        "STUDENT_DETAILS": "Detalji studenta",
+        "SAVING_STUDENT_HEADER": "Sacuvaj studenta",
+        "SAVING_STUDENT_MESSAGE": "Student je sacuvan"
+    },
+    "SUBJECT": {
+        "LIST_TITLE": "Lista Predmeta",
+        "NAME": "Naziv",
+        "DESCRIPTION": "Opis",
+        "NO_OF_ESP": "Broj ESP",
+        "YEAR_OF_STUDY": "Godina Studija",
+        "SEMESTER": "Semestar",
+        "SUBJECT_DETAILS": "Detalji predmeta",
+        "SAVING_COURSE_HEADER": "Sacuvaj predmet",
+        "SAVING_COURSE_MESSAGE": "Predmet je sacuvan"
+    },
+    "LOGIN": {
+        "TITLE": "Uloguj se",
+        "USERNAME": "Korisnicko ime",
+        "PASSWORD": "Sifra",
+        "LOGIN": "Uloguj se",
+        "LOGIN_ERROR": "Pogresno korisnicko ime ili sifra"
+    },
+    "MENU": {
+        "HOME": "Pocetna Strana",
+        "CITY": "Gradovi",
+        "STUDENT": "Studenti",
+        "PROFESSOR": "Profesori",
+        "SUBJECT": "Predmeti",
+        "LOGOUT": "Izloguj se"
+    },
+    "HOME": {
+        "TITLE": "Pocetna Strana",
+        "WELCOME": "Dobrodosli",
+        "STUDENT": "Student",
+        "PROFESSOR": "Profesor",
+        "SUBJECT": "Predmet",
+        "VIEW_STUDENT": "Pregled, dodavanje i izmena studenta",
+        "VIEW_PROFESSOR": "Pregled, dodavanje i izmena profesora",
+        "VIEW_SUBJECT": "Pregled, dodavanje i izmena predmeta"
+    }
+}

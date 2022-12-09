@@ -1,0 +1,87 @@
+{
+    "APP_TITLE": "CRUD",
+    "COMMON": {
+        "EDIT": "Edit",
+        "DETAILS": "Details",
+        "DELETE": "Delete",
+        "SAVE": "Save",
+        "ACTIONS": "Actions",
+        "CANCEL": "Cancel",
+        "NAME": "Name",
+        "STUDENT": "Student",
+        "PROFESSOR": "Professor",
+        "SUBJECT": "Subject",
+        "ADD_STUDENT": "Add Student",
+        "ADD_PROFESSOR": "Add Professor",
+        "ADD_SUBJECT": "Add Subject"
+    },
+    "CITY": {
+        "LIST_TITLE": "City list",
+        "ZIP_CODE": "Zip code",
+        "NAME": "Name",
+        "SAVING_CITY_HEADER": "Saving city",
+        "SAVING_CITY_MESSAGE": "City saved successfully"
+    },
+    "PROFESSOR": {
+        "LIST_TITLE": "Professor list",
+        "FIRST_NAME": "First Name",
+        "LAST_NAME": "Last Name",
+        "EMAIL": "Email",
+        "ADDRESS": "Address",
+        "PHONE": "Phone",
+        "RELOCATION_DATE": "Relocation Date",
+        "CITY": "City",
+        "PROFESSOR_DETAILS": "Professor Details",
+        "SAVING_PROFESSOR_HEADER": "Saving professor",
+        "SAVING_PROFESSOR_MESSAGE": "Professor saved successfully"
+    },
+    "STUDENT": {
+        "LIST_TITLE": "Student list",
+        "INDEX_NUMBER": "Index Number",
+        "INDEX_YEAR": "Index Year",
+        "FIRST_NAME": "First Name",
+        "LAST_NAME": "Last Name",
+        "EMAIL": "Email",
+        "ADDRESS": "Address",
+        "CURRENT_YEAR_OF_STUDY": "Current Year of Study",
+        "CITY": "City",
+        "STUDENT_DETAILS": "Student Details",
+        "SAVING_STUDENT_HEADER": "Saving student",
+        "SAVING_STUDENT_MESSAGE": "Student saved successfully"
+    },
+    "SUBJECT": {
+        "LIST_TITLE": "Course list",
+        "NAME": "Name",
+        "DESCRIPTION": "Description",
+        "NO_OF_ESP": "No of ESP",
+        "YEAR_OF_STUDY": "Year of Study",
+        "SEMESTER": "Semester",
+        "SUBJECT_DETAILS": "Subject Details",
+        "SAVING_COURSE_HEADER": "Saving course",
+        "SAVING_COURSE_MESSAGE": "Course saved successfully"
+    },
+    "HOME": {
+        "TITLE": "Home",
+        "WELCOME": "CRUD management app",
+        "STUDENT": "Student",
+        "PROFESSOR": "Professor",
+        "SUBJECT": "Subject",
+        "VIEW_STUDENT": "View, add and edit Student",
+        "VIEW_PROFESSOR": "View, add and edit Professor",
+        "VIEW_SUBJECT": "View, add and edit Subject"
+    },
+    "LOGIN": {
+        "TITLE": "Login",
+        "USERNAME": "Username",
+        "PASSWORD": "Password",
+        "LOGIN": "Login",
+        "LOGIN_ERROR": "Invalid username or password"
+    },
+    "MENU": {
+        "HOME": "Home",
+        "STUDENT": "Student",
+        "PROFESSOR": "Professor",
+        "SUBJECT": "Subject",
+        "LOGOUT": "Logout"
+    }
+}

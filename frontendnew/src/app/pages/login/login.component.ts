@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { HttpAuthService } from 'src/app/core/services/http-auth.service';
 import { UserAuthDataService } from 'src/app/core/services/user-auth-data.service';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -23,15 +22,14 @@ export class LoginComponent implements OnInit {
     this.buildForm();
   }
 
-
   buildForm() {
     this.loginForm = this.fb.group({
-      username: ['Admin', Validators.required ],
-      password: ['admin', Validators.required ]
+      username: ['Admin', Validators.required],
+      password: ['admin', Validators.required]
     });
   }
 
-  showControlError(form: FormGroup,controlName: string) {
+  showControlError(form: FormGroup, controlName: string) {
     const control = form.get(controlName);
     return control && control!.errors && (control.dirty || control.touched);
   }
@@ -45,7 +43,6 @@ export class LoginComponent implements OnInit {
     }
   }
 
-
   onLogin() {
     const loginData = this.loginForm?.value;
     this.httpAuth.login(loginData).subscribe(
@@ -55,8 +52,8 @@ export class LoginComponent implements OnInit {
         this.userAuthData.token = btoa(`${loginData.username}:${loginData.password}`)
         this.router.navigate(['/home']);
       }
-      );
-      console.log('loginData', loginData);
+    );
+    console.log('loginData', loginData);
   }
 
 }

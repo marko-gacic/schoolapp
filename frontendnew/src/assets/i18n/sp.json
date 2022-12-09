@@ -1,0 +1,88 @@
+{
+    "APP_TITLE": "CRUD",
+    "COMMON": {
+        "EDIT": "Editar",
+        "DETAILS": "Detalles",
+        "DELETE": "Borrar",
+        "SAVE": "Guardar",
+        "ACTIONS": "Acciones",
+        "CANCEL": "Cancelar",
+        "NAME": "Nombre",
+        "STUDENT": "Estudiante",
+        "PROFESSOR": "Profesor",
+        "SUBJECT": "Asunto",
+        "ADD_STUDENT": "Añadir estudiante",
+        "ADD_PROFESSOR": "Añadir profesor",
+        "ADD_SUBJECT": "Añadir tema"
+    },
+    "CITY": {
+        "LIST_TITLE": "Ciudad lista",
+        "ZIP_CODE": "Código postal",
+        "NAME": "Nombre",
+        "SAVING_CITY_HEADER": "Ciudad de ahorro",
+        "SAVING_CITY_MESSAGE": "Ciudad guardado con éxito"
+    },
+    "PROFESSOR": {
+        "LIST_TITLE": "Profesor lista",
+        "FIRST_NAME": "Nombre de pila",
+        "LAST_NAME": "Apellido",
+        "EMAIL": "Email",
+        "ADDRESS": "Dirección",
+        "PHONE": "Teléfono",
+        "RELOCATION_DATE": "Fecha de reubicación",
+        "CITY": "Ciudad",
+        "PROFESSOR_DETAILS": "Detalles del profesor",
+        "SAVING_PROFESSOR_HEADER": "Ahorro profesor",
+        "SAVING_PROFESSOR_MESSAGE": "Profesor guardado con éxito"
+    },
+    "STUDENT": {
+        "LIST_TITLE": "Lista de estudiantes",
+        "INDEX_NUMBER": "Número de índice",
+        "INDEX_YEAR": "Año de índice",
+        "FIRST_NAME": "Nombre de pila",
+        "LAST_NAME": "Apellido",
+        "EMAIL": "Email",
+        "ADDRESS": "Dirección",
+        "CURRENT_YEAR_OF_STUDY": "Año actual de estudio",
+        "CITY": "Ciudad",
+        "STUDENT_DETAILS": "Detalles del estudiante",
+        "SAVING_STUDENT_HEADER": "Ahorro estudiante",
+        "SAVING_STUDENT_MESSAGE": "Estudiante guardado con éxito"
+    },
+    "SUBJECT": {
+        "LIST_TITLE": "Lista de asignaturas",
+        "NAME": "Nombre",
+        "DESCRIPTION": "Descripción",
+        "NO_OF_ESP": "No. de ESP",
+        "YEAR_OF_STUDY": "Año de estudio",
+        "SEMESTER": "Semestre",
+        "SUBJECT_DETAILS": "Detalles del tema",
+        "SAVING_COURSE_HEADER": "Ahorro curso",
+        "SAVING_COURSE_MESSAGE": "Curso guardado con éxito"
+    },
+    "HOME": {
+        "TITLE": "Inicio",
+        "WELCOME": "Bienvenido a la aplicación CRUD",
+        "STUDENT": "Estudiante",
+        "PROFESSOR": "Profesor",
+        "SUBJECT": "Asunto",
+        "VIEW_STUDENT": "Ver, agregar y editar estudiante",
+        "VIEW_PROFESSOR": "Ver, agregar y editar profesor",
+        "VIEW_SUBJECT": "Ver, agregar y editar tema"
+    },
+    "LOGIN": {
+        "TITLE": "Iniciar sesión",
+        "USERNAME": "Nombre de usuario",
+        "PASSWORD": "Contraseña",
+        "LOGIN": "Iniciar sesión",
+        "LOGIN_ERROR": "Nombre de usuario o contraseña incorrectos"
+    },
+    "MENU": {
+        "HOME": "Inicio",
+        "STUDENT": "Estudiante",
+        "PROFESSOR": "Profesor",
+        "SUBJECT": "Asunto",
+        "CITY": "Ciudad",
+        "LOGOUT": "Cerrar sesión"
+    }
+}

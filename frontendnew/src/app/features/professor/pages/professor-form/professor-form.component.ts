@@ -6,6 +6,7 @@ import { City, Professor } from 'src/app/core/models';
 import { HttpCityService } from "src/app/core/services/http-city.service";
 import { HttpProfessorService } from 'src/app/core/services/http-professor.service';
 import { ToastService } from "src/app/core/services/toast.service";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: "app-professor-form",
@@ -22,7 +23,8 @@ export class ProfessorFormComponent implements OnInit {
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private toastService: ToastService,
-        private httpCity: HttpCityService
+        private httpCity: HttpCityService,
+        private translate: TranslateService
     ) {
         const professor = this.activatedRoute.snapshot.data['professor'];
         this.buildForm(professor);
@@ -60,9 +62,9 @@ export class ProfessorFormComponent implements OnInit {
     onSave() {
         this.saveProfessor().pipe(take(1)).subscribe((message: any) => {
             this.toastService.showToast({
-                message: message.message,
-                classNames: 'bg-success',
-                header: ""
+                message: this.translate.instant('PROFESSOR.SAVING_PROFESSOR_MESSAGE'),
+                header: this.translate.instant('PROFESSOR.SAVING_PROFESSOR_HEADER'),
+                classNames: 'bg-success'
             });
             this.router.navigate(['/professor/professor-list'], {
                 queryParamsHandling: 'preserve'

@@ -9,24 +9,24 @@ async function getAll() {
 
 async function getByPage(page, size, orderBy, order) {
     console.log(page, size, orderBy, order);
-    const queryTotal = 'SELECT COUNT(*) as totalItems FROM subject';
+    const queryTotal = 'SELECT COUNT(*) as totalItems FROM subject'
     const [total] = await db.query(queryTotal);
     const lastPage = Math.ceil(total.totalItems / size);
-    page = page <= lastPage ? lastPage : page;
+    page = page <= lastPage ? page : lastPage;
     const offset = (page - 1) * size;
-    const query = `SELECT id, name, description, noOfESP, yearOfStudy, semester FROM subject ORDER BY ${orderBy} ${order} LIMIT ${size} OFFSET ${offset}`;
+    const query = `SELECT * FROM subject  ORDER BY ${orderBy} ${order} LIMIT ${size} OFFSET ${offset}`
+    console.log('query:', query);
     const data = await db.query(query);
 
     const pageResponse = {
         content: data,
         totalItems: total.totalItems,
         page: page,
-        size: size,
+        size: size
     }
 
     return pageResponse;
 }
-
 async function get(id) {
     const data = await db.query(`SELECT * FROM subject WHERE id = ${id}`);
     if (data && data.length > 0) {

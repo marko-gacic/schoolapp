@@ -1,58 +1,59 @@
-<form [formGroup]="studentForm" (ngSubmit)="onSave()" *ngIf="studentForm" >
+<form [formGroup]="studentForm" (ngSubmit)="onSave()" *ngIf="studentForm">
 
-    <div class="d-flex flex-column mt-3 col-lg-6 col-md-8 col-sm-10 m-3">
+  <div class="d-flex flex-column mt-3 col-lg-6 col-md-8 col-sm-10 m-3">
 
-      <div class="d-flex flex-column">
-        <label for="indexNumber"> Index Number</label>
-        <input class="form-control" type="text" id="indexNumber" formControlName="indexNumber" >
-      </div>
+    <div class="d-flex flex-column">
+      <label for="indexNumber">{{'STUDENT.INDEX_NUMBER' | translate}}</label>
+      <input class="form-control" type="text" id="indexNumber" formControlName="indexNumber">
+    </div>
 
-      <div class="d-flex flex-column">
-        <label for="indexYear"> Index Year</label>
-        <input class="form-control" type="text" id="indexYear" formControlName="indexYear" >
-      </div>      
+    <div class="d-flex flex-column">
+      <label for="indexYear">{{'STUDENT.INDEX_YEAR' | translate}}</label>
+      <input class="form-control" type="text" id="indexYear" formControlName="indexYear">
+    </div>
 
-        <div class="d-flex flex-column">
-          <label for="firstName"> First Name</label>
-          <input class="form-control" type="text" id="firstName" formControlName="firstName" >
-        </div>
+    <div class="d-flex flex-column">
+      <label for="firstName"> {{'STUDENT.FIRST_NAME' | translate}}</label>
+      <input class="form-control" type="text" id="firstName" formControlName="firstName">
+    </div>
 
-        <div class="d-flex flex-column">
-            <label for="lastName">Last Name</label>
-            <input class="form-control"  type="text" id="lastName" formControlName="lastName" >
-        </div>
+    <div class="d-flex flex-column">
+      <label for="lastName">{{'STUDENT.LAST_NAME' | translate}}</label>
+      <input class="form-control" type="text" id="lastName" formControlName="lastName">
+    </div>
 
-        <div class="d-flex flex-column">
-            <label for="email">Email</label>
-            <input class="form-control"  type="text" id="email" formControlName="email" >
-          </div>
+    <div class="d-flex flex-column">
+      <label for="email">{{'STUDENT.EMAIL' | translate}}</label>
+      <input class="form-control" type="text" id="email" formControlName="email">
+    </div>
 
-          <div class="d-flex flex-column">
-            <label for="address">Address</label>
-            <input class="form-control"  type="text" id="address" formControlName="address" >
-          </div>
+    <div class="d-flex flex-column">
+      <label for="address">{{'STUDENT.ADDRESS' | translate}}</label>
+      <input class="form-control" type="text" id="address" formControlName="address">
+    </div>
 
-          <div class="d-flex flex-column">
-            <label for="currentYearOfStudy">Current Year Of Study</label>
-            <input class="form-control"  type="text" id="currentYearOfStudy" formControlName="currentYearOfStudy" >
-          </div>
+    <div class="d-flex flex-column">
+      <label for="currentYearOfStudy">{{'STUDENT.CURRENT_YEAR_OF_STUDY' | translate}}</label>
+      <input class="form-control" type="text" id="currentYearOfStudy" formControlName="currentYearOfStudy">
+    </div>
 
-        <div class="d-flex flex-column">
-            <label for="city">City</label>
-            <select class="form-control" type="text" id="city" formControlName="city" >
-                <option *ngFor="let city of cities$|async" [ngValue]="city.zip_code" >
-                    {{city.name}}
-                </option>
-            </select>
-          </div>
-    
-        <div class="d-flex flex-row-reverse justify-content-around mt-3">
-          <button type="submit" class="btn btn-outline-primary"  >Save</button>
-          <button type="button" class="btn btn-outline-danger" [routerLink]="['/professor/professor-list']" queryParamsHandling="preserve" >Cancel</button>
-        </div>
-    
-    
-      </div>
+    <div class="d-flex flex-column">
+      <label for="city">City</label>
+      <select class="form-control" type="text" id="city" formControlName="city">
+        <option *ngFor="let city of cities$|async" [ngValue]="city.zip_code">
+          {{city.name}}
+        </option>
+      </select>
+    </div>
+
+    <div class="d-flex flex-row-reverse justify-content-around mt-3">
+      <button type="submit" class="btn btn-outline-primary">{{'COMMON.SAVE' | translate}}</button>
+      <button type="button" class="btn btn-outline-danger" [routerLink]="['/professor/professor-list']"
+        queryParamsHandling="preserve"></button>
+    </div>
+
+
+  </div>
 
 
 

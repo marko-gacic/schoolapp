@@ -57,8 +57,8 @@ export class SubjectFormComponent implements OnInit {
             .pipe(take(1))
             .subscribe((message: any) => {
                 this.toastService.showToast({
-                    header: ('MANUFACTURER.SAVING_MANUFACTURER_HEADER'),
-                    message: ('MANUFACTURER.SAVING_MANUFACTURER_MESSAGE'),
+                    header: ('SUBJECT.SAVING_SUBJECT_HEADER'),
+                    message: ('SUBJECT.SAVING_SUBJECT_MESSAGE'),
                     classNames: 'bg-success',
                 });
                 this.router.navigate(['/subject/subject-list'], {

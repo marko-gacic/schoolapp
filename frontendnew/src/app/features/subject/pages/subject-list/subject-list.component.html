@@ -1,7 +1,7 @@
-<h2>Subject List</h2>
+<h2>{{'LIST_TITLE' | translate}}</h2>
 <div class="m-2">
   <button type="button" class="btn btn-outline-primary" [routerLink]="['/subject/subject-form']">
-    <bi name="plus"></bi>Add Subject
+    <bi name="plus"></bi>{{'COMMON.ADD_SUBJECT' | translate}}
   </button>
 </div>
 
@@ -9,12 +9,12 @@
   <thead>
     <tr>
       <th sortable="id" (sort)="onSort($event)">ID</th>
-      <th sortable="name" (sort)="onSort($event)">Name</th>
-      <th sortable="description" (sort)="onSort($event)">Description</th>
-      <th sortable="noOfESP" (sort)="onSort($event)">NoOfESP </th>
-      <th sortable="yearOfStudy" (sort)="onSort($event)">Year Of Study</th>
-      <th sortable="semester" (sort)="onSort($event)">Semester</th>
-      <th>Actions</th>
+      <th sortable="name" (sort)="onSort($event)">{{'SUBJECT.NAME' | translate}}</th>
+      <th sortable="description" (sort)="onSort($event)">{{'SUBJECT.DESCRIPTION' | translate}}</th>
+      <th sortable="noOfESP" (sort)="onSort($event)">{{'SUBJECT.NO_OF_ESP' | translate}}</th>
+      <th sortable="yearOfStudy" (sort)="onSort($event)">{{'SUBJECT.YEAR_OF_STUDY' | translate}}</th>
+      <th sortable="semester" (sort)="onSort($event)">{{'SUBJECT.SEMESTER' | translate}}</th>
+      <th>{{'COMMON.ACTIONS' | translate}}</th>
     </tr>
   </thead>
   <tbody>
@@ -28,13 +28,13 @@
       <td>
         <button class="btn btn-outline-primary" [routerLink]="['/subject/subject-form', sub.id]"
           [queryParams]="{'page': currentPage.page, 'size': currentPage.size, 'orderBy': currentPage.orderBy, 'order': currentPage.order}">
-          <bi name="pencil"></bi><span class="btn-text-responsive">{{'Edit'}}</span>
+          <bi name="pencil"></bi><span class="btn-text-responsive">{{'COMMON.EDIT' | translate}}</span>
         </button>
         <button class="btn btn-outline-primary" (click)="onDetailsClick(sub, subDetailsTemplate)">
-          <bi name="card-text"></bi><span class="btn-text-responsive">{{'Details'}}</span>
+          <bi name="card-text"></bi><span class="btn-text-responsive">{{'COMMON.DETAILS' | translate}}</span>
         </button>
         <button class="btn btn-outline-danger" (click)="onDeleteClick(sub)">
-          <bi name="trash"></bi><span class="btn-text-responsive">{{'Delete'}}</span>
+          <bi name="trash"></bi><span class="btn-text-responsive">{{'COMMON.DELETE' | translate}}</span>
         </button>
       </td>
     </tr>
@@ -47,7 +47,7 @@
 </div>
 <ng-template #subDetailsTemplate let-modal>
   <div class="modal-body">
-    <h4>Subject details</h4>
+    <h4>{{'SUBJECT.SUBJECT_DETAILS' | translate}}</h4>
     <ul class="list-unstyled">
       <li>ID: {{ selectedSub?.id }}</li>
       <li>Name: {{ selectedSub?.name }}</li>

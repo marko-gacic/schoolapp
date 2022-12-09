@@ -1,0 +1,87 @@
+{
+    "APP_TITLE": "дрянь",
+    "COMMON": {
+        "EDIT": "Rедактировать",
+        "DETAILS": " Подробности",
+        "DELETE": "Удалить",
+        "SAVE": "Сохранить",
+        "ACTIONS": "Действия",
+        "CANCEL": "Отмена",
+        "NAME": "Имя",
+        "STUDENT": "Студент",
+        "PROFESSOR": "Преподаватель",
+        "SUBJECT": "Предмет",
+        "ADD_STUDENT": "Добавить студента",
+        "ADD_PROFESSOR": "Добавить преподавателя",
+        "ADD_SUBJECT": "Добавить предмет"
+    },
+    "CITY": {
+        "LIST_TITLE": "Список городов",
+        "ZIP_CODE": "Почтовый индекс",
+        "NAME": "Имя",
+        "SAVING_CITY_HEADER": "Сохранение города",
+        "SAVING_CITY_MESSAGE": "Город успешно сохранен"
+    },
+    "PROFESSOR": {
+        "LIST_TITLE": "Список преподавателей",
+        "FIRST_NAME": "Имя",
+        "LAST_NAME": "Фамилия",
+        "EMAIL": "Электронная почта",
+        "ADDRESS": "Адрес",
+        "PHONE": "Телефон",
+        "RELOCATION_DATE": "Дата переезда",
+        "CITY": "Город",
+        "PROFESSOR_DETAILS": "Подробности преподавателя",
+        "SAVING_PROFESSOR_HEADER": "Сохранение преподавателя",
+        "SAVING_PROFESSOR_MESSAGE": "Преподаватель успешно сохранен"
+    },
+    "STUDENT": {
+        "LIST_TITLE": "Список студентов",
+        "INDEX_NUMBER": "Номер индекса",
+        "INDEX_YEAR": "Год индекса",
+        "FIRST_NAME": "Имя",
+        "LAST_NAME": "Фамилия",
+        "EMAIL": "Электронная почта",
+        "ADDRESS": "Адрес",
+        "CURRENT_YEAR_OF_STUDY": "Текущий год обучения",
+        "CITY": "Город",
+        "STUDENT_DETAILS": "Подробности студента",
+        "SAVING_STUDENT_HEADER": "Сохранение студента",
+        "SAVING_STUDENT_MESSAGE": "Студент успешно сохранен"
+    },
+    "SUBJECT": {
+        "LIST_TITLE": "Список предметов",
+        "NAME": "Имя",
+        "DESCRIPTION": "Описание",
+        "NO_OF_ESP": "Количество ESP",
+        "YEAR_OF_STUDY": "Год обучения",
+        "SEMESTER": "Семестр",
+        "SUBJECT_DETAILS": "Преподаватель",
+        "SAVING_COURSE_HEADER": "Сохранение предмета",
+        "SAVING_COURSE_MESSAGE": "Предмет успешно сохранен"
+    },
+    "LOGIN": {
+        "LOGIN": "Войти",
+        "USERNAME": "Имя пользователя",
+        "PASSWORD": "Пароль",
+        "LOGIN_ERROR": "Неверное имя пользователя или пароль"
+    },
+    "HOME": {
+        "TITLE": "Дome",
+        "WELCOME": "Добро пожаловать в систему управления университетом",
+        "STUDENT": "Студент",
+        "PROFESSOR": "Преподаватель",
+        "SUBJECT": "Предмет",
+        "VIEW_STUDENT": "Просмотр, добавление и редактирование студента",
+        "VIEW_PROFESSOR": "Просмотр, добавление и редактирование преподавателя",
+        "VIEW_SUBJECT": "Просмотр, добавление и редактирование предмета"
+    },
+    "MENU": {
+        "HOME": "Домой",
+        "STUDENT": "Студент",
+        "PROFESSOR": "Преподаватель",
+        "SUBJECT": "Предмет",
+        "CITY": "Город",
+        "LOGOUT": "Выйти"
+    }
+}

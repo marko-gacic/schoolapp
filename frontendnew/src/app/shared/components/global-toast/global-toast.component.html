@@ -1,11 +1,12 @@
-<div class="toast-container d-flex flex-column" >
-    <ng-content select=".header" ></ng-content>
-    <ng-container >
-      <div class="toast-body">
-        <ng-content></ng-content>
-      </div>
+<div class="toast-container d-flex flex-column">
+  <!-- Number of messages: {{toastService.toasts?.length}} -->
+  <ng-content select=".header"></ng-content>
+  <ng-container *ngFor="let toast of toastService.messages;let i  = index">
+    <ngb-toast [class]="toast.classNames" [autohide]="true" [header]="toast.header" [delay]="toast.delay || 3000"
+      (hidden)="toastService.removeToast(i)">
+      {{toast.message}}
+    </ngb-toast>
 
-  
-    </ng-container>
-    <ng-content select=".footer" ></ng-content>
-  </div>
+  </ng-container>
+  <ng-content select=".footer"></ng-content>
+</div>

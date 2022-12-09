@@ -12,6 +12,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -34,9 +35,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     BootstrapIconsPickModule,
     MatCardModule,
     MatFormFieldModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    TranslateModule,
 
-    
   ],
   exports: [
     CommonModule,
@@ -55,7 +56,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatCardModule,
     MatNativeDateModule,
-  
+    TranslateModule,
 
   ]
 })

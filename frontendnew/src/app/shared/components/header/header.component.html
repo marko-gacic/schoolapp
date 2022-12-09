@@ -1,23 +1,39 @@
-<ul ngbNav  class="flex-no-wrap justify-content-between bg-light">
-    <li ngbNavItem  *ngIf="userAuthData.loggedUser" >
-      <a ngbNavLink routerLink="/student" >Students</a>
-    </li>
-    <li ngbNavItem *ngIf="userAuthData.loggedUser" >
-      <a ngbNavLink routerLink="/professor" >Professors</a>
-    </li>
-    <li ngbNavItem *ngIf="userAuthData.loggedUser" >
-      <a ngbNavLink routerLink="/subject" >Subject</a>
-  
-    <li ngbNavItem *ngIf="userAuthData.loggedUser" class="flex-grow-1 flex-shirnk-1 text-center" >
-      <a ngbNavLink routerLink="/home"  >Home</a>
-    </li>
-  
-    <li ngbNavItem>
-      <div ngbDropdown class="d-inline-block mx-3" *ngIf="userAuthData.loggedUser">
-          <button ngbDropdownItem ><bi name="gear"></bi>Settings</button>
-          <button ngbDropdownItem (click)="logoutUser()" ><bi name="power"></bi>Logout</button>
+<ul ngbNav class="flex-no-wrap justify-content-between bg-light">
+  <li ngbNavItem *ngIf="userAuthData.loggedUser">
+    <a ngbNavLink routerLink="/student">{{'MENU.STUDENT' | translate}}</a>
+  </li>
+  <li ngbNavItem *ngIf="userAuthData.loggedUser">
+    <a ngbNavLink routerLink="/professor">{{'MENU.PROFESSOR' | translate}}</a>
+  </li>
+  <li ngbNavItem *ngIf="userAuthData.loggedUser">
+    <a ngbNavLink routerLink="/subject">{{'MENU.SUBJECT' | translate}}</a>
+
+  <li ngbNavItem *ngIf="userAuthData.loggedUser" class="flex-grow-1 flex-shirnk-1 text-center">
+    <a ngbNavLink routerLink="/home">{{'MENU.HOME' | translate}}</a>
+  </li>
+
+  <li ngbNavItem>
+    <div ngbDropdown class="d-inline-block mx-3">
+      <a id="dropdownLanguages" ngbDropdownToggle>{{currentLanguage}}</a>
+      <div ngbDropdownMenu aria-labelledby="dropdownLanguages">
+        <button ngbDropdownItem (click)="onLanguageChange('en')">English</button>
+        <button ngbDropdownItem (click)="onLanguageChange('it')">Italian</button>
+        <button ngbDropdownItem (click)="onLanguageChange('jp')">Japanese</button>
+        <button ngbDropdownItem (click)="onLanguageChange('ru')">Russian</button>
+        <button ngbDropdownItem (click)="onLanguageChange('sp')">Spanish</button>
+        <button ngbDropdownItem (click)="onLanguageChange('sr')">Serbian</button>
       </div>
-    </li>
-  
-  </ul>
-  
+    </div>
+
+  <li ngbNavItem>
+    <div ngbDropdown class="d-inline-block mx-3" *ngIf="userAuthData.loggedUser">
+      <button ngbDropdownItem>
+        <bi name="gear"></bi>Settings
+      </button>
+      <button ngbDropdownItem (click)="logoutUser()">
+        <bi name="power"></bi>{{'MENU.LOGOUT' | translate}}
+      </button>
+    </div>
+  </li>
+
+</ul>

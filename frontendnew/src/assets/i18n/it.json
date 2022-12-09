@@ -1,0 +1,88 @@
+{
+    "APP_TITLE": "CRUD",
+    "COMMON": {
+        "EDIT": "Modificare",
+        "DETAILS": "Particolari",
+        "DELETE": "Elimina",
+        "SAVE": "Salva",
+        "ACTIONS": "Azioni",
+        "CANCEL": "Annulla",
+        "NAME": "Nome",
+        "STUDENT": "Studente",
+        "PROFESSOR": "Professore",
+        "SUBJECT": "Soggetto",
+        "ADD_STUDENT": "Aggiungi studente",
+        "ADD_PROFESSOR": "Aggiungi professore",
+        "ADD_SUBJECT": "Aggiungi soggetto"
+    },
+    "CITY": {
+        "LIST_TITLE": "Elenco cittadini",
+        "ZIP_CODE": "Codice postale",
+        "NAME": "Nome",
+        "SAVING_CITY_HEADER": "Salvataggio della città",
+        "SAVING_CITY_MESSAGE": "Città salvata con successo"
+    },
+    "PROFESSOR": {
+        "LIST_TITLE": "Elenco professori",
+        "FIRST_NAME": "Nome",
+        "LAST_NAME": "Cognome",
+        "EMAIL": "Email",
+        "ADDRESS": "Indirizzo",
+        "PHONE": "Telefono",
+        "RELOCATION_DATE": "Data di trasferimento",
+        "CITY": "Città",
+        "PROFESSOR_DETAILS": "Dettagli del professore",
+        "SAVING_PROFESSOR_HEADER": "Salvataggio del professore",
+        "SAVING_PROFESSOR_MESSAGE": "Professore salvato con successo"
+    },
+    "STUDENT": {
+        "LIST_TITLE": "Elenco studenti",
+        "INDEX_NUMBER": "Numero di indice",
+        "INDEX_YEAR": "Anno di indice",
+        "FIRST_NAME": "Nome",
+        "LAST_NAME": "Cognome",
+        "EMAIL": "Email",
+        "ADDRESS": "Indirizzo",
+        "CURRENT_YEAR_OF_STUDY": "Anno di studio corrente",
+        "CITY": "Città",
+        "STUDENT_DETAILS": "Dettagli dello studente",
+        "SAVING_STUDENT_HEADER": "Salvataggio dello studente",
+        "SAVING_STUDENT_MESSAGE": "Student saved successfully"
+    },
+    "SUBJECT": {
+        "LIST_TITLE": "Elenco dei soggetti",
+        "NAME": "Nome",
+        "DESCRIPTION": "Descrizione",
+        "NO_OF_ESP": "No. di ESP",
+        "YEAR_OF_STUDY": "Anno di studio",
+        "SEMESTER": "Semestre",
+        "SUBJECT_DETAILS": "Dettagli del soggetto",
+        "SAVING_COURSE_HEADER": "Salvataggio del corso",
+        "SAVING_COURSE_MESSAGE": "Corso salvato con successo"
+    },
+    "HOME": {
+        "TITLE": "Casa",
+        "WELCOME": "Benvenuto",
+        "STUDENT": "Studente",
+        "PROFESSOR": "Professore",
+        "SUBJECT": "Soggetto",
+        "VIEW_STUDENT": "Visualizza, aggiungi e modifica studente",
+        "VIEW_PROFESSOR": "Visualizza, aggiungi e modifica professore",
+        "VIEW_SUBJECT": "Visualizza, aggiungi e modifica soggetto"
+    },
+    "LOGIN": {
+        "TITLE": "Login",
+        "USERNAME": "Nome utente",
+        "PASSWORD": "Parola d'ordine",
+        "LOGIN": "Accesso",
+        "LOGIN_ERROR": "Nome utente o password non validi"
+    },
+    "MENU": {
+        "HOME": "Casa",
+        "STUDENT": "Studente",
+        "PROFESSOR": "Professore",
+        "SUBJECT": "Soggetto",
+        "CITY": "Città",
+        "LOGOUT": "Disconnettersi"
+    }
+}
