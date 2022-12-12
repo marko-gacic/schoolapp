@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, take } from 'rxjs';
 import { City, Professor } from 'src/app/core/models';
@@ -35,14 +35,14 @@ export class ProfessorFormComponent implements OnInit {
 
     buildForm(professor?: Professor) {
         this.professorForm = this.formBuilder.group({
-            id: [professor?.id],
-            firstName: [professor?.firstName, Validators.required],
-            lastName: [professor?.lastName, Validators.required],
-            email: [professor?.email, Validators.required],
-            address: [professor?.address, Validators.required],
-            phone: [professor?.phone, Validators.required],
-            relocationDate: [professor?.relocationDate, Validators.required],
-            city: [professor?.city, Validators.required]
+            id: new FormControl(''),
+            firstName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*')]),
+            lastName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*')]),
+            email: new FormControl('', [Validators.required, Validators.email]),
+            address: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern('[a-zA-Z ]*')]),
+            phone: new FormControl('', [Validators.required, Validators.minLength(9), Validators.maxLength(30)]),
+            relocationDate: new FormControl('', [Validators.required]),
+            city: new FormControl('', [Validators.required])
         });
     }
 

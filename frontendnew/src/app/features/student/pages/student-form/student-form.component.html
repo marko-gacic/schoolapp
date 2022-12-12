@@ -1,60 +1,83 @@
-<form [formGroup]="studentForm" (ngSubmit)="onSave()" *ngIf="studentForm">
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
 
-  <div class="d-flex flex-column mt-3 col-lg-6 col-md-8 col-sm-10 m-3">
+      <form [formGroup]="studentForm" (ngSubmit)="onSave()" *ngIf="studentForm">
 
-    <div class="d-flex flex-column">
-      <label for="indexNumber">{{'STUDENT.INDEX_NUMBER' | translate}}</label>
-      <input class="form-control" type="text" id="indexNumber" formControlName="indexNumber">
+        <!-- <div class="d-flex flex-column mt-3 col-lg-6 col-md-8 col-sm-10 m-3"> -->
+
+        <div class="form-group">
+          <label for="indexNumber">{{'STUDENT.INDEX_NUMBER' | translate}}</label>
+          <input matInput class="form-control" type="text" id="indexNumber" formControlName="indexNumber" required>
+          <mat-error *ngIf="studentForm.controls.indexNumber.touched && studentForm.controls.indexNumber.invalid">
+            <span *ngIf="studentForm.controls.indexNumber.errors">Index Number is
+              required</span>
+          </mat-error>
+        </div>
+
+        <div class="form-group">
+          <label for="indexYear">{{'STUDENT.INDEX_YEAR' | translate}}</label>
+          <input matInput class="form-control" type="text" id="indexYear" formControlName="indexYear" required>
+          <mat-error *ngIf="studentForm.controls.indexYear.touched && studentForm.controls.indexYear.invalid">
+            <span *ngIf="studentForm.controls.indexYear.errors">Index Year is
+              required</span>
+          </mat-error>
+        </div>
+
+        <div class="form-group">
+          <label for="firstName"> {{'STUDENT.FIRST_NAME' | translate}}</label>
+          <input matInput class="form-control" type="text" id="firstName" formControlName="firstName" required>
+          <mat-error *ngIf="studentForm.controls.firstName.touched && studentForm.controls.firstName.invalid">
+            <span *ngIf="studentForm.controls.firstName.errors">First Name is
+              required</span>
+          </mat-error>
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">{{'STUDENT.LAST_NAME' | translate}}</label>
+          <input matInput class="form-control" type="text" id="lastName" formControlName="lastName" required>
+          <mat-error *ngIf="studentForm.controls.lastName.touched && studentForm.controls.lastName.invalid">
+            <span *ngIf="studentForm.controls.lastName.errors">Last Name is
+              required</span>
+          </mat-error>
+        </div>
+
+        <div class="form-group">
+          <label for="email">{{'STUDENT.EMAIL' | translate}}</label>
+          <input class="form-control" type="text" id="email" formControlName="email">
+        </div>
+
+        <div class="form-group">
+          <label for="address">{{'STUDENT.ADDRESS' | translate}}</label>
+          <input class="form-control" type="text" id="address" formControlName="address">
+        </div>
+
+        <div class="form-group">
+          <label for="currentYearOfStudy">{{'STUDENT.CURRENT_YEAR_OF_STUDY' | translate}}</label>
+          <input matInput class="form-control" type="text" id="currentYearOfStudy" formControlName="currentYearOfStudy"
+            required>
+          <mat-error
+            *ngIf="studentForm.controls.currentYearOfStudy.touched && studentForm.controls.currentYearOfStudy.invalid">
+            <span *ngIf="studentForm.controls.currentYearOfStudy.errors">Current Year Of Study is
+              required</span>
+          </mat-error>
+        </div>
+
+        <div class="form-group">
+          <label for="city">City</label>
+          <select class="form-control" type="text" id="city" formControlName="city">
+            <option *ngFor="let city of cities$|async" [ngValue]="city.zip_code">
+              {{city.name}}
+            </option>
+          </select>
+        </div>
+
+        <div class="d-flex flex-row-reverse justify-content-around mt-3">
+          <button type="submit" color="primary" class="btn btn-outline-primary"
+            [disabled]="!(studentForm.valid && studentForm.dirty)">{{'COMMON.SAVE' | translate}}</button>
+          <button type="button" class="btn btn-outline-danger" [routerLink]="['/student/student-list']"
+            queryParamsHandling="preserve">{{'COMMON.CANCEL' | translate}}</button>
+        </div>
+      </form>
     </div>
-
-    <div class="d-flex flex-column">
-      <label for="indexYear">{{'STUDENT.INDEX_YEAR' | translate}}</label>
-      <input class="form-control" type="text" id="indexYear" formControlName="indexYear">
-    </div>
-
-    <div class="d-flex flex-column">
-      <label for="firstName"> {{'STUDENT.FIRST_NAME' | translate}}</label>
-      <input class="form-control" type="text" id="firstName" formControlName="firstName">
-    </div>
-
-    <div class="d-flex flex-column">
-      <label for="lastName">{{'STUDENT.LAST_NAME' | translate}}</label>
-      <input class="form-control" type="text" id="lastName" formControlName="lastName">
-    </div>
-
-    <div class="d-flex flex-column">
-      <label for="email">{{'STUDENT.EMAIL' | translate}}</label>
-      <input class="form-control" type="text" id="email" formControlName="email">
-    </div>
-
-    <div class="d-flex flex-column">
-      <label for="address">{{'STUDENT.ADDRESS' | translate}}</label>
-      <input class="form-control" type="text" id="address" formControlName="address">
-    </div>
-
-    <div class="d-flex flex-column">
-      <label for="currentYearOfStudy">{{'STUDENT.CURRENT_YEAR_OF_STUDY' | translate}}</label>
-      <input class="form-control" type="text" id="currentYearOfStudy" formControlName="currentYearOfStudy">
-    </div>
-
-    <div class="d-flex flex-column">
-      <label for="city">City</label>
-      <select class="form-control" type="text" id="city" formControlName="city">
-        <option *ngFor="let city of cities$|async" [ngValue]="city.zip_code">
-          {{city.name}}
-        </option>
-      </select>
-    </div>
-
-    <div class="d-flex flex-row-reverse justify-content-around mt-3">
-      <button type="submit" class="btn btn-outline-primary">{{'COMMON.SAVE' | translate}}</button>
-      <button type="button" class="btn btn-outline-danger" [routerLink]="['/professor/professor-list']"
-        queryParamsHandling="preserve"></button>
-    </div>
-
-
   </div>
-
-
-
-</form>

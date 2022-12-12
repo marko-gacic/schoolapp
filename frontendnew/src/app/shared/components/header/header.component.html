@@ -27,12 +27,15 @@
 
   <li ngbNavItem>
     <div ngbDropdown class="d-inline-block mx-3" *ngIf="userAuthData.loggedUser">
-      <button ngbDropdownItem>
-        <bi name="gear"></bi>Settings
-      </button>
-      <button ngbDropdownItem (click)="logoutUser()">
-        <bi name="power"></bi>{{'MENU.LOGOUT' | translate}}
-      </button>
+      <a id="dropdownLanguages" ngbDropdownToggle>{{userFullName}}</a>
+      <div ngbDropdownMenu aria-labelledby="dropdownLanguages">
+        <button ngbDropdownItem>
+          <bi name="gear"></bi>Settings
+        </button>
+        <button ngbDropdownItem (click)="logoutUser()">
+          <bi name="power"></bi>{{'MENU.LOGOUT' | translate}}
+        </button>
+      </div>
     </div>
   </li>
 

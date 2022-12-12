@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
 
   get userFullName() {
     if (this.userAuthData.loggedUser) {
-      return `${this.userAuthData.loggedUser.firstName} ${this.userAuthData.loggedUser.lastName}`
+      return `${this.userAuthData.loggedUser.role} `
     } else {
       return '';
     }
