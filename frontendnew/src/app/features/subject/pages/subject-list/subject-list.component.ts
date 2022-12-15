@@ -1,4 +1,4 @@
-import { Component, OnInit, QueryList, TemplateRef, ViewChildren } from "@angular/core";
+import { AfterViewInit, Component, OnInit, QueryList, TemplateRef, ViewChild } from "@angular/core";
 import { SortableHeaderDirective, SortEvent } from "src/app/shared/directives/sortable-header.directive";
 import { Sub } from "src/app/core/models";
 import { HttpSubjectService } from "src/app/core/services/http-subject.service";
@@ -9,6 +9,11 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ConfirmDialogComponent } from "src/app/shared/components/confirm-dialog/confirm-dialog.component";
 import { ConfirmOptions } from "src/app/core/models/enums";
 import { ToastService } from "src/app/core/services/toast.service";
+import { MatTableDataSource } from '@angular/material/table';
+
+import { Sort } from "@angular/material/sort";
+
+
 
 @Component({
     selector: 'app-subject-list',
@@ -19,23 +24,35 @@ export class SubjectListComponent implements OnInit {
     currentPage: Page = { page: 1, size: 5, orderBy: 'name', order: 'asc', totalItems: 10 };
     subject?: Sub[];
     availablePageSizes = [3, 5, 10, 15, 20, 25, 30, 50, 100];
-    @ViewChildren(SortableHeaderDirective)
+    @ViewChild(SortableHeaderDirective)
     sortableHeaders?: QueryList<SortableHeaderDirective>;
     selectedSub?: Sub;
     subscriptions = new Subscription();
     allSub$?: Observable<Sub[]>;
+    dataSource: any;
+    displayedColumns: string[] = ['id', 'name', 'description', 'noOfESP', 'yearOfStudy', 'semester', 'details', 'edit', 'delete'];
+    responseMessage: any;
+    value: any;
+    searchTerm: string = '';
+
+
+
+
 
 
     constructor(
         private httpSubject: HttpSubjectService,
         private activatedRoute: ActivatedRoute,
         private modalService: NgbModal,
-        private toastService: ToastService
+        private toastService: ToastService,
+
+
     ) { }
 
     ngOnInit(): void {
         this.loadSubject();
         this.loadPageFromQueryParams();
+        this.tableData();
     }
 
     loadPageFromQueryParams() {
@@ -83,6 +100,31 @@ export class SubjectListComponent implements OnInit {
 
         );
     }
+
+
+
+    tableData() {
+        this.httpSubject.getSubject().subscribe(
+            (response) => {
+                this.dataSource = new MatTableDataSource(response);
+            },
+            (error) => {
+                this.responseMessage = error;
+            }
+        );
+    }
+    applyFilter(event: Event) {
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
+
+    search() {
+        this.subject = this.subject?.filter(subject => {
+            return subject.name.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
+        })
+    }
+
+
 
     deleteSubject(subToDelete: Sub) {
         const subscription = this.httpSubject.delete(subToDelete.id).subscribe(

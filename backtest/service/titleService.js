@@ -1,7 +1,7 @@
 const db = require('../db/db');
 
 async function getAll() {
-    const data = await db.query('SELECT * FROM city ORDER BY id');
+    const data = await db.query('SELECT * FROM title ORDER BY id');
     return data;
 }
 

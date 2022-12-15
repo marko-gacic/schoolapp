@@ -33,6 +33,7 @@ export interface Professor {
     phone: number;
     relocationDate: Date;
     city: City;
+    title: Title;
 }
 
 export interface ProfessorDTO {
@@ -44,6 +45,7 @@ export interface ProfessorDTO {
     phone: number;
     relocationDate: Date;
     city: number;
+    title: number;
 }
 
 export interface Sub {
@@ -67,6 +69,24 @@ export interface SubDTO {
 export interface City {
     zip_code: number;
     name: string;
+
+}
+
+export interface CityDTO {
+    zip_code: number;
+    name: string;
+
+}
+
+export interface Title {
+    id: number;
+    titleName: string;
+
+}
+
+export interface TitleDTO {
+    id: number;
+    titleName: string;
 
 }
 

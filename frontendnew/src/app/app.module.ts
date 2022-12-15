@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -11,10 +10,15 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
+
+
 
 
 @NgModule({
@@ -30,6 +34,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     CoreModule,
     SharedModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+
+
+
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {

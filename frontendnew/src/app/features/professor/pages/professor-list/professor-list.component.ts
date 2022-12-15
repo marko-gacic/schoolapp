@@ -2,11 +2,12 @@ import { Component, OnInit, QueryList, TemplateRef, ViewChildren } from "@angula
 import { ActivatedRoute } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { Observable, Subscription } from "rxjs";
-import { City, Professor } from "src/app/core/models";
+import { City, Professor, Title } from "src/app/core/models";
 import { Page } from "src/app/core/models/dtos";
 import { ConfirmOptions } from "src/app/core/models/enums";
 import { HttpCityService } from "src/app/core/services/http-city.service";
 import { HttpProfessorService } from "src/app/core/services/http-professor.service";
+import { HttpTitleService } from "src/app/core/services/http-title.service";
 import { ToastService } from "src/app/core/services/toast.service";
 import { ConfirmDialogComponent } from "src/app/shared/components/confirm-dialog/confirm-dialog.component";
 import { SortableHeaderDirective, SortEvent } from 'src/app/shared/directives/sortable-header.directive';
@@ -18,6 +19,7 @@ import { SortableHeaderDirective, SortEvent } from 'src/app/shared/directives/so
 })
 export class ProfessorListComponent implements OnInit {
     cityMap: Map<number, City> = new Map();
+    titleMap: Map<number, Title> = new Map();
     currentPage: Page = { page: 1, size: 5, orderBy: 'name', order: 'asc', totalItems: 10 };
     professors?: Professor[];
     availablePageSizes = [3, 5, 10, 15, 20, 25, 30, 50, 100];
@@ -27,6 +29,9 @@ export class ProfessorListComponent implements OnInit {
     subscriptions = new Subscription();
     allProfessors$?: Observable<Professor[]>;
     selectedProfessor?: Professor;
+    searchTerm: string = '';
+
+
 
 
     constructor(
@@ -34,7 +39,8 @@ export class ProfessorListComponent implements OnInit {
         private httpProfessor: HttpProfessorService,
         private activatedRoute: ActivatedRoute,
         private modalService: NgbModal,
-        private toastService: ToastService
+        private toastService: ToastService,
+        private httpTitle: HttpTitleService
 
     ) { }
 
@@ -42,6 +48,8 @@ export class ProfessorListComponent implements OnInit {
         this.loadPageFromQueryParams();
         this.loadCities();
         this.loadProfessors();
+        this.loadTitles();
+
     }
 
     loadPageFromQueryParams() {
@@ -66,6 +74,12 @@ export class ProfessorListComponent implements OnInit {
     loadCities() {
         this.httpCity.getAll().subscribe(
             cities => cities.forEach(city => this.cityMap.set(city.zip_code, city))
+        )
+    }
+
+    loadTitles() {
+        this.httpTitle.getAll().subscribe(
+            titles => titles.forEach(title => this.titleMap.set(title.id, title))
         )
     }
 
@@ -101,6 +115,12 @@ export class ProfessorListComponent implements OnInit {
             (result) => (result === ConfirmOptions.YES) && (this.deleteStudent(professor))
 
         );
+    }
+
+    search() {
+        this.professors = this.professors?.filter(professor => {
+            return professor.firstName.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
+        })
     }
 
     deleteStudent(professor: Professor) {

@@ -6,6 +6,9 @@
   </button>
 </div>
 
+<input type="text" [(ngModel)]="searchTerm" class="form-control" (keyup)="search()"
+  placeholder="{{'Search' | translate}}">
+
 <table class="table table-strped">
   <thead>
     <tr>

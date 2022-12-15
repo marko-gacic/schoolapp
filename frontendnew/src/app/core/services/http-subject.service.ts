@@ -27,13 +27,17 @@ export class HttpSubjectService {
 
     }
 
+    getSubject() {
+        return this.httpClient.get<Sub[]>(`${this.endpointBasePath}`);
+    }
+
     get(id: number) {
         return this.httpClient.get<SubDTO>(`${this.endpointBasePath}/${id}`);
     }
 
-    // getAll(): Observable<Sub[]> {
-    //     return this.httpClient.get<Sub[]>(`${this.endpointBasePath}`);
-    // }
+    getAll(): Observable<Sub[]> {
+        return this.httpClient.get<Sub[]>(`${this.endpointBasePath}`);
+    }
 
     post(sub: SubDTO): Observable<Response> {
         return this.httpClient.post<Response>(`${this.endpointBasePath}`, sub);

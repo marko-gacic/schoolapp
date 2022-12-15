@@ -3,9 +3,12 @@
 
 <div class="m-2">
   <button type="button" class="btn btn-outline-primary" [routerLink]="['/professor/professor-form']">
-    <bi name="plus"></bi>{{'PROFESSOR.PROFESSOR_DETAILS' | translate}}
+    <bi name="plus"></bi>{{'COMMON.ADD_PROFESSOR' | translate}}
   </button>
 </div>
+
+<input type="text" [(ngModel)]="searchTerm" class="form-control" (keyup)="search()"
+  placeholder="{{'Search' | translate}}">
 
 <table class="table table-strped">
   <thead>
@@ -14,6 +17,7 @@
       <th sortable="firstName" (sort)="onSort($event)">{{'PROFESSOR.FIRST_NAME' | translate}}</th>
       <th sortable="lastName" (sort)="onSort($event)">{{'PROFESSOR.LAST_NAME' | translate}}</th>
       <th sortable="email" (sort)="onSort($event)">{{'PROFESSOR.EMAIL' | translate}}</th>
+      <th sortable="title" (sort)="onSort($event)">{{'Title' | translate}}</th>
       <th sortable="address" (sort)="onSort($event)">{{'PROFESSOR.ADDRESS' | translate}}</th>
       <th sortable="phone" (sort)="onSort($event)">{{'PROFESSOR.PHONE' | translate}}</th>
       <th sortable="relocationDate" (sort)="onSort($event)">{{'PROFESSOR.RELOCATION_DATE' | translate}}</th>
@@ -27,6 +31,7 @@
       <td>{{ pro.firstName }}</td>
       <td>{{ pro.lastName }}</td>
       <td>{{ pro.email }}</td>
+      <td>{{ titleMap.get(pro.title.id)?.titleName}}</td>
       <td>{{ pro.address }}</td>
       <td>{{ pro.phone }}</td>
       <td>{{ pro.relocationDate | date : format }}</td>
@@ -59,6 +64,7 @@
       <li>First Name: {{ selectedProfessor?.firstName }}</li>
       <li>Last Name: {{ selectedProfessor?.lastName }}</li>
       <li>Email: {{ selectedProfessor?.email }}</li>
+      <li>Title: {{ selectedProfessor?.title?.titleName}}</li>
       <li>Address: {{ selectedProfessor?.address }}</li>
       <li>Phone: {{ selectedProfessor?.phone }}</li>
       <li>Relocation Date: {{ selectedProfessor?.relocationDate | date : format }}</li>

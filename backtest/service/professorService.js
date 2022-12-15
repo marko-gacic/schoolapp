@@ -17,7 +17,9 @@ async function getByPage(page, size, orderBy, order) {
     page = page <= lastPage ? page : lastPage;
     console.log('page', page);
     const offset = (page - 1) * size;
-    const query = `select professor.*, city.name as cityName from professor inner join city on professor.city = city.zip_code order by ${orderBy} ${order} limit ${size} offset ${offset}`;
+    // const query = `select professor.*, city.name as cityName, title.titleName as titleName from professor inner join city on professor.city = city.zip_code inner join title on professor.title = title.id order by ${orderBy} ${order} limit ${size} offset ${offset}`;
+    // const query = `select professor.*, city.name as cityName, title.titleName as titleName from professor inner join city on professor.city = city.zip_code inner join title on professor.title = title.id order by ${orderBy} ${order} limit ${size} offset ${offset}`;
+    const query = `select professor.*, city.name as cityName, title.titleName as titleName from professor inner join city on professor.city = city.zip_code inner join title on professor.title = title.id   order by ${orderBy} ${order} limit ${size} offset ${offset}`;
     console.log(query);
     let data = await db.query(query);
 
@@ -25,6 +27,12 @@ async function getByPage(page, size, orderBy, order) {
         const newobj = { ...man, city: { zip_code: man.city, name: man.cityName } };
         delete newobj.cityName;
         return newobj;
+    });
+
+    data = data.map(man => {
+        const newTitle = { ...man, title: { id: man.title, name: man.titleName } };
+        delete newTitle.titleName;
+        return newTitle;
     });
 
     const pageResponse = {

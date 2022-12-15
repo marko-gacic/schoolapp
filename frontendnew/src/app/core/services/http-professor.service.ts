@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { environment } from 'src/environments/environment';
 import { Professor, ProfessorDTO } from '../models';
 import { Page, PageResponse } from '../models/dtos';
@@ -41,6 +42,8 @@ export class HttpProfessorService {
     delete(id: number) {
         return this.httpClient.delete<Response>(`${this.endpointBasePath}/${id}`);
     }
+
+
 
     get endpointBasePath() {
         return `${environment.serverUrl}/${this.endpointPrefix}`;

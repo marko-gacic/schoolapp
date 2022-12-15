@@ -11,117 +11,124 @@ import { ToastService } from "src/app/core/services/toast.service";
 import { ConfirmDialogComponent } from "src/app/shared/components/confirm-dialog/confirm-dialog.component";
 import { SortableHeaderDirective, SortEvent } from 'src/app/shared/directives/sortable-header.directive';
 
-@Component ({
+@Component({
     selector: 'app-student-list',
     templateUrl: './student-list.component.html',
     styleUrls: ['./student-list.component.css']
 })
 export class StudentListComponent implements OnInit {
     cityMap: Map<number, City> = new Map;
-    currentPage: Page = {page:1, size: 5, orderBy: 'name', order: 'asc', totalItems: 10};
+    currentPage: Page = { page: 1, size: 5, orderBy: 'name', order: 'asc', totalItems: 10 };
     students?: Student[];
-    availablePageSizes = [3,5, 10, 15, 20, 25, 30, 50, 100];
+    availablePageSizes = [3, 5, 10, 15, 20, 25, 30, 50, 100];
     @ViewChildren(SortableHeaderDirective)
     sortableHeaders?: QueryList<SortableHeaderDirective>;
     selectedStudent?: Student;
     subscriptions = new Subscription();
     allStudent$?: Observable<Student[]>;
-    
-        constructor(
-            private httpCity: HttpCityService,
-            private httpStudent: HttpStudentService,
-            private activatedRoute: ActivatedRoute,
-            private modalService: NgbModal,
-            private toastService: ToastService
-        ) {}
-       
-    
-        ngOnInit(): void {
-            this.loadPageFromQueryParams();
-            this.loadCities();
-            this.loadStudents();
-        }
+    searchTerm: string = '';
 
-        loadPageFromQueryParams() {
-            const page = Number(this.activatedRoute.snapshot.queryParamMap.get('page'));
-            if (page) {
-                this.currentPage.page = page;
-            }
-            const size = Number(this.activatedRoute.snapshot.queryParamMap.get('size'));
-            if (size) {
-                this.currentPage.size = size;
-            }
-            const orderBy = this.activatedRoute.snapshot.queryParamMap.get('orderBy');
-            if (orderBy) {
-                this.currentPage.orderBy = orderBy;
-            }
-            const order = this.activatedRoute.snapshot.queryParamMap.get('order');
-            if (order) {
-                this.currentPage.order = order;
-            }
-        }
+    constructor(
+        private httpCity: HttpCityService,
+        private httpStudent: HttpStudentService,
+        private activatedRoute: ActivatedRoute,
+        private modalService: NgbModal,
+        private toastService: ToastService
+    ) { }
 
-        loadCities() {
-         this.httpCity.getAll().subscribe(
-                cities => cities.forEach(city => this.cityMap.set(city.zip_code,city))
-            );
-        }
 
-        loadStudents() {
-            this.httpStudent.getByPage(this.currentPage).subscribe(
-                studentsPage => {
-                    this.students = studentsPage.content;
-                    this.currentPage.page = studentsPage.page;
-                    this.currentPage.totalItems = studentsPage.totalItems;
-                }
-            );
-        }
+    ngOnInit(): void {
+        this.loadPageFromQueryParams();
+        this.loadCities();
+        this.loadStudents();
+    }
 
-        onSort(sortEvent: SortEvent) {
-            console.log(sortEvent,'sortEvent');
-    
-            this.sortableHeaders?.forEach(
-                sortableHeader => {
-                    if (sortableHeader.sortable !== sortEvent.columnName) {
-                        sortableHeader.direction = '';
-                    }
-                }
-            )
-            this.currentPage = {page: 1, size: this.currentPage.size, orderBy: sortEvent.columnName, order: sortEvent.direction, totalItems: 0};
-            this.loadStudents();
+    loadPageFromQueryParams() {
+        const page = Number(this.activatedRoute.snapshot.queryParamMap.get('page'));
+        if (page) {
+            this.currentPage.page = page;
         }
-
-        onDeleteClick(student: Student) {
-            const modalRef = this.modalService.open(ConfirmDialogComponent);
-            modalRef.componentInstance.header = 'Delete Student';
-            modalRef.componentInstance.message = `Are you sure you want to delete ${student.firstName}?`;
-            modalRef.result.then(
-                (result) => (result === ConfirmOptions.YES) && (this.deleteStudent(student))
-    
-            );
+        const size = Number(this.activatedRoute.snapshot.queryParamMap.get('size'));
+        if (size) {
+            this.currentPage.size = size;
         }
-
-        deleteStudent(student: Student) {
-            const subscription = this.httpStudent.delete(student.id).subscribe(
-                {
-                    next: (response) => {
-                        this.toastService.showToast({ header: 'Deleting Student', message: 'Student Deleted', delay: 2000, classNames: 'bg-success' });
-                        this.loadStudents();
-                    },
-                    error: (error) => {
-                        this.toastService.showToast({ header: 'Deleting Student', message: 'Error Deleting Student', delay: 2000, classNames: 'bg-danger' });
-                    }
-                }
-            );
-            this.subscriptions.add(subscription);
+        const orderBy = this.activatedRoute.snapshot.queryParamMap.get('orderBy');
+        if (orderBy) {
+            this.currentPage.orderBy = orderBy;
         }
-
-        onDetailsClick(student: Student, studentDetailsTemplate: TemplateRef<any>) {
-            this.selectedStudent = student;
-            this.modalService.open(studentDetailsTemplate);
-        }
-    
-        get tempContext() {
-            return { number: 10 }
+        const order = this.activatedRoute.snapshot.queryParamMap.get('order');
+        if (order) {
+            this.currentPage.order = order;
         }
     }
+
+    loadCities() {
+        this.httpCity.getAll().subscribe(
+            cities => cities.forEach(city => this.cityMap.set(city.zip_code, city))
+        );
+    }
+
+    loadStudents() {
+        this.httpStudent.getByPage(this.currentPage).subscribe(
+            studentsPage => {
+                this.students = studentsPage.content;
+                this.currentPage.page = studentsPage.page;
+                this.currentPage.totalItems = studentsPage.totalItems;
+            }
+        );
+    }
+
+    onSort(sortEvent: SortEvent) {
+        console.log(sortEvent, 'sortEvent');
+
+        this.sortableHeaders?.forEach(
+            sortableHeader => {
+                if (sortableHeader.sortable !== sortEvent.columnName) {
+                    sortableHeader.direction = '';
+                }
+            }
+        )
+        this.currentPage = { page: 1, size: this.currentPage.size, orderBy: sortEvent.columnName, order: sortEvent.direction, totalItems: 0 };
+        this.loadStudents();
+    }
+
+    search() {
+        this.students = this.students?.filter(student => {
+            return student.firstName.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
+        })
+    }
+
+    onDeleteClick(student: Student) {
+        const modalRef = this.modalService.open(ConfirmDialogComponent);
+        modalRef.componentInstance.header = 'Delete Student';
+        modalRef.componentInstance.message = `Are you sure you want to delete ${student.firstName}?`;
+        modalRef.result.then(
+            (result) => (result === ConfirmOptions.YES) && (this.deleteStudent(student))
+
+        );
+    }
+
+    deleteStudent(student: Student) {
+        const subscription = this.httpStudent.delete(student.id).subscribe(
+            {
+                next: (response) => {
+                    this.toastService.showToast({ header: 'Deleting Student', message: 'Student Deleted', delay: 2000, classNames: 'bg-success' });
+                    this.loadStudents();
+                },
+                error: (error) => {
+                    this.toastService.showToast({ header: 'Deleting Student', message: 'Error Deleting Student', delay: 2000, classNames: 'bg-danger' });
+                }
+            }
+        );
+        this.subscriptions.add(subscription);
+    }
+
+    onDetailsClick(student: Student, studentDetailsTemplate: TemplateRef<any>) {
+        this.selectedStudent = student;
+        this.modalService.open(studentDetailsTemplate);
+    }
+
+    get tempContext() {
+        return { number: 10 }
+    }
+}

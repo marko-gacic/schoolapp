@@ -18,7 +18,7 @@ import { SortableHeaderDirective, SortEvent } from 'src/app/shared/directives/so
 export class CityListComponent implements OnInit, OnDestroy {
 
   cities?: City[];
-  currentPage: Page = {page: 1, size: 5, orderBy:'name', order: 'ASC', totalItems: 10 };
+  currentPage: Page = { page: 1, size: 5, orderBy: 'name', order: 'ASC', totalItems: 10 };
 
   @ViewChildren(SortableHeaderDirective)
   sortableHeaders?: QueryList<SortableHeaderDirective>;
@@ -31,9 +31,9 @@ export class CityListComponent implements OnInit, OnDestroy {
   //************************   Priimer za asynPipe */
   allCities$?: Observable<City[]>;
   constructor(private httpCity: HttpCityService,
-              private toastService: ToastService,
-              private modalService: NgbModal,
-              private activeRoute: ActivatedRoute) { }
+    private toastService: ToastService,
+    private modalService: NgbModal,
+    private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     // this.httpCity.getAll().subscribe(
@@ -43,32 +43,32 @@ export class CityListComponent implements OnInit, OnDestroy {
     this.allCities$ = this.httpCity.getAll();
     // *****************************************
     const page = Number(this.activeRoute.snapshot.queryParams['page']);
-    if (page) { this.currentPage.page = page;}
+    if (page) { this.currentPage.page = page; }
 
     const size = Number(this.activeRoute.snapshot.queryParams['size']);
-    if (size) { this.currentPage.size = size;}
+    if (size) { this.currentPage.size = size; }
 
     const orderBy = this.activeRoute.snapshot.queryParams['orderBy'];
-    if (orderBy) { this.currentPage.orderBy = orderBy;}
+    if (orderBy) { this.currentPage.orderBy = orderBy; }
 
     const order = this.activeRoute.snapshot.queryParams['order'];
-    if (order) { this.currentPage.order = order;}
+    if (order) { this.currentPage.order = order; }
 
     this.loadCitiesByPage();
   }
 
   ngOnDestroy(): void {
-      this.subscriptions.unsubscribe();
+    this.subscriptions.unsubscribe();
   }
 
 
   loadCitiesByPage() {
     const subscription = this.httpCity.getByPage(this.currentPage).subscribe(
-      cityPage =>  {
+      cityPage => {
         this.cities = cityPage.content;
         this.currentPage.page = cityPage.page;
         this.currentPage.totalItems = cityPage.totalItems;
-        this.toastService.showToast({classNames:'', header: 'Loadinig cities', message:'City loaded successfully'})
+        this.toastService.showToast({ classNames: '', header: 'Loading cities', message: 'City loaded successfully' })
       }
     );
 
@@ -80,13 +80,13 @@ export class CityListComponent implements OnInit, OnDestroy {
     console.log('sort event:', sortEvent);
 
     this.sortableHeaders?.forEach(
-      sortableHeader =>  {
-       if (sortableHeader.sortable !== sortEvent.columnName) {
-        sortableHeader.direction = '';
-       }
+      sortableHeader => {
+        if (sortableHeader.sortable !== sortEvent.columnName) {
+          sortableHeader.direction = '';
+        }
       }
     );
-    this.currentPage = {page: 1, size: this.currentPage.size, orderBy: sortEvent.columnName , order: sortEvent.direction, totalItems: 0};
+    this.currentPage = { page: 1, size: this.currentPage.size, orderBy: sortEvent.columnName, order: sortEvent.direction, totalItems: 0 };
     this.loadCitiesByPage();
   }
 
@@ -96,27 +96,27 @@ export class CityListComponent implements OnInit, OnDestroy {
     modalRef.componentInstance.header = 'Deleting city';
     modalRef.componentInstance.message = `Are you sure that you want to delete city ${cityToDelete.name} ?`;
     modalRef.result.then(
-      result => (result ===ConfirmOptions.YES) && (this.deleteCity(cityToDelete))
+      result => (result === ConfirmOptions.YES) && (this.deleteCity(cityToDelete))
     );
   }
 
   deleteCity(cityToDelete: City) {
-    const subscription  = this.httpCity.deleteCity(cityToDelete.zip_code).subscribe(
-     {
-      next: (response) => {
-        this.toastService.showToast({header: 'Deliting city', message: 'City deleted', delay: 2000, classNames:'bg-success'});
-        this.loadCitiesByPage();
-      },
-      error: error => {
-        this.toastService.showToast({header: 'Deliting city', message: 'City was not deleted', delay: 2000, classNames:'bg-danger'})
+    const subscription = this.httpCity.deleteCity(cityToDelete.zip_code).subscribe(
+      {
+        next: (response) => {
+          this.toastService.showToast({ header: 'Deliting city', message: 'City deleted', delay: 2000, classNames: 'bg-success' });
+          this.loadCitiesByPage();
+        },
+        error: error => {
+          this.toastService.showToast({ header: 'Deliting city', message: 'City was not deleted', delay: 2000, classNames: 'bg-danger' })
+        }
       }
-     }
     );
 
     this.subscriptions.add(subscription);
   }
 
-  onDetailsClick(city: City, cityDetailsTemplate: TemplateRef<any> ) {
+  onDetailsClick(city: City, cityDetailsTemplate: TemplateRef<any>) {
     this.selectedCity = city;
     this.modalService.open(cityDetailsTemplate);
   }
@@ -124,6 +124,6 @@ export class CityListComponent implements OnInit, OnDestroy {
 
 
   get tempContext() {
-    return {number: 10};
+    return { number: 10 };
   }
 }

@@ -13,6 +13,21 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table'
+import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from '@angular/material/core';
+
+
+const globalRippleConfig: RippleGlobalOptions = {
+  disabled: false,
+  animation: {
+    enterDuration: 200,
+    exitDuration: 0
+  }
+};
 
 
 @NgModule({
@@ -21,6 +36,7 @@ import { TranslateModule } from '@ngx-translate/core';
     HeaderComponent,
     GlobalToastComponent,
     ConfirmDialogComponent
+
   ],
   imports: [
     CommonModule,
@@ -37,6 +53,18 @@ import { TranslateModule } from '@ngx-translate/core';
     MatFormFieldModule,
     MatDatepickerModule,
     TranslateModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatDialogModule,
+    MatTableModule,
+    MatInputModule,
+    MatIconModule,
+    MatPaginatorModule,
+
+
+
+
+
 
   ],
   exports: [
@@ -57,7 +85,23 @@ import { TranslateModule } from '@ngx-translate/core';
     MatCardModule,
     MatNativeDateModule,
     TranslateModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
+    MatTableModule,
+    MatInputModule,
+    MatIconModule,
+    MatPaginatorModule,
+    ConfirmDialogComponent,
 
-  ]
+
+
+
+
+
+  ],
+  providers: [{ provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig }],
+
+
 })
 export class SharedModule { }

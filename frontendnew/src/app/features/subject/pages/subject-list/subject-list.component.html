@@ -1,24 +1,37 @@
-<h2>{{'LIST_TITLE' | translate}}</h2>
+<h2>{{'SUBJECT.LIST_TITLE' | translate}}</h2>
 <div class="m-2">
   <button type="button" class="btn btn-outline-primary" [routerLink]="['/subject/subject-form']">
     <bi name="plus"></bi>{{'COMMON.ADD_SUBJECT' | translate}}
   </button>
 </div>
 
+
+
+<input type="text" [(ngModel)]="searchTerm" class="form-control" (keyup)="search()" placeholder="Search">
+
+
+
 <table class="table table-strped">
+
   <thead>
     <tr>
+
       <th sortable="id" (sort)="onSort($event)">ID</th>
+
       <th sortable="name" (sort)="onSort($event)">{{'SUBJECT.NAME' | translate}}</th>
-      <th sortable="description" (sort)="onSort($event)">{{'SUBJECT.DESCRIPTION' | translate}}</th>
-      <th sortable="noOfESP" (sort)="onSort($event)">{{'SUBJECT.NO_OF_ESP' | translate}}</th>
-      <th sortable="yearOfStudy" (sort)="onSort($event)">{{'SUBJECT.YEAR_OF_STUDY' | translate}}</th>
-      <th sortable="semester" (sort)="onSort($event)">{{'SUBJECT.SEMESTER' | translate}}</th>
+      <th sortable="description" (sort)="onSort($event)">{{'SUBJECT.DESCRIPTION' |
+        translate}}</th>
+      <th sortable="noOfESP" (sort)="onSort($event)">{{'SUBJECT.NO_OF_ESP' |
+        translate}}</th>
+      <th sortable="yearOfStudy" (sort)="onSort($event)">{{'SUBJECT.YEAR_OF_STUDY' |
+        translate}}</th>
+      <th sortable="semester" (sort)="onSort($event)">{{'SUBJECT.SEMESTER' |
+        translate}}</th>
       <th>{{'COMMON.ACTIONS' | translate}}</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let sub of subject; let i = index">
+    <tr *ngFor="let sub of subject; ">
       <td>{{ sub.id }}</td>
       <td>{{ sub.name }}</td>
       <td>{{ sub.description }}</td>
@@ -39,6 +52,8 @@
       </td>
     </tr>
   </tbody>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true  "></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 <div class="d-flex justify-content-center">
   <ngb-pagination [collectionSize]="currentPage.totalItems" [pageSize]="currentPage.size" [(page)]="currentPage.page"
