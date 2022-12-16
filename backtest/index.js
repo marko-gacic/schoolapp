@@ -8,6 +8,8 @@ const port = 3000;
 var cityRouter = require('./routes/cities');
 var subjectRouter = require('./routes/subject');
 var titleRouter = require('./routes/title');
+var examRouter = require('./routes/exam');
+var examperiodRouter = require('./routes/examperiod');
 
 
 var app = express();
@@ -24,6 +26,10 @@ app.use('/professor', professorRouter);
 app.use('/city', cityRouter);
 app.use('/subject', subjectRouter);
 app.use('/title', titleRouter);
+app.use('/exam', examRouter);
+app.use('/examperiod', examperiodRouter);
+
+
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;

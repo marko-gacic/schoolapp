@@ -91,7 +91,7 @@ export class TitleListComponent implements OnInit, OnDestroy {
     onDeleteClick(titleToDelete: Title) {
         const modalRef = this.modalService.open(ConfirmDialogComponent);
         modalRef.componentInstance.header = 'Deleting title';
-        modalRef.componentInstance.message = `Are you sure that you want to delete title ${titleToDelete.name} ?`;
+        modalRef.componentInstance.message = `Are you sure that you want to delete title ${titleToDelete.titleName} ?`;
         modalRef.result.then(
             result => (result === ConfirmOptions.YES) && (this.deleteTitle(titleToDelete))
         );

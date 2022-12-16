@@ -16,27 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `city`
+-- Table structure for table `student_subject`
 --
 
-DROP TABLE IF EXISTS `city`;
+DROP TABLE IF EXISTS `student_subject`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `city` (
-  `name` varchar(45) DEFAULT NULL,
-  `zip_code` int unsigned NOT NULL,
-  PRIMARY KEY (`zip_code`)
+CREATE TABLE `student_subject` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `student_id` int NOT NULL,
+  `subject_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `fk_student_subject_student1_idx` (`student_id`),
+  KEY `fk_student_subject_subject1_idx` (`subject_id`),
+  CONSTRAINT `fk_student_subject_student1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`),
+  CONSTRAINT `fk_student_subject_subject1` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `city`
+-- Dumping data for table `student_subject`
 --
 
-LOCK TABLES `city` WRITE;
-/*!40000 ALTER TABLE `city` DISABLE KEYS */;
-INSERT INTO `city` VALUES ('Beograd',11000),('Aleksinac',18220),('Novi Sad',21000),('Ada',24430),('Apatin',25260),('Arandjelovac',34303);
-/*!40000 ALTER TABLE `city` ENABLE KEYS */;
+LOCK TABLES `student_subject` WRITE;
+/*!40000 ALTER TABLE `student_subject` DISABLE KEYS */;
+/*!40000 ALTER TABLE `student_subject` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

@@ -31,12 +31,24 @@ CREATE TABLE `professor` (
   `phone` int DEFAULT NULL,
   `relocationDate` date NOT NULL,
   `city` int unsigned DEFAULT NULL,
+  `title` int unsigned DEFAULT NULL,
+  `role_id` int NOT NULL,
+  `subject_id` int NOT NULL,
+  `exam_id` int NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `idprofessor_UNIQUE` (`id`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   KEY `fk_professor_city1_idx` (`city`),
-  CONSTRAINT `fk_professor_city1` FOREIGN KEY (`city`) REFERENCES `city` (`zip_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
+  KEY `fk_professor_titles1_idx` (`title`),
+  KEY `fk_professor_role1_idx` (`role_id`),
+  KEY `fk_professor_subject1_idx` (`subject_id`),
+  KEY `fk_professor_exam1_idx` (`exam_id`),
+  CONSTRAINT `fk_professor_city1` FOREIGN KEY (`city`) REFERENCES `city` (`zip_code`),
+  CONSTRAINT `fk_professor_exam1` FOREIGN KEY (`exam_id`) REFERENCES `exam` (`id`),
+  CONSTRAINT `fk_professor_role1` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`),
+  CONSTRAINT `fk_professor_subject1` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`),
+  CONSTRAINT `fk_professor_titles1` FOREIGN KEY (`title`) REFERENCES `title` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +57,7 @@ CREATE TABLE `professor` (
 
 LOCK TABLES `professor` WRITE;
 /*!40000 ALTER TABLE `professor` DISABLE KEYS */;
-INSERT INTO `professor` VALUES (1,'Marko','Gacic','poslovnogacic@gmail.com','Mileve Maric',123456,'1992-05-12',21000),(2,'Nikola','Petrovic','nik.petrovic@gmail.com','NN',222222,'1992-01-25',11000),(3,'Jovana ','Babic','babic.j@gmail.com','NN',333333,'1995-04-20',11000),(4,'Stojan','Vujosevic','stojke@gmail.com','NN',44444,'2000-05-22',21000),(5,'Dejan ','Radulov','deki@gmail.com','NN',55555,'2000-04-21',21000),(6,'Jelena','Babic','jelenab@gmail.com','NN',6666,'2021-02-04',11000),(7,'Marko','Gacic','poslovnogacic91@gmail.com','none',222222222,'1998-12-31',18220),(8,'Biljana','Stanic','stanic.b@gmail.com','asdasd',1111123,'1992-01-20',25260),(11,'Stojan','Vujosevic','stojke111@gmail.com','test',21312312,'2022-10-31',18220);
+INSERT INTO `professor` VALUES (1,'Marko','Gacic','poslovnogacic@gmail.com','Mileve Maric',123456,'1992-05-12',21000,1,0,0,0),(2,'Nikola','Petrovic','nik.petrovic@gmail.com','NN',222222,'1992-01-25',11000,2,0,0,0),(3,'Jovana ','Babic','babic.j@gmail.com','NN',333333,'1995-04-20',11000,2,0,0,0),(4,'Stojan','Vujosevic','stojke@gmail.com','NN',44444,'2000-05-22',21000,3,0,0,0),(5,'Dejan ','Radulov','deki@gmail.com','NN',55555,'2000-04-21',21000,4,0,0,0),(6,'Marko','Babic','jelenab@gmail.com','NN',6666,'2021-02-02',11000,5,0,0,0),(7,'Marko','Gacic','poslovnogacic91@gmail.com','none',33333,'1998-12-30',18220,6,0,0,0),(8,'Biljana','Stanic','stanic.b@gmail.com','asdasd',1111123,'1992-01-20',25260,2,0,0,0),(11,'Stojan','Vujosevic','stojke111@gmail.com','test',21312312,'2022-10-30',11000,2,0,0,0),(13,'Marko','Gacic','test1111@gmail.com','None',213123123,'1992-02-01',18220,2,0,0,0),(14,'Marko','Gacic','poslovnogacic333@gmail.com','Nnone',222234567,'1992-02-01',18220,2,0,0,0);
 /*!40000 ALTER TABLE `professor` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +70,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-28 12:28:54
+-- Dump completed on 2022-12-16 17:36:15

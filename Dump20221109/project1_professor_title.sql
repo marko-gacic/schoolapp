@@ -23,13 +23,10 @@ DROP TABLE IF EXISTS `professor_title`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `professor_title` (
-  `title_id` int NOT NULL,
   `professor_id` int NOT NULL,
-  PRIMARY KEY (`title_id`,`professor_id`),
+  PRIMARY KEY (`professor_id`),
   KEY `fk_title_has_professor_professor1_idx` (`professor_id`),
-  KEY `fk_title_has_professor_title1_idx` (`title_id`),
-  CONSTRAINT `fk_title_has_professor_professor1` FOREIGN KEY (`professor_id`) REFERENCES `professor` (`id`),
-  CONSTRAINT `fk_title_has_professor_title1` FOREIGN KEY (`title_id`) REFERENCES `title` (`id`)
+  CONSTRAINT `fk_title_has_professor_professor1` FOREIGN KEY (`professor_id`) REFERENCES `professor` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -51,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-28 12:28:54
+-- Dump completed on 2022-12-16 17:36:15

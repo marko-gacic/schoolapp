@@ -16,27 +16,36 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `city`
+-- Table structure for table `exam`
 --
 
-DROP TABLE IF EXISTS `city`;
+DROP TABLE IF EXISTS `exam`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `city` (
-  `name` varchar(45) DEFAULT NULL,
-  `zip_code` int unsigned NOT NULL,
-  PRIMARY KEY (`zip_code`)
+CREATE TABLE `exam` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `subject_id` int NOT NULL,
+  `professor_id` int NOT NULL,
+  `date` datetime DEFAULT NULL,
+  `examperiod_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `fk_exam_subject1_idx` (`subject_id`),
+  KEY `fk_exam_professor1_idx` (`professor_id`),
+  KEY `fk_exam_examperiod1_idx` (`examperiod_id`),
+  CONSTRAINT `fk_exam_examperiod1` FOREIGN KEY (`examperiod_id`) REFERENCES `examperiod` (`id`),
+  CONSTRAINT `fk_exam_professor1` FOREIGN KEY (`professor_id`) REFERENCES `professor` (`id`),
+  CONSTRAINT `fk_exam_subject1` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `city`
+-- Dumping data for table `exam`
 --
 
-LOCK TABLES `city` WRITE;
-/*!40000 ALTER TABLE `city` DISABLE KEYS */;
-INSERT INTO `city` VALUES ('Beograd',11000),('Aleksinac',18220),('Novi Sad',21000),('Ada',24430),('Apatin',25260),('Arandjelovac',34303);
-/*!40000 ALTER TABLE `city` ENABLE KEYS */;
+LOCK TABLES `exam` WRITE;
+/*!40000 ALTER TABLE `exam` DISABLE KEYS */;
+/*!40000 ALTER TABLE `exam` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-16 17:36:14
+-- Dump completed on 2022-12-16 17:36:15

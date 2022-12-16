@@ -29,9 +29,12 @@ CREATE TABLE `subject` (
   `noOfESP` int NOT NULL,
   `yearOfStudy` int NOT NULL,
   `semester` varchar(10) NOT NULL,
+  `exam_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `idsubject_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+  UNIQUE KEY `idsubject_UNIQUE` (`id`),
+  KEY `fk_subject_exam1_idx` (`exam_id`),
+  CONSTRAINT `fk_subject_exam1` FOREIGN KEY (`exam_id`) REFERENCES `exam` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +43,7 @@ CREATE TABLE `subject` (
 
 LOCK TABLES `subject` WRITE;
 /*!40000 ALTER TABLE `subject` DISABLE KEYS */;
-INSERT INTO `subject` VALUES (1,'Sociologija','test',1,1,'summer'),(2,'Osnovi Bezbednosti','test',2,2,'winter');
+INSERT INTO `subject` VALUES (3,'Matematika','test',1,1,'summer',0),(11,'Mehanika','test',2,1,'summer',0),(42,'Srpski','Test',2,2,'winter',0),(43,'Srpski','Test',2,2,'winter',0),(44,'Test','Moze',1,1,'winter',0),(45,'Test','Moze',1,1,'winter',0),(46,'None','Test',1,1,'winter',0),(47,'None','Test',1,1,'winter',0),(48,'Marko','Test',1,1,'winter',0),(49,'Marko','Test',1,1,'winter',0);
 /*!40000 ALTER TABLE `subject` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-28 12:28:54
+-- Dump completed on 2022-12-16 17:36:15

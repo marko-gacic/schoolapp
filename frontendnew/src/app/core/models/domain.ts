@@ -100,3 +100,60 @@ export interface User {
     role: string;
     status: string;
 }
+
+export interface ExamPeriod {
+    id: number
+    name: string
+    start: Date | string
+    end: Date | string
+    status: boolean
+}
+
+export interface ExamPeriodDTO {
+    id: number
+    name: string
+    start: Date | string
+    end: Date | string
+    status: boolean
+}
+
+export interface Exam {
+    id: number
+    name: string
+    date: Date | string
+    start: Date | string
+    end: Date | string
+    status: boolean
+    examPeriod: ExamPeriod
+    subject: Sub
+    professor: Professor
+    students: Student[]
+}
+
+export interface ExamDTO {
+    id: number
+    name: string
+    date: Date | string
+    start: Date | string
+    end: Date | string
+    status: boolean
+    examPeriod: number
+    subject: number
+    professor: number
+    students: number[]
+}
+
+export interface ExamRegistration {
+    id: number
+    exam: Exam
+    student: Student
+    status: string
+}
+
+export interface ExamRegistrationDTO {
+    id: number
+    exam: number
+    student: number
+    status: string
+}
+

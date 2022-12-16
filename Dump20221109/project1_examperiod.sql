@@ -16,27 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `city`
+-- Table structure for table `examperiod`
 --
 
-DROP TABLE IF EXISTS `city`;
+DROP TABLE IF EXISTS `examperiod`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `city` (
+CREATE TABLE `examperiod` (
+  `id` int NOT NULL,
   `name` varchar(45) DEFAULT NULL,
-  `zip_code` int unsigned NOT NULL,
-  PRIMARY KEY (`zip_code`)
+  `end` date DEFAULT NULL,
+  `start` date DEFAULT NULL,
+  `status` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idexamperiod_UNIQUE` (`id`),
+  UNIQUE KEY `name_UNIQUE` (`name`),
+  UNIQUE KEY `end_UNIQUE` (`end`),
+  UNIQUE KEY `start_UNIQUE` (`start`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `city`
+-- Dumping data for table `examperiod`
 --
 
-LOCK TABLES `city` WRITE;
-/*!40000 ALTER TABLE `city` DISABLE KEYS */;
-INSERT INTO `city` VALUES ('Beograd',11000),('Aleksinac',18220),('Novi Sad',21000),('Ada',24430),('Apatin',25260),('Arandjelovac',34303);
-/*!40000 ALTER TABLE `city` ENABLE KEYS */;
+LOCK TABLES `examperiod` WRITE;
+/*!40000 ALTER TABLE `examperiod` DISABLE KEYS */;
+/*!40000 ALTER TABLE `examperiod` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

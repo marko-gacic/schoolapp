@@ -23,11 +23,10 @@ DROP TABLE IF EXISTS `title`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `title` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `idtitle_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
+  `id` int unsigned NOT NULL,
+  `titleName` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,6 +35,7 @@ CREATE TABLE `title` (
 
 LOCK TABLES `title` WRITE;
 /*!40000 ALTER TABLE `title` DISABLE KEYS */;
+INSERT INTO `title` VALUES (1,'Dekan'),(2,'Profesor'),(3,'Asistent'),(4,'Asistent Profesora'),(5,'Asistent Dekana'),(6,'Profesor'),(7,'Asistent'),(8,NULL),(9,NULL),(10,NULL);
 /*!40000 ALTER TABLE `title` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-28 12:28:54
+-- Dump completed on 2022-12-16 17:36:15

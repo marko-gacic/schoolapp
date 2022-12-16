@@ -29,11 +29,14 @@ CREATE TABLE `user` (
   `email` varchar(45) NOT NULL,
   `role` varchar(45) DEFAULT NULL,
   `status` varchar(45) DEFAULT NULL,
+  `role_id` int NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `password_UNIQUE` (`password`),
-  UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+  UNIQUE KEY `email_UNIQUE` (`email`),
+  KEY `fk_user_role1_idx` (`role_id`),
+  CONSTRAINT `fk_user_role1` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +45,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Admin','admin','admin@gmail.com','admin','true');
+INSERT INTO `user` VALUES (1,'Admin','admin','admin@gmail.com','admin','true',0),(2,'Professor','professor','profesor@gmail.com','professor','true',0),(3,'User','user','user@gmail.com','user','false',0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-28 12:28:54
+-- Dump completed on 2022-12-16 17:36:15
