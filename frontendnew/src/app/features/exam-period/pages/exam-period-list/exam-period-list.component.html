@@ -1,0 +1,67 @@
+<h2>Exam Period List</h2>
+<div class="m-2">
+    <button type="button" class="btn btn-outline-primary" [routerLink]="['/exam-period/exam-period-form']">
+        <bi name="plus"></bi>Add Exam Period
+    </button>
+</div>
+
+<input type="text" [(ngModel)]="searchTerm" class="form-control" (keyup)="search()" placeholder="Search">
+
+<table class="table table-straped">
+
+    <thead>
+        <tr>
+            <th sortable="id" (sort)="onSort($event)">ID</th>
+            <th sortable="name" (sort)="onSort($event)">Name</th>
+            <th sortable="start" (sort)="onSort($event)">Start Date</th>
+            <th sortable="end" (sort)="onSort($event)">End Date</th>
+            <th sortable="status" (sort)="onSort($event)">Status</th>
+            <th>{{'COMMON.ACTIONS' | translate}}</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let examPeriod of examPeriod; ">
+            <td>{{ examPeriod.id }}</td>
+            <td>{{ examPeriod.name }}</td>
+            <td>{{ examPeriod.end }}</td>
+            <td>{{ examPeriod.start }}</td>
+            <td>{{ examPeriod.status }}</td>
+            <td>
+                <button class="btn btn-outline-primary" [routerLink]="['/exam-period/exam-period-form', examPeriod.id]"
+                    [queryParams]="{'page': currentPage.page, 'size': currentPage.size, 'orderBy': currentPage.orderBy, 'order': currentPage.order}">
+                    <bi name="pencil"></bi><span class="btn-text-responsive">Edit</span>
+                </button>
+                <button class="btn btn-outline-primary" (click)="onDetailsClick(examPeriod, examPeriodDetailsTemplate)">
+                    <bi name="card-text"></bi><span class="btn-text-responsive">Details</span>
+                </button>
+                <button class="btn btn-outline-danger" (click)="onDeleteClick(examPeriod)">
+                    <bi name="trash"></bi><span class="btn-text-responsive">Delete</span>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true  "></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<div class="d-flex justify-content-center">
+    <ngb-pagination [collectionSize]="currentPage.totalItems" [pageSize]="currentPage.size" [(page)]="currentPage.page"
+        [boundaryLinks]="true" (pageChange)="loadExamPeriod()">
+    </ngb-pagination>
+</div>
+<ng-template #examPeriodDetailsTemplate let-modal>
+    <div class="modal-body">
+        <h4>{{'Exam Period Details' | translate}}</h4>
+        <ul class="list-unstyled">
+            <li>ID: {{ selectedExamPeriod?.id }}</li>
+            <li>Name: {{ selectedExamPeriod?.name }}</li>
+            <li>Start: {{ selectedExamPeriod?.start }}</li>
+            <li>End: {{ selectedExamPeriod?.end }}</li>
+            <li>Status: {{ selectedExamPeriod?.start }}</li>
+
+        </ul>
+        <div class="mt-2 d-flex flex-row-reverse">
+            <button (click)="modal.close('OK')">Ok</button>
+        </div>
+    </div>
+</ng-template>

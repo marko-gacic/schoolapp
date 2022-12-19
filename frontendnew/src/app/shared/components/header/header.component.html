@@ -8,6 +8,9 @@
   <li ngbNavItem *ngIf="userAuthData.loggedUser">
     <a ngbNavLink routerLink="/subject">{{'MENU.SUBJECT' | translate}}</a>
 
+  <li ngbNavItem *ngIf="userAuthData.loggedUser">
+    <a ngbNavLink routerLink="/exam-period">{{'Exam Period' | translate}}</a>
+
   <li ngbNavItem *ngIf="userAuthData.loggedUser" class="flex-grow-1 flex-shirnk-1 text-center">
     <a ngbNavLink routerLink="/home">{{'MENU.HOME' | translate}}</a>
   </li>

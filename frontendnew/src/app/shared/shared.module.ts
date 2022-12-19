@@ -19,7 +19,9 @@ import { MatTableModule } from '@angular/material/table'
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MAT_RIPPLE_GLOBAL_OPTIONS, RippleGlobalOptions } from '@angular/material/core';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSelectModule } from '@angular/material/select';
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: false,
@@ -60,6 +62,9 @@ const globalRippleConfig: RippleGlobalOptions = {
     MatInputModule,
     MatIconModule,
     MatPaginatorModule,
+    MatSnackBarModule,
+    MatAutocompleteModule,
+    MatSelectModule
 
 
 
@@ -93,6 +98,9 @@ const globalRippleConfig: RippleGlobalOptions = {
     MatIconModule,
     MatPaginatorModule,
     ConfirmDialogComponent,
+    MatSnackBarModule,
+    MatAutocompleteModule,
+    MatSelectModule
 
 
 

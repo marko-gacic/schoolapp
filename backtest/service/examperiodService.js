@@ -6,6 +6,7 @@ async function getAll() {
 }
 
 async function getByPage(page, size, orderBy, order) {
+    console.log(page, size, orderBy, order);
     const queryTotal = 'SELECT COUNT(*) as totalItems FROM examperiod'
     const [total] = await db.query(queryTotal);
     const lastPage = Math.ceil(total.totalItems / size);
