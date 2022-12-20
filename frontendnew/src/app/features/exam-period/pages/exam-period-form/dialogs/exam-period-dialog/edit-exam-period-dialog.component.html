@@ -1,0 +1,36 @@
+<form [formGroup]="examPeriodForm">
+    <h2 mat-dialog-title>Edit exam period details</h2>
+    <mat-form-field appearance="outline">
+        <mat-label>Examination period name</mat-label>
+        <input matInput placeholder="examination name..." formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Examination period</mat-label>
+        <mat-select>
+            <mat-option [value]="true">Active</mat-option>
+            <mat-option [value]="false">Inactive</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Start and end date</mat-label>
+        <mat-date-range-input [formGroup]="examPeriodForm" [rangePicker]="picker">
+            <input matStartDate formControlName="start" placeholder="Start date">
+            <input matEndDate formControlName="end" placeholder="End date">
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+
+        <mat-error *ngIf="examPeriodForm.controls.start.hasError('matStartDateInvalid')">Invalid start date
+        </mat-error>
+        <mat-error *ngIf="examPeriodForm.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+    </mat-form-field>
+
+    <div class="center">
+        <button mat-flat-button color="primary" (click)="onSubmit(examPeriodForm.value)">
+            Modify examination period
+        </button>
+    </div>
+</form>

@@ -3,15 +3,15 @@
     <!-- Form -->
     <div class="container-form mat-elevation-z5">
         <form [formGroup]="examPeriodForm">
-            <h1 class="center">Add examination period</h1>
+            <h1 class="center">Add exam period</h1>
 
             <mat-form-field appearance="outline">
-                <mat-label>Examination period name</mat-label>
+                <mat-label>Exam period name</mat-label>
                 <input matInput placeholder="examination name..." formControlName="name">
             </mat-form-field>
 
             <mat-form-field appearance="outline">
-                <mat-label>Examination period</mat-label>
+                <mat-label>Exam period</mat-label>
                 <mat-select>
                     <mat-option [value]="true">Active</mat-option>
                     <mat-option [value]="false">Inactive</mat-option>
@@ -36,7 +36,7 @@
 
             <div class="center">
                 <button mat-flat-button color="primary" (click)="onSubmit(examPeriodForm.value)">
-                    Add examination period
+                    Add exam period
                 </button>
             </div>
         </form>
@@ -73,19 +73,20 @@
             <ng-container matColumnDef="edit">
                 <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
                 <mat-cell *matCellDef="let examPeriod">
-                    <button mat-button matTooltip="Edit exam period" matTooltipPosition="after" color="primary"
-                        (click)="openDialog(examPeriod)">
-                        <mat-icon>edit</mat-icon>
+                    <button mat-button matTooltip="Edit exam period" matTooltipPosition="after"
+                        class="btn btn-outline-primary" color="primary" (click)="openDialog(examPeriod)">
+                        <bi name="pencil"></bi><span class="btn-text-responsive"></span>
                     </button>
                 </mat-cell>
             </ng-container>
 
+
             <ng-container matColumnDef="delete">
                 <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
                 <mat-cell *matCellDef="let examPeriod">
-                    <button mat-button matTooltip="Delete exam period" color="warn"
-                        (click)="openDeleteDialog(examPeriod)" matTooltipPosition="after">
-                        <mat-icon>delete</mat-icon>
+                    <button class="btn btn-outline-danger" mat-button matTooltip="Delete exam period" color="warn"
+                        (click)="onDeleteClick(examPeriod)" matTooltipPosition="after">
+                        <bi name="trash"></bi><span class="btn-text-responsive"></span>
                     </button>
                 </mat-cell>
             </ng-container>
@@ -93,5 +94,17 @@
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
+
+        <hr>
+
+        <div class="d-flex justify-content-center">
+            <ngb-pagination [collectionSize]="currentPage.totalItems" [pageSize]="currentPage.size"
+                [(page)]="currentPage.page" [boundaryLinks]="true" (pageChange)="loadExamPeriod()">
+            </ngb-pagination>
+        </div>
+
+
+
+
     </div>
 </div>

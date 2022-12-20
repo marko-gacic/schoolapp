@@ -1,0 +1,33 @@
+.container {
+    max-width: 400px;
+    padding: 10px;
+}
+
+.container .mat-form-field+.mat-form-field {
+    max-width: 100%;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+mat-dialog-container {
+    max-width: 400px;
+}
+
+mat-dialog-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    max-width: 400px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}

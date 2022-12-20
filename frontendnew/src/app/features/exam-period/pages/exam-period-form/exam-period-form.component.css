@@ -1,0 +1,95 @@
+table {
+    width: 100%;
+}
+
+.main-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    overflow-x: hidden;
+    height: 90%;
+}
+
+.container-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 150px;
+    padding: 20px;
+}
+
+.container-table {
+    margin-top: 20px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+mat-form-field {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+mat-header-cell,
+mat-cell {
+    justify-content: center;
+}
+
+.mat-column-name {
+    flex: none;
+    width: 100px;
+}
+
+.mat-column-start {
+    flex: none;
+    width: 100px;
+}
+
+.mat-column-end {
+    flex: none;
+    width: 100px;
+}
+
+.mat-column-status {
+    flex: none;
+    width: 100px;
+}
+
+.mat-column-edit {
+    flex: none;
+    width: 100px;
+}
+
+.mat-column-delete {
+    flex: none;
+    width: 100px;
+}
+
+@media only screen and (max-width: 1600px) {
+
+    .main-container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .container-form {
+        width: 600px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    mat-form-field {
+        margin-bottom: 5px;
+        width: 100%;
+    }
+
+}

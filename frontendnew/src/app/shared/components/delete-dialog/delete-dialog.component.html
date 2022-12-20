@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>{{data.title}}</h2>
+<mat-dialog-content>
+    {{data.message}}
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-flat-button color="warn" mat-dialog-close mat-dialog-close="true" (click)="onDelete()">
+        {{data.confirmButton}} <mat-icon>{{data.iconName || 'delete_outline'}}</mat-icon>
+    </button>
+    <button mat-button mat-dialog-close mat-dialog-close="false">Go back <mat-icon>arrow_back
+        </mat-icon></button>
+</mat-dialog-actions>

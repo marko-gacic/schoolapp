@@ -57,9 +57,9 @@ router.put('/:id', async function (req, res, next) {
 
 router.delete('/:id', async function (req, res, next) {
     try {
-        res.json(await examperiodService.delete(req.params.id));
+        res.json(await examperiodService.remove(req.params.id));
     } catch (err) {
-        console.error(`Error while deleting examperiod `, err.message);
+        console.error(`Error while deleting exam period `, err.message);
         next(err);
     }
 });

@@ -11,7 +11,7 @@ const routes: Routes = [
     { path: 'exam-period-list', component: ExamPeriodListComponent },
     { path: 'exam-period-form', component: ExamPeriodFormComponent },
     { path: 'exam-period-form/:id', component: ExamPeriodFormComponent, resolve: { professor: ExamPeriodResolver } },
-    { path: '', pathMatch: 'full', redirectTo: 'exam-period-list' }
+    { path: '', pathMatch: 'full', redirectTo: 'exam-period-form' }
 ];
 
 @NgModule({

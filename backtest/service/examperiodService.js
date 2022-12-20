@@ -37,30 +37,38 @@ async function get(id) {
 
 async function create(examperiod) {
     const query = 'INSERT INTO examperiod (name,end,start,status) VALUES (?, ?, ?, ?)';
-    const result = await db.query(query, [examperiod.name]);
-    let err = 'Error in creating examperiod';
+    const result = await db.query(query, [
+        examperiod.name,
+        new Date(examperiod.end).toISOString().split('T')[0],
+        new Date(examperiod.start).toISOString().split('T')[0],
+        examperiod.status]);
+    let err = 'Error in creating exam period';
     if (result.affectedRows) {
-        err = 'Examperiod created successfully';
+        err = 'Exam period created successfully';
     }
     return { err };
 }
 
 async function update(id, examperiod) {
     const query = 'UPDATE examperiod SET name = ?, end = ?, start = ?, status = ? WHERE id = ?';
-    const result = await db.query(query, [examperiod.name, examperiod.end, examperiod.start, examperiod.status, id]);
-    let err = 'Error in updating examperiod';
+    const result = await db.query(query, [
+        examperiod.name,
+        new Date(examperiod.end).toISOString().split('T')[0],
+        new Date(examperiod.start).toISOString().split('T')[0],
+        examperiod.status,
+        id]);
+    let err = 'Error in updating exam period';
     if (result.affectedRows) {
-        err = 'Examperiod updated successfully';
+        err = 'Exam Period updated successfully';
     }
     return { err };
 }
 
 async function remove(id) {
-    const query = 'DELETE FROM examperiod WHERE id = ?';
-    const result = await db.query(query, [id]);
-    let err = 'Error in deleting examperiod';
-    if (result.affectedRows) {
-        err = 'Examperiod deleted successfully';
+    const data = await db.query(`DELETE FROM examperiod WHERE id = ${id}`);
+    let err = 'Error in deleting am Period';
+    if (data.affectedRows) {
+        err = 'Exam Period deleted successfully';
     }
     return { err };
 }
