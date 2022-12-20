@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `examperiod`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `examperiod` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   `end` date DEFAULT NULL,
   `start` date DEFAULT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE `examperiod` (
   UNIQUE KEY `name_UNIQUE` (`name`),
   UNIQUE KEY `end_UNIQUE` (`end`),
   UNIQUE KEY `start_UNIQUE` (`start`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +42,7 @@ CREATE TABLE `examperiod` (
 
 LOCK TABLES `examperiod` WRITE;
 /*!40000 ALTER TABLE `examperiod` DISABLE KEYS */;
+INSERT INTO `examperiod` VALUES (2,'test','2002-03-20','2012-12-20','Inactive'),(4,'Marko','2022-12-08','2022-12-05','0'),(11,'Marko2','2022-12-02','2022-11-30','0'),(14,'Marko222','2023-01-06','2023-01-03','0'),(15,'Marko222dfs','2023-02-15','2023-02-06','0');
 /*!40000 ALTER TABLE `examperiod` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-16 17:36:14
+-- Dump completed on 2022-12-20 15:59:57
