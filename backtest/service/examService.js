@@ -11,10 +11,13 @@ async function getByPage(page, size, orderBy, order) {
     const lastPage = Math.ceil(total.totalItems / size);
     page = page <= lastPage ? page : lastPage;
     const offset = (page - 1) * size;
-    const query = `select exam.*,
-    subject.name as subjectName, professor.firstName as professorName, examperiod.name as examperiodName from exam inner join subject on exam.subject = subject.name
-    inner join professor on exam.professor = professor.firstName inner join examperiod on exam.examperiod = examperiod.name
-    order by ${orderBy} ${order} limit ${size} offset ${offset}`;
+    const query = `SELECT exam.*, 
+    subject.name as subjectName, professor.firstName as professorName, 
+    examperiod.periodName as examperiodName FROM exam 
+    INNER JOIN subject ON exam.subject = subject.name 
+    INNER JOIN professor ON exam.professor = professor.firstName 
+    INNER JOIN examperiod ON exam.examperiod = examperiod.periodName
+    ORDER BY ${orderBy} ${order} LIMIT ${size} OFFSET ${offset}`;
     let data = await db.query(query);
 
     data = data.map(exam => {

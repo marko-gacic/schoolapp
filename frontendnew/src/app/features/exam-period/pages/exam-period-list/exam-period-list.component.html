@@ -12,7 +12,7 @@
     <thead>
         <tr>
             <th sortable="id" (sort)="onSort($event)">ID</th>
-            <th sortable="name" (sort)="onSort($event)">Name</th>
+            <th sortable="periodName" (sort)="onSort($event)">Name</th>
             <th sortable="start" (sort)="onSort($event)">Start Date</th>
             <th sortable="end" (sort)="onSort($event)">End Date</th>
             <th sortable="status" (sort)="onSort($event)">Status</th>
@@ -23,7 +23,7 @@
     <tbody>
         <tr *ngFor="let examPeriod of examPeriod; ">
             <td>{{ examPeriod.id }}</td>
-            <td>{{ examPeriod.name }}</td>
+            <td>{{ examPeriod.periodName }}</td>
             <td>{{ examPeriod.end }}</td>
             <td>{{ examPeriod.start }}</td>
             <td>{{ examPeriod.status }}</td>
@@ -54,7 +54,7 @@
         <h4>{{'Exam Period Details' | translate}}</h4>
         <ul class="list-unstyled">
             <li>ID: {{ selectedExamPeriod?.id }}</li>
-            <li>Name: {{ selectedExamPeriod?.name }}</li>
+            <li>Name: {{ selectedExamPeriod?.periodName }}</li>
             <li>Start: {{ selectedExamPeriod?.start }}</li>
             <li>End: {{ selectedExamPeriod?.end }}</li>
             <li>Status: {{ selectedExamPeriod?.start }}</li>

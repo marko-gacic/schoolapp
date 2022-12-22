@@ -1,18 +1,34 @@
 <div class="main-container">
 
-
     <!-- Form -->
     <div class="container-form mat-elevation-z5">
-        <form [formGroup]="examPeriodForm">
-            <h1 class="center">Add exam period</h1>
+        <form [formGroup]="examForm">
+            <h1 class="center">Add exam </h1>
 
             <mat-form-field appearance="outline">
-                <mat-label>Exam period name</mat-label>
-                <input matInput placeholder="examination name..." formControlName="periodName">
+                <mat-label>Subject</mat-label>
+                <input matInput placeholder="subject name." formControlName="subject">
             </mat-form-field>
 
             <mat-form-field appearance="outline">
-                <mat-label>Exam period</mat-label>
+                <mat-label>Professor</mat-label>
+                <input matInput placeholder="professor name." formControlName="professor">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Date</mat-label>
+                <input matInput placeholder="student name." formControlName="date">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Exam Period</mat-label>
+                <input matInput placeholder="start time." formControlName="examPeriod">
+            </mat-form-field>
+
+
+
+            <!-- <mat-form-field appearance="outline">
+                <mat-label>Exam </mat-label>
                 <mat-select>
                     <mat-option [value]="true">Active</mat-option>
                     <mat-option [value]="false">Inactive</mat-option>
@@ -21,7 +37,7 @@
 
             <mat-form-field appearance="fill">
                 <mat-label>Start and end date</mat-label>
-                <mat-date-range-input [formGroup]="examPeriodForm" [rangePicker]="picker">
+                <mat-date-range-input [formGroup]="examForm" [rangePicker]="picker">
                     <input matStartDate formControlName="start" placeholder="Start date">
                     <input matEndDate formControlName="end" placeholder="End date">
                 </mat-date-range-input>
@@ -29,14 +45,11 @@
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-date-range-picker #picker></mat-date-range-picker>
 
-                <mat-error *ngIf="examPeriodForm.controls.start.hasError('matStartDateInvalid')">Invalid start date
-                </mat-error>
-                <mat-error *ngIf="examPeriodForm.controls.end.hasError('matEndDateInvalid')">Invalid end
-                    date</mat-error>
-            </mat-form-field>
+
+            </mat-form-field> -->
 
             <div class="center">
-                <button mat-flat-button color="primary" (click)="onSubmit(examPeriodForm.value)">
+                <button mat-flat-button color="primary" (click)="onSubmit(examForm.value)">
                     Add exam period
                 </button>
             </div>
@@ -45,37 +58,37 @@
 
     <!-- Table -->
     <div class="container-table">
-        <mat-table [dataSource]="examPeriods" class="mat-elevation-z5">
+        <mat-table [dataSource]="exams" class="mat-elevation-z5">
 
-            <ng-container matColumnDef="periodName">
+            <ng-container matColumnDef="subject">
                 <mat-header-cell mat-sort-header sortActionDescription="Sort by name" *matHeaderCellDef> Name
                 </mat-header-cell>
-                <mat-cell *matCellDef="let examPeriod"> {{examPeriod.periodName}} </mat-cell>
+                <mat-cell *matCellDef="let exam"> {{exam.subject}} </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="start">
-                <mat-header-cell mat-sort-header sortActionDescription="Sort by last name" *matHeaderCellDef> Start
+            <ng-container matColumnDef="date">
+                <mat-header-cell mat-sort-header sortActionDescription="Sort by last date" *matHeaderCellDef> Start
                 </mat-header-cell>
-                <mat-cell *matCellDef="let examPeriod"> {{examPeriod.start | date:'shortDate' }} </mat-cell>
+                <mat-cell *matCellDef="let exam"> {{exam.date | date:'shortDate' }} </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="end">
-                <mat-header-cell mat-sort-header sortActionDescription="Sort by email" *matHeaderCellDef> End
+            <ng-container matColumnDef="examPeriod">
+                <mat-header-cell mat-sort-header sortActionDescription="Sort by date" *matHeaderCellDef> End
                 </mat-header-cell>
-                <mat-cell *matCellDef="let examPeriod"> {{examPeriod.end | date:'shortDate'}} </mat-cell>
+                <mat-cell *matCellDef="let exam"> {{exam.examPeriod | date:'shortDate'}} </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="status">
-                <mat-header-cell mat-sort-header sortActionDescription="Sort by postalCode" *matHeaderCellDef> Status
+            <ng-container matColumnDef="professor">
+                <mat-header-cell mat-sort-header sortActionDescription="Sort by status" *matHeaderCellDef> Status
                 </mat-header-cell>
-                <mat-cell *matCellDef="let examPeriod"> {{examPeriod.status}} </mat-cell>
+                <mat-cell *matCellDef="let exam"> {{exam.professor}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="edit">
                 <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
-                <mat-cell *matCellDef="let examPeriod">
+                <mat-cell *matCellDef="let exam">
                     <button mat-button matTooltip="Edit exam period" matTooltipPosition="after"
-                        class="btn btn-outline-primary" color="primary" (click)="openDialog(examPeriod)">
+                        class="btn btn-outline-primary" color="primary" (click)="openDialog(exam)">
                         <bi name="pencil"></bi><span class="btn-text-responsive"></span>
                     </button>
                 </mat-cell>
@@ -100,7 +113,7 @@
 
         <div class="d-flex justify-content-center">
             <ngb-pagination [collectionSize]="currentPage.totalItems" [pageSize]="currentPage.size"
-                [(page)]="currentPage.page" [boundaryLinks]="true" (pageChange)="loadExamPeriod()">
+                [(page)]="currentPage.page" [boundaryLinks]="true" (pageChange)="loadExam()">
             </ngb-pagination>
         </div>
 

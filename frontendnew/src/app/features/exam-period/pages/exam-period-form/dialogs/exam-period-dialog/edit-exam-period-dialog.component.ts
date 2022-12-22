@@ -37,7 +37,7 @@ export class EditExamPeriodDialogComponent implements OnInit {
     onSubmit(form: any) {
         this.examPeriodService.put(form).subscribe(res => {
         })
-        this.openSnackBar('Exam period successfuly updated!', 'Close')
+        this.openSnackBar('Exam period successfully updated!', 'Close')
     }
 
     openSnackBar(message: string, action: string) {

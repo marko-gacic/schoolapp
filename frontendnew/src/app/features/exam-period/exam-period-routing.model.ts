@@ -10,7 +10,7 @@ import { ExamPeriodListComponent } from './pages/exam-period-list/exam-period-li
 const routes: Routes = [
     { path: 'exam-period-list', component: ExamPeriodListComponent },
     { path: 'exam-period-form', component: ExamPeriodFormComponent },
-    { path: 'exam-period-form/:id', component: ExamPeriodFormComponent, resolve: { professor: ExamPeriodResolver } },
+    { path: 'exam-period-form/:id', component: ExamPeriodFormComponent, resolve: { examPeriod: ExamPeriodResolver } },
     { path: '', pathMatch: 'full', redirectTo: 'exam-period-form' }
 ];
 

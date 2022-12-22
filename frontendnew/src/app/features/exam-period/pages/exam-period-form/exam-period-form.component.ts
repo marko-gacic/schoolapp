@@ -27,10 +27,10 @@ import { EditExamPeriodDialogComponent } from "./dialogs/exam-period-dialog/edit
 })
 
 export class ExamPeriodFormComponent implements OnInit {
-    displayedColumns: string[] = ['name', 'start', 'end', 'status', 'edit', 'delete'];
+    displayedColumns: string[] = ['periodName', 'start', 'end', 'status', 'edit', 'delete'];
     examPeriods = new MatTableDataSource<ExamPeriod>();
     value = '';
-    currentPage: Page = { page: 1, size: 5, orderBy: 'name', order: 'asc', totalItems: 10 };
+    currentPage: Page = { page: 1, size: 5, orderBy: 'periodName', order: 'asc', totalItems: 10 };
     availablePageSizes = [3, 5, 10, 15, 20, 25, 30, 50, 100];
     searchTerm: string = '';
     examPeriod?: ExamPeriod[];
@@ -55,7 +55,7 @@ export class ExamPeriodFormComponent implements OnInit {
     ) { }
     examPeriodForm = this.formBuilder.nonNullable.group({
         id: [],
-        name: ['', Validators.required],
+        periodName: ['', Validators.required],
         start: new FormControl<Date | null>(null),
         end: new FormControl<Date | null>(null),
         status: [0, Validators.required],
@@ -117,7 +117,7 @@ export class ExamPeriodFormComponent implements OnInit {
     onDeleteClick(examPeriodToDelete: ExamPeriod) {
         const modalRef = this.modalService.open(ConfirmDialogComponent);
         modalRef.componentInstance.header = 'Delete Exam Period';
-        modalRef.componentInstance.message = `Are you sure you want to delete ${examPeriodToDelete.name}?`;
+        modalRef.componentInstance.message = `Are you sure you want to delete ${examPeriodToDelete.periodName}?`;
         modalRef.result.then(
             (result) => (result === ConfirmOptions.YES) && (this.deleteExamPeriod(examPeriodToDelete))
 
@@ -157,7 +157,7 @@ export class ExamPeriodFormComponent implements OnInit {
     openDeleteDialog(examPeriod: any) {
         this.dialog.open(DeleteDialogComponent, {
             data: {
-                title: 'Are you sure?', message: `Do you want to delete exam period for ${examPeriod.name}`, confirmButton: "Delete", action: () => this.deleteExamPeriod(examPeriod.id)
+                title: 'Are you sure?', message: `Do you want to delete exam period for ${examPeriod.periodName}`, confirmButton: "Delete", action: () => this.deleteExamPeriod(examPeriod.id)
             }
         })
     }

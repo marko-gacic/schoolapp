@@ -21,14 +21,14 @@ import { SortableHeaderDirective, SortEvent } from "src/app/shared/directives/so
 })
 export class ExamPeriodListComponent {
 
-    currentPage: Page = { page: 1, size: 5, orderBy: 'name', order: 'asc', totalItems: 10 };
+    currentPage: Page = { page: 1, size: 5, orderBy: 'periodName', order: 'asc', totalItems: 10 };
     examPeriod?: ExamPeriod[];
     availablePageSizes = [3, 5, 10, 15, 20, 25, 30, 50, 100];
     selectedExamPeriod?: ExamPeriod;
     subscriptions = new Subscription();
     allExamPeriod$?: Observable<ExamPeriod[]>;
     dataSource: any;
-    displayedColumns: string[] = ['id', 'name', 'description', 'details', 'edit', 'delete'];
+    displayedColumns: string[] = ['id', 'periodName', 'description', 'details', 'edit', 'delete'];
     responseMessage: any;
     value: any;
     searchTerm: string = '';
@@ -90,7 +90,7 @@ export class ExamPeriodListComponent {
     onDeleteClick(examPeriodToDelete: ExamPeriod) {
         const modalRef = this.modalService.open(ConfirmDialogComponent);
         modalRef.componentInstance.header = 'Delete Exam Period';
-        modalRef.componentInstance.message = `Are you sure you want to delete ${examPeriodToDelete.name}?`;
+        modalRef.componentInstance.message = `Are you sure you want to delete ${examPeriodToDelete.periodName}?`;
         modalRef.result.then(
             (result) => (result === ConfirmOptions.YES) && (this.deleteExamPeriod(examPeriodToDelete))
 
@@ -129,7 +129,7 @@ export class ExamPeriodListComponent {
     }
     search() {
         this.examPeriod = this.examPeriod?.filter(examPeriod => {
-            return examPeriod.name.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
+            return examPeriod.periodName.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
         })
     }
 

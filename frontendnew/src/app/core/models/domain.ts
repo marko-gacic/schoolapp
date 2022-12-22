@@ -34,6 +34,7 @@ export interface Professor {
     relocationDate: Date;
     city: City;
     title: Title;
+
 }
 
 export interface ProfessorDTO {
@@ -103,15 +104,16 @@ export interface User {
 
 export interface ExamPeriod {
     id: number
-    name: string
+    periodName: string
     start: Date | string
     end: Date | string
     status: boolean
+    exam: Exam
 }
 
 export interface ExamPeriodDTO {
     id: number
-    name: string
+    periodName: string
     start: Date | string
     end: Date | string
     status: boolean
@@ -119,28 +121,19 @@ export interface ExamPeriodDTO {
 
 export interface Exam {
     id: number
-    name: string
-    date: Date | string
-    start: Date | string
-    end: Date | string
-    status: boolean
-    examPeriod: ExamPeriod
     subject: Sub
     professor: Professor
-    students: Student[]
+    date: Date | string
+    examPeriod: ExamPeriod
 }
 
 export interface ExamDTO {
     id: number
-    name: string
-    date: Date | string
-    start: Date | string
-    end: Date | string
-    status: boolean
-    examPeriod: number
     subject: number
     professor: number
-    students: number[]
+    date: Date | string
+    examPeriod: number
+
 }
 
 export interface ExamRegistration {

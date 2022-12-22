@@ -28,6 +28,10 @@ const routes: Routes = [
     path: 'exam-period',
     loadChildren: () => import('./features/exam-period/exam-period.module').then(m => m.ExamPeriodModule)
   },
+  {
+    path: 'exam',
+    loadChildren: () => import('./features/exam/exam.module').then(m => m.ExamModule)
+  },
 ];
 
 @NgModule({

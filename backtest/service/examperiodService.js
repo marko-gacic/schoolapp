@@ -36,9 +36,9 @@ async function get(id) {
 }
 
 async function create(examperiod) {
-    const query = 'INSERT INTO examperiod (name,end,start,status) VALUES (?, ?, ?, ?)';
+    const query = 'INSERT INTO examperiod (periodName,end,start,status) VALUES (?, ?, ?, ?)';
     const result = await db.query(query, [
-        examperiod.name,
+        examperiod.periodName,
         new Date(examperiod.end).toISOString().split('T')[0],
         new Date(examperiod.start).toISOString().split('T')[0],
         examperiod.status]);
@@ -50,9 +50,9 @@ async function create(examperiod) {
 }
 
 async function update(id, examperiod) {
-    const query = 'UPDATE examperiod SET name = ?, end = ?, start = ?, status = ? WHERE id = ?';
+    const query = 'UPDATE examperiod SET periodName = ?, end = ?, start = ?, status = ? WHERE id = ?';
     const result = await db.query(query, [
-        examperiod.name,
+        examperiod.periodName,
         new Date(examperiod.end).toISOString().split('T')[0],
         new Date(examperiod.start).toISOString().split('T')[0],
         examperiod.status,

@@ -15,6 +15,10 @@ export class HttpProfessorService {
 
     constructor(private httpClient: HttpClient) { }
 
+    getAll() {
+        return this.httpClient.get<Professor[]>(`${this.endpointBasePath}`); //, { headers});
+    }
+
     getByPage(page: Page) {
 
         const params = new HttpParams()
@@ -41,6 +45,10 @@ export class HttpProfessorService {
 
     delete(id: number) {
         return this.httpClient.delete<Response>(`${this.endpointBasePath}/${id}`);
+    }
+
+    getAllProfessors() {
+        return this.httpClient.get<Professor[]>(`${this.endpointBasePath}`);
     }
 
 
