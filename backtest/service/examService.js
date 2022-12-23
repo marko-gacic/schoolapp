@@ -14,26 +14,26 @@ async function getByPage(page, size, orderBy, order) {
     const query = `SELECT exam.*, 
     subject.name as subjectName, professor.firstName as professorName, 
     examperiod.periodName as examperiodName FROM exam 
-    INNER JOIN subject ON exam.subject = subject.name 
-    INNER JOIN professor ON exam.professor = professor.firstName 
-    INNER JOIN examperiod ON exam.examperiod = examperiod.periodName
+    INNER JOIN subject ON exam.subject = subject.id 
+    INNER JOIN professor ON exam.professor = professor.id 
+    INNER JOIN examperiod ON exam.examperiod = examperiod.id
     ORDER BY ${orderBy} ${order} LIMIT ${size} OFFSET ${offset}`;
     let data = await db.query(query);
 
     data = data.map(exam => {
-        const newobj = { ...exam, subject: { name: exam.subject, name: exam.subjectName } };
+        const newobj = { ...exam, subject: { id: exam.subject, name: exam.subjectName } };
         delete newobj.subjectName;
         return newobj;
     });
 
     data = data.map(exam => {
-        const newobj = { ...exam, professor: { firstName: exam.professor, name: exam.professorName } };
+        const newobj = { ...exam, professor: { id: exam.professor, name: exam.professorName } };
         delete newobj.professorName;
         return newobj;
     });
 
     data = data.map(exam => {
-        const newobj = { ...exam, examperiod: { name: exam.examperiod, name: exam.examperiodName } };
+        const newobj = { ...exam, examperiod: { id: exam.examperiod, name: exam.periodName } };
         delete newobj.examperiodName;
         return newobj;
     });
@@ -59,8 +59,8 @@ async function get(id) {
 }
 
 async function create(exam) {
-    const query = "INSERT INTO exam (date) VALUES (?)"
-    const result = await db.query(query, [exam.date]);
+    const query = "INSERT INTO exam (subject, professor, examperiod, date) VALUES (?, ?, ?, ?)"
+    const result = await db.query(query, [new Date(exam.date).toISOString().split('T')[0], exam.subject, exam.professor, exam.examperiod]);
     let message = 'Error in creating exam';
     if (result.affectedRows) {
         message = 'Exam created successfully';
@@ -69,8 +69,8 @@ async function create(exam) {
 }
 
 async function update(id, exam) {
-    const query = "UPDATE exam SET date = ? WHERE id = ?"
-    const result = await db.query(query, [exam.date, id]);
+    const query = "UPDATE exam SET date = ?, subject = ?, professor = ?, examperiod = ? WHERE id = ?"
+    const result = await db.query(query, [new Date(exam.date).toISOString().split('T')[0], exam.subject, exam.professor, exam.examperiod, id]);
     let message = 'Error in updating exam';
     if (result.affectedRows) {
         message = 'Exam updated successfully';

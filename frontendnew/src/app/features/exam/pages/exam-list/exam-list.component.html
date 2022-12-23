@@ -1,0 +1,64 @@
+<h2>{{'Exam' }}</h2>
+
+
+<div class="m-2">
+    <button type="button" class="btn btn-outline-primary" [routerLink]="['/exam/exam-form']">
+        <bi name="plus"></bi>{{'Add Exam'}}
+    </button>
+</div>
+
+<table class="table table-straped">
+    <thead>
+        <tr>
+            <th sortable="id" (sort)="onSort($event)">ID</th>
+            <th sortable="subject" (sort)="onSort($event)">{{'Subject'}}</th>
+            <th sortable="professor" (sort)="onSort($event)">{{'Professor'}}</th>
+            <th sortable="examPeriod" (sort)="onSort($event)">{{'Exam Period'}}</th>
+            <th sortable="date" (sort)="onSort($event)">{{'Date'}}</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let exam of exams">
+            <td>{{exam.id}}</td>
+            <td>{{subjectMap.get(exam.subject.id)?.name}}</td>
+            <td>{{professorMap.get(exam.professor.id)?.firstName}}</td>
+            <td>{{exam.examPeriod}}</td>
+            <!-- <td>{{examPeriodMap.get(exam.examPeriod.id)?.periodName}}</td> -->
+            <td>{{exam.date | date:'shortDate'}}</td>
+            <td>
+                <button class="btn btn-outline-primary" [routerLink]="['/exam/exam-form', exam.id]"
+                    [queryParams]="{'page': currentPage.page, 'size': currentPage.size, 'orderBy': currentPage.orderBy, 'order': currentPage.order}">
+                    <bi name="pencil"></bi><span class="btn-text-responsive">{{'COMMON.EDIT' | translate}}</span>
+                </button>
+                <button class="btn btn-outline-primary" (click)="onDetailsClick(exam, examDetailsTemplate)">
+                    <bi name="card-text"></bi><span class="btn-text-responsive">{{'COMMON.DETAILS' | translate}}</span>
+                </button>
+                <button class="btn btn-outline-danger" (click)="onDeleteClick(exam)">
+                    <bi name="trash"></bi><span class="btn-text-responsive"></span>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="d-flex justify-content-center">
+    <ngb-pagination [collectionSize]="currentPage.totalItems" [pageSize]="currentPage.size" [(page)]="currentPage.page"
+        [boundaryLinks]="true" (pageChange)="loadExams()">
+    </ngb-pagination>
+</div>
+<ng-template #examDetailsTemplate let-modal>
+    <div class="modal-body">
+        <h4>{{'Details'}}</h4>
+        <ul class="list-unstyled">
+            <li>ID: {{selectedExam?.id}}</li>
+            <li>{{'Subject'}}: {{selectedExam?.subject?.name}}</li>
+            <li>{{'Professor'}}: {{selectedExam?.professor?.firstName}}</li>
+            <li>{{'Exam Period'}}: {{selectedExam?.examPeriod?.periodName}}</li>
+            <li>{{'Date'}}: {{selectedExam?.date | date:'shortDate'}}</li>
+
+        </ul>
+        <div class="mt-2 d-flex flex-row-reverse">
+            <button (click)="modal.close('OK')">Ok</button>
+        </div>
+    </div>
+</ng-template>

@@ -7,20 +7,14 @@ import { SharedModule } from "src/app/shared/shared.module";
 import { ExamRoutingModule } from "./exam-routing.model";
 import { EditExamDialogComponent } from "./pages/exam-form/dialogs/exam-edit-dialog/edit-exam-dialog.component";
 import { ExamFormComponent } from "./pages/exam-form/exam-form.component";
-
-
-
-
-
-
-
-
+import { ExamListComponent } from "./pages/exam-list/exam-list.component";
 
 
 @NgModule({
     declarations: [
         ExamFormComponent,
         EditExamDialogComponent,
+        ExamListComponent
 
     ],
     imports: [
