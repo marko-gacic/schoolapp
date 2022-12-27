@@ -4,7 +4,7 @@ const router = express.Router();
 router.use(isLoggedIn);
 const professorService = require('../service/professorService');
 
-router.get('/', async function (req, res, next)  {
+router.get('/', async function (req, res, next) {
     try {
         res.json(await professorService.getAll());
     } catch (err) {
@@ -13,15 +13,15 @@ router.get('/', async function (req, res, next)  {
     }
 });
 
-router.get('/page',async function ( req, res, next) {
+router.get('/page', async function (req, res, next) {
     try {
         const page = req.query.page ? parseInt(req.query.page) : 1;
-		const size = req.query.size ? parseInt(req.query.size) : 5;
-		const orderBy = req.query.orderBy ? req.query.orderBy : 'id';
-		const order = req.query.order ? req.query.order : 'ASC';
+        const size = req.query.size ? parseInt(req.query.size) : 5;
+        const orderBy = req.query.orderBy ? req.query.orderBy : 'id';
+        const order = req.query.order ? req.query.order : 'ASC';
 
-        console.log('page', req.query.page,page,size,orderBy,order);
-        res.json(await professorService.getByPage(page,size,orderBy,order));
+        console.log('page', req.query.page, page, size, orderBy, order);
+        res.json(await professorService.getByPage(page, size, orderBy, order));
     } catch (err) {
         console.error(`Error while getting professors `, err.message);
         next(err);
@@ -70,5 +70,3 @@ router.delete('/:id', async function (req, res, next) {
 });
 
 module.exports = router;
-
-

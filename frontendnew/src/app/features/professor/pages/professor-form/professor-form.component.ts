@@ -68,9 +68,9 @@ export class ProfessorFormComponent implements OnInit {
     saveProfessor() {
         const professor = this.professorForm?.getRawValue();
         if (!professor.id) {
-            return this.httpProfessor.post(professor)
+            return this.httpProfessor.postProfessor(professor)
         } else {
-            return this.httpProfessor.put(professor);
+            return this.httpProfessor.putProfessor(professor);
         }
     }
 

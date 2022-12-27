@@ -59,18 +59,19 @@ async function get(id) {
 }
 
 async function create(exam) {
-    const query = "INSERT INTO exam (subject, professor, examperiod, date) VALUES (?, ?, ?, ?)"
-    const result = await db.query(query, [new Date(exam.date).toISOString().split('T')[0], exam.subject, exam.professor, exam.examperiod]);
-    let message = 'Error in creating exam';
+    const query = ` INSERT INTO exam(date, subject, professor, examperiod) VALUES ( '${new Date(exam.date).toISOString().split('T')[0]}', ${exam.subject}, ${exam.professor}, ${exam.examPeriod})`;
+    const result = await db.query(query);
+    console.log(result);
     if (result.affectedRows) {
         message = 'Exam created successfully';
     }
-    return { message };
+    return { message, id: result.insertId };
+
 }
 
 async function update(id, exam) {
-    const query = "UPDATE exam SET date = ?, subject = ?, professor = ?, examperiod = ? WHERE id = ?"
-    const result = await db.query(query, [new Date(exam.date).toISOString().split('T')[0], exam.subject, exam.professor, exam.examperiod, id]);
+    const query = "UPDATE exam SET date = ?, subject = ?, professor = ?, examPeriod = ? WHERE id = ?"
+    const result = await db.query(query, [new Date(exam.date).toISOString().split('T')[0], exam.subject, exam.professor, exam.examPeriod, id]);
     let message = 'Error in updating exam';
     if (result.affectedRows) {
         message = 'Exam updated successfully';
@@ -80,13 +81,13 @@ async function update(id, exam) {
 
 
 async function remove(id) {
-    const query = "DELETE FROM exam WHERE id = ?"
-    const result = await db.query(query, [id]);
+    const data = await db.query(`DELETE FROM exam WHERE id = ${id}`);
     let message = 'Error in deleting exam';
-    if (result.affectedRows) {
+    if (data.affectedRows) {
         message = 'Exam deleted successfully';
     }
     return { message };
+
 }
 
 module.exports = {

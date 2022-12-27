@@ -11,10 +11,10 @@ import { HttpProfessorService } from "src/app/core/services/http-professor.servi
 })
 export class ProfessorResolver implements Resolve<ProfessorDTO> {
 
-    constructor (
-        private httpProfessorService: HttpProfessorService) {}
-    resolve(route:ActivatedRouteSnapshot, state:RouterStateSnapshot):Observable<ProfessorDTO> {
-    const id = Number(route.paramMap.get('id'));
-    return this.httpProfessorService.get(id);
+    constructor(
+        private httpProfessorService: HttpProfessorService) { }
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ProfessorDTO> {
+        const id = Number(route.paramMap.get('id'));
+        return this.httpProfessorService.getProfessor(id);
     }
 }

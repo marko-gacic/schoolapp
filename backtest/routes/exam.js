@@ -58,7 +58,7 @@ router.put('/:id', async function (req, res, next) {
 
 router.delete('/:id', async function (req, res, next) {
     try {
-        res.json(await examService.delete(req.params.id));
+        res.json(await examService.remove(req.params.id));
     } catch (err) {
         console.error(`Error while deleting exam `, err.message);
         next(err);

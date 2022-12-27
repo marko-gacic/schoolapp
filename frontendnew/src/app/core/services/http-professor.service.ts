@@ -15,9 +15,7 @@ export class HttpProfessorService {
 
     constructor(private httpClient: HttpClient) { }
 
-    getAll() {
-        return this.httpClient.get<Professor[]>(`${this.endpointBasePath}`); //, { headers});
-    }
+
 
     getByPage(page: Page) {
 
@@ -31,25 +29,26 @@ export class HttpProfessorService {
 
     }
 
-    get(id: number) {
+    getProfessor(id: number) {
         return this.httpClient.get<ProfessorDTO>(`${this.endpointBasePath}/${id}`);
     }
 
-    post(professor: ProfessorDTO): Observable<Response> {
+    postProfessor(professor: ProfessorDTO): Observable<Response> {
         return this.httpClient.post<Response>(`${this.endpointBasePath}`, professor);
     }
 
-    put(professor: ProfessorDTO): Observable<Response> {
+    putProfessor(professor: ProfessorDTO): Observable<Response> {
         return this.httpClient.put<Response>(`${this.endpointBasePath}/${professor.id}`, professor);
     }
 
-    delete(id: number) {
+    deleteProfessor(id: number) {
         return this.httpClient.delete<Response>(`${this.endpointBasePath}/${id}`);
     }
 
     getAllProfessors() {
         return this.httpClient.get<Professor[]>(`${this.endpointBasePath}`);
     }
+
 
 
 

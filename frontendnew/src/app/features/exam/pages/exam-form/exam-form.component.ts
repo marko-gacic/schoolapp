@@ -64,7 +64,7 @@ export class ExamFormComponent implements OnInit {
     }
 
     loadProfessors() {
-        this.professors$ = this.httpProfessor.getAll();
+        this.professors$ = this.httpProfessor.getAllProfessors();
 
     }
 

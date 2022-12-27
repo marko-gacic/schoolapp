@@ -1,32 +1,30 @@
 const db = require('../db/db');
 
-/**
- * It returns a promise that resolves to the result of the query.
- * @returns An array of objects.
- */
 async function getAll() {
     const data = await db.query('SELECT * FROM professor order by id');
     return data;
 }
 
 async function getByPage(page, size, orderBy, order) {
-    console.log(page, size, orderBy, order);
     const queryTotal = 'SELECT count(*) as totalItems FROM professor';
     const [total] = await db.query(queryTotal);
     const lastPage = Math.ceil(total.totalItems / size);
     page = page <= lastPage ? page : lastPage;
     console.log('page', page);
     const offset = (page - 1) * size;
-    // const query = `select professor.*, city.name as cityName, title.titleName as titleName from professor inner join city on professor.city = city.zip_code inner join title on professor.title = title.id order by ${orderBy} ${order} limit ${size} offset ${offset}`;
-    // const query = `select professor.*, city.name as cityName, title.titleName as titleName from professor inner join city on professor.city = city.zip_code inner join title on professor.title = title.id order by ${orderBy} ${order} limit ${size} offset ${offset}`;
-    const query = `select professor.*, city.name as cityName, title.titleName as titleName from professor inner join city on professor.city = city.zip_code inner join title on professor.title = title.id   order by ${orderBy} ${order} limit ${size} offset ${offset}`;
+    const query = `select professor.*,
+     city.name  cityName, 
+     title.titleName  titleName from professor 
+     inner join city on professor.city = city.zip_code 
+     left join title on professor.title = title.id   
+     order by ${orderBy} ${order} limit ${size} offset ${offset}`;
     console.log(query);
     let data = await db.query(query);
-
+    console.log('data', data);
     data = data.map(man => {
-        const newobj = { ...man, city: { zip_code: man.city, name: man.cityName } };
-        delete newobj.cityName;
-        return newobj;
+        const city = { ...man, city: { zip_code: man.city, name: man.cityName } };
+        delete city.cityName;
+        return city;
     });
 
     data = data.map(man => {
@@ -56,7 +54,7 @@ async function get(id) {
 }
 
 async function create(professor) {
-    const query = "INSERT INTO professor (firstName,lastName,phone,relocationDate,city,address,email) VALUES (?, ?, ?, ?, ?, ?,?)"
+    const query = "INSERT INTO professor (firstName, lastName, phone, relocationDate, city, address, email, title) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     const result = await db.query(query, [
         professor.firstName,
         professor.lastName,
@@ -64,7 +62,7 @@ async function create(professor) {
         new Date(professor.relocationDate).toISOString().split('T')[0],
         professor.city,
         professor.address,
-        professor.email]);
+        professor.email, professor.title]);
     let err = 'Error in creating professor';
     if (result.affectedRows) {
         err = 'Professor created successfully';

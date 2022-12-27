@@ -112,7 +112,7 @@ export class ProfessorListComponent implements OnInit {
         modalRef.componentInstance.header = 'Delete Professor';
         modalRef.componentInstance.message = `Are you sure you want to delete ${professor.firstName}?`;
         modalRef.result.then(
-            (result) => (result === ConfirmOptions.YES) && (this.deleteStudent(professor))
+            (result) => (result === ConfirmOptions.YES) && (this.deleteProfessor(professor))
 
         );
     }
@@ -123,11 +123,11 @@ export class ProfessorListComponent implements OnInit {
         })
     }
 
-    deleteStudent(professor: Professor) {
-        const subscription = this.httpProfessor.delete(professor.id).subscribe(
+    deleteProfessor(professor: Professor) {
+        const subscription = this.httpProfessor.deleteProfessor(professor.id).subscribe(
             {
                 next: (response) => {
-                    this.toastService.showToast({ header: 'Deleting Professor', message: 'Student Professor', delay: 2000, classNames: 'bg-success' });
+                    this.toastService.showToast({ header: 'Deleting Professor', message: ' Professor', delay: 2000, classNames: 'bg-success' });
                     this.loadProfessors();
                 },
                 error: (error) => {
@@ -138,9 +138,9 @@ export class ProfessorListComponent implements OnInit {
         this.subscriptions.add(subscription);
     }
 
-    onDetailsClick(professor: Professor, studentDetailsTemplate: TemplateRef<any>) {
+    onDetailsClick(professor: Professor, professorDetailsTemplate: TemplateRef<any>) {
         this.selectedProfessor = professor;
-        this.modalService.open(studentDetailsTemplate);
+        this.modalService.open(professorDetailsTemplate);
     }
 
     get tempContext() {

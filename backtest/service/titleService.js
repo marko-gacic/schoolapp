@@ -11,7 +11,7 @@ async function getByPage(page, size, orderBy, order) {
     const lastPage = Math.ceil(total.totalItems / size);
     page = page <= lastPage ? page : lastPage;
     const offset = (page - 1) * size;
-    const query = `SELECT * FROM tile  ORDER BY ${orderBy} ${order} LIMIT ${size} OFFSET ${offset}`
+    const query = `SELECT id, titleName FROM tile  ORDER BY ${orderBy} ${order} LIMIT ${size} OFFSET ${offset}`
     console.log('query:', query);
     const data = await db.query(query);
 
@@ -26,7 +26,7 @@ async function getByPage(page, size, orderBy, order) {
 }
 
 async function get(id) {
-    const data = await db.query(`SELECT * FROM title WHERE id = ${id}`);
+    const data = await db.query(`SELECT id, titleName FROM title WHERE id = ${id}`);
     if (data && data.length > 0) {
         return data[0];
     }
@@ -35,8 +35,7 @@ async function get(id) {
 }
 
 async function create(title) {
-    const query = 'INSERT INTO title (name) VALUES (?)';
-    const result = await db.query(query, [title.name]);
+    const result = await db.query(`INSERT INTO title(id, titleName) VALUES ( '${title.id}', '${title.titleName}')`);
     let err = 'Error in creating title';
     if (result.affectedRows) {
         err = 'Title created successfully';
@@ -45,12 +44,7 @@ async function create(title) {
 }
 
 async function update(id, title) {
-    const query = 'UPDATE title SET name = ? WHERE id = ?';
-    const result
-        = await
-            db
-                .query(query
-                    , [title.name, id]);
+    const result = await db.query(`UPDATE title SET titleName = '${title.titleName}' WHERE id = ${id}`);
     let err = 'Error in updating title';
     if (result.affectedRows) {
         err = 'Title updated successfully';

@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
-import { Exam, ExamPeriod, Professor, Sub } from "../models";
+import { Exam, ExamPeriod, ExamPeriodDTO, Professor, Sub } from "../models";
 import { Page, PageResponse } from "../models/dtos";
 
 @Injectable({
@@ -40,8 +40,8 @@ export class HttpExamService {
         return this.httpClient.get<Sub[]>(`${this.endpointBasePath}/subject`);
     }
 
-    getAllExamPeriod(): Observable<ExamPeriod[]> {
-        return this.httpClient.get<ExamPeriod[]>(`${this.endpointBasePath}/examPeriod`);
+    getAllExamPeriod(): Observable<ExamPeriodDTO[]> {
+        return this.httpClient.get<ExamPeriodDTO[]>(`${this.endpointBasePath}/examPeriod`);
     }
 
     get(id: number): Observable<Exam> {
@@ -56,7 +56,7 @@ export class HttpExamService {
         return this.httpClient.put<Response>(`${this.endpointBasePath}/${exam.id}`, exam);
     }
 
-    delete(id: number): Observable<Response> {
+    deleteExam(id: number): Observable<Response> {
         return this.httpClient.delete<Response>(`${this.endpointBasePath}/${id}`);
     }
     get endpointBasePath() {

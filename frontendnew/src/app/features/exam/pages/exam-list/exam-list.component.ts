@@ -83,7 +83,7 @@ export class ExamListComponent implements OnInit {
     }
 
     loadProfessors() {
-        this.httpProfessor.getAll().subscribe(professors => {
+        this.httpProfessor.getAllProfessors().subscribe(professors => {
             professors.forEach(professor => {
                 this.professorMap.set(professor.id, professor);
             });
@@ -134,7 +134,7 @@ export class ExamListComponent implements OnInit {
     }
 
     deleteExam(exam: Exam) {
-        const subscription = this.httpProfessor.delete(exam.id).subscribe(
+        const subscription = this.httpExam.deleteExam(exam.id).subscribe(
             {
                 next: (response) => {
                     this.toastService.showToast({ header: 'Deleting Exam', message: 'Exam', delay: 2000, classNames: 'bg-success' });
