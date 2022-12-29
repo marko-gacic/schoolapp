@@ -55,6 +55,7 @@ async function get(id) {
 
 async function create(professor) {
     const query = "INSERT INTO professor (firstName, lastName, phone, relocationDate, city, address, email, title) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    console.log(query);
     const result = await db.query(query, [
         professor.firstName,
         professor.lastName,
@@ -62,8 +63,10 @@ async function create(professor) {
         new Date(professor.relocationDate).toISOString().split('T')[0],
         professor.city,
         professor.address,
-        professor.email, professor.title]);
+        professor.email,
+        professor.title]);
     let err = 'Error in creating professor';
+    console.log(query);
     if (result.affectedRows) {
         err = 'Professor created successfully';
     }

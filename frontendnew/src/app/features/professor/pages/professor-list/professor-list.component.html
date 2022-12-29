@@ -5,8 +5,12 @@
   </button>
 </div>
 
+<hr>
+
 <input type="text" [(ngModel)]="searchTerm" class="form-control" (keyup)="search()"
   placeholder="{{'Search' | translate}}">
+
+<hr>
 
 <table class="table table-straped">
   <thead>
@@ -35,11 +39,11 @@
       <td>{{ pro.relocationDate | date : format }}</td>
       <td>{{ cityMap.get(pro.city.zip_code)?.name}}</td>
       <td>
-        <button class="btn btn-outline-primary" [routerLink]="['/professor/professor-form', pro.id]"
+        <button class="btn btn-outline-success" [routerLink]="['/professor/professor-form', pro.id]"
           [queryParams]="{'page': currentPage.page, 'size': currentPage.size, 'orderBy': currentPage.orderBy, 'order': currentPage.order}">
           <bi name="pencil"></bi><span class="btn-text-responsive">{{'COMMON.EDIT' | translate}}</span>
         </button>
-        <button class="btn btn-outline-primary" (click)="onDetailsClick(pro, proDetailsTemplate)">
+        <button class="btn btn-outline-info" (click)="onDetailsClick(pro, proDetailsTemplate)">
           <bi name="card-text"></bi><span class="btn-text-responsive">{{'COMMON.DETAILS' | translate}}</span>
         </button>
         <button class="btn btn-outline-danger" (click)="onDeleteClick(pro)">
@@ -49,6 +53,7 @@
     </tr>
   </tbody>
 </table>
+<hr />
 <div class="d-flex justify-content-center">
   <ngb-pagination [collectionSize]="currentPage.totalItems" [pageSize]="currentPage.size" [(page)]="currentPage.page"
     [boundaryLinks]="true" (pageChange)="loadProfessors()">

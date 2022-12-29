@@ -29,11 +29,9 @@ CREATE TABLE `subject` (
   `noOfESP` int NOT NULL,
   `yearOfStudy` int NOT NULL,
   `semester` varchar(10) NOT NULL,
-  `exam_id` int NOT NULL,
+  `exam_id` int unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `idsubject_UNIQUE` (`id`),
-  KEY `fk_subject_exam1_idx` (`exam_id`),
-  CONSTRAINT `fk_subject_exam1` FOREIGN KEY (`exam_id`) REFERENCES `exam` (`id`)
+  KEY `fk_subject_exam1_idx` (`exam_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -56,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-20 15:59:57
+-- Dump completed on 2022-12-29 14:53:30

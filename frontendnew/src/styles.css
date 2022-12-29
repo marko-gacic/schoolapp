@@ -22,12 +22,49 @@ th[sortable].desc::before {
 }
 
 
+th {
+  white-space: nowrap;
+  color: rgb(172, 167, 167);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.00990em;
+  text-align: left;
+  padding: 0.5rem;
+  background-color: #1d2b3a;
+  text-align: center;
+
+
+}
+
+td {
+  white-space: nowrap;
+  color: rgb(172, 167, 167);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  text-align: left;
+  padding: 0.5rem;
+  background-color: #1d2b3a;
+  text-align: center;
+
+
+
+}
+
+
 bi {
   width: 1rem;
   height: 1rem;
   display: inline-block !important;
-  margin: 0 5px;
+  background-size: 1rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-right: 0.5rem;
+  text-align: center;
+
 }
+
+
 
 @media only screen and (max-width: 600px) {
   .btn-text-responsive {
@@ -38,15 +75,122 @@ bi {
 html,
 body {
   height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #1d2b3a;
+  color: rgb(196, 191, 191);
+
+
+
+
 }
 
 body {
   margin: 5px;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: #e2e2e2;
+  background-color: #1d2b3a;
+  color: rgb(196, 191, 191);
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  text-align: left;
+
 }
+
+
 
 a {
   color: #3f51b5;
   text-decoration: none;
+
+
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.form-control {
+  background-color: #25374b;
+  color: #3f5c7e;
+}
+
+li {
+  padding: 0.5rem;
+  border-bottom: 1px solid rgb(240, 6, 6);
+  background-color: #1d2b3a;
+
+}
+
+li:hover {
+  background-color: #25374b;
+  color: #3f5c7e;
+
+}
+
+li a {
+  color: #3f5c7e;
+  text-decoration: none;
+}
+
+li a:hover {
+  color: #3f5c7e;
+  text-decoration: none;
+
+}
+
+li a.active {
+  color: #3f5c7e;
+  text-decoration: none;
+}
+
+li a.active:hover {
+  color: #3f5c7e;
+  text-decoration: none;
+}
+
+.btn {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: #25374b;
+  color: #b4b5b6;
+
+}
+
+.btn:hover {
+  background-color: #3f5c7e;
+  color: #25374b;
+}
+
+.btn:focus {
+  background-color: #3f5c7e;
+  color: #25374b;
+}
+
+.btn:active {
+  background-color: #898a8b;
+  color: #25374b;
+}
+
+.btn:visited {
+  background-color: #3f5c7e;
+  color: #25374b;
+}
+
+.btn:link {
+  background-color: #3f5c7e;
+  color: #25374b;
+}
+
+img {
+  width: 100%;
+  height: auto;
+
+
 }

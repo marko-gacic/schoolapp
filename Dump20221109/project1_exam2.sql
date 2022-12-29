@@ -16,34 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `examperiod`
+-- Table structure for table `exam2`
 --
 
-DROP TABLE IF EXISTS `examperiod`;
+DROP TABLE IF EXISTS `exam2`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `examperiod` (
+CREATE TABLE `exam2` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `periodName` varchar(45) NOT NULL,
-  `end` date DEFAULT NULL,
-  `start` date DEFAULT NULL,
-  `status` varchar(45) DEFAULT NULL,
+  `subject` int unsigned NOT NULL,
+  `date` datetime DEFAULT NULL,
+  `examperiod` int unsigned NOT NULL,
+  `professor` int unsigned NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `periodName_UNIQUE` (`periodName`),
   UNIQUE KEY `id_UNIQUE` (`id`),
-  UNIQUE KEY `end_UNIQUE` (`end`),
-  UNIQUE KEY `start_UNIQUE` (`start`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb3;
+  KEY `fk_exam_subject1_idx` (`subject`),
+  KEY `fk_exam_examperiod1_idx` (`examperiod`),
+  KEY `fk_exam_professor1_idx1` (`professor`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `examperiod`
+-- Dumping data for table `exam2`
 --
 
-LOCK TABLES `examperiod` WRITE;
-/*!40000 ALTER TABLE `examperiod` DISABLE KEYS */;
-INSERT INTO `examperiod` VALUES (11,'Marko2','2022-12-02','2022-11-30','0'),(14,'Marko222','2023-01-06','2023-01-03','0'),(15,'Marko222dfs','2023-02-15','2023-02-06','0'),(16,'asdasd','2023-02-10','2023-02-08','0'),(17,'Srpski','2022-12-23','2022-12-22','0'),(18,'Danas','2022-12-29','2022-12-28','0'),(19,'Test2','2022-12-14','2022-12-12','0'),(20,'Test222','2022-12-16','2022-12-15','0'),(22,'Stojan','2022-12-26','2022-12-25','0');
-/*!40000 ALTER TABLE `examperiod` ENABLE KEYS */;
+LOCK TABLES `exam2` WRITE;
+/*!40000 ALTER TABLE `exam2` DISABLE KEYS */;
+INSERT INTO `exam2` VALUES (1,3,'2002-02-20 22:00:00',2,0),(2,3,'2002-02-20 22:00:00',4,0),(3,43,'2002-02-20 22:00:00',3,0),(4,11,'2002-02-20 22:00:00',3,0);
+/*!40000 ALTER TABLE `exam2` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

@@ -23,20 +23,17 @@ DROP TABLE IF EXISTS `exam`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `exam` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `subject_id` int NOT NULL,
-  `professor_id` int NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `subject` int unsigned DEFAULT NULL,
   `date` datetime DEFAULT NULL,
-  `examperiod_id` int NOT NULL,
+  `examperiod` int unsigned DEFAULT NULL,
+  `professor` int unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
-  KEY `fk_exam_subject1_idx` (`subject_id`),
-  KEY `fk_exam_professor1_idx` (`professor_id`),
-  KEY `fk_exam_examperiod1_idx` (`examperiod_id`),
-  CONSTRAINT `fk_exam_examperiod1` FOREIGN KEY (`examperiod_id`) REFERENCES `examperiod` (`id`),
-  CONSTRAINT `fk_exam_professor1` FOREIGN KEY (`professor_id`) REFERENCES `professor` (`id`),
-  CONSTRAINT `fk_exam_subject1` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  KEY `fk_exam_subject1_idx` (`subject`),
+  KEY `fk_exam_examperiod1_idx` (`examperiod`),
+  KEY `fk_exam_professor1_idx1` (`professor`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,6 +42,7 @@ CREATE TABLE `exam` (
 
 LOCK TABLES `exam` WRITE;
 /*!40000 ALTER TABLE `exam` DISABLE KEYS */;
+INSERT INTO `exam` VALUES (1,3,'2002-02-20 22:00:00',4,2),(2,4,'2002-02-20 20:00:00',3,4),(3,3,'2002-02-20 22:00:00',2,3),(4,42,'2022-12-27 00:00:00',15,7),(5,42,'2022-12-27 00:00:00',15,7),(6,42,'2022-12-27 00:00:00',15,7),(7,42,'2022-12-27 00:00:00',15,7),(9,43,'2022-12-30 00:00:00',17,6),(10,43,'2022-12-30 00:00:00',17,6),(11,43,'2022-12-30 00:00:00',17,6),(12,42,'2022-12-12 00:00:00',18,11),(13,42,'2022-12-21 00:00:00',4,11),(14,3,'2022-12-26 00:00:00',18,13),(15,11,'2022-12-05 00:00:00',22,11),(16,42,'2022-12-13 00:00:00',18,2);
 /*!40000 ALTER TABLE `exam` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-20 15:59:58
+-- Dump completed on 2022-12-29 14:53:30

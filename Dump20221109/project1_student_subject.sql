@@ -24,14 +24,12 @@ DROP TABLE IF EXISTS `student_subject`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `student_subject` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `student_id` int NOT NULL,
-  `subject_id` int NOT NULL,
+  `student_id` int unsigned DEFAULT NULL,
+  `subject_id` int unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_student_subject_student1_idx` (`student_id`),
-  KEY `fk_student_subject_subject1_idx` (`subject_id`),
-  CONSTRAINT `fk_student_subject_student1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`),
-  CONSTRAINT `fk_student_subject_subject1` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`)
+  KEY `fk_student_subject_subject1_idx` (`subject_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -53,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-20 15:59:56
+-- Dump completed on 2022-12-29 14:53:30

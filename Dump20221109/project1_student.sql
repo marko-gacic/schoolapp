@@ -32,7 +32,7 @@ CREATE TABLE `student` (
   `address` varchar(45) DEFAULT NULL,
   `currentYearOfStudy` int NOT NULL,
   `city` int unsigned DEFAULT NULL,
-  `role_id` int NOT NULL,
+  `role_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `indexNumber_UNIQUE` (`indexNumber`),
   UNIQUE KEY `idstudent_UNIQUE` (`id`),
@@ -40,9 +40,8 @@ CREATE TABLE `student` (
   UNIQUE KEY `email_UNIQUE` (`email`),
   KEY `fk_student_city1_idx` (`city`),
   KEY `fk_student_role1_idx` (`role_id`),
-  CONSTRAINT `fk_student_city1` FOREIGN KEY (`city`) REFERENCES `city` (`zip_code`),
-  CONSTRAINT `fk_student_role1` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
+  CONSTRAINT `fk_student_city1` FOREIGN KEY (`city`) REFERENCES `city` (`zip_code`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,7 +50,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES (3,123,123,'Jovana','Babic','babic.jovana@gmail.com','Ljubicka',2,11000,0),(4,111,121,'Jelena','Babic','jelena.b@gmail.com','Ljubicka',3,34303,0),(5,133,133,'Dejan','Radulov','deki.r@gmail.com','none',1,11000,0),(6,22,122,'Nikola','Petrovic','nik@gmail.com','none',3,11000,0),(7,213,2131,'Marko','Gacic','poslovnogacic@gmail.com','none',121,21000,0),(15,2224,2001,'Marko','Gacic','poslovnogaci111c@gmail.com','None',2,25260,0);
+INSERT INTO `student` VALUES (3,123,123,'Jovana','Babic','babic.jovana@gmail.com','Ljubicka',2,11000,0),(4,111,121,'Jelena','Babic','jelena.b@gmail.com','Ljubicka',3,34303,0),(5,133,133,'Dejan','Radulov','deki.r@gmail.com','none',1,11000,0),(6,22,122,'Nikola','Petrovic','nik@gmail.com','none',3,11000,0),(7,213,2131,'Marko','Gacic','poslovnogacic@gmail.com','none',121,21000,0),(15,2224,2001,'Marko','Gacic','poslovnogaci111c@gmail.com','None',2,25260,0),(17,5623,2003,'Dejan','Radulov','deki11@gmail.com','beograd',1,11000,NULL),(18,5622,2006,'Petar','Stanisic','petar.s@gmail.com','None',3,11000,NULL);
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -64,4 +63,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-20 15:59:57
+-- Dump completed on 2022-12-29 14:53:31

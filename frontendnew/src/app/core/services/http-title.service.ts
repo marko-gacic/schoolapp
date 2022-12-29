@@ -30,20 +30,20 @@ export class HttpTitleService {
 
     }
 
-    deleteTitle(id: number) {
-        return this.httpClient.delete<any>(`${this.endpointBasePath}/${id}`);
+    deleteTitle(titleId: number) {
+        return this.httpClient.delete<any>(`${this.endpointBasePath}/${titleId}`);
     }
 
-    getTitle(id: number) {
-        return this.httpClient.get<Title>(`${this.endpointBasePath}/${id}`);
+    getTitle(titleId: number) {
+        return this.httpClient.get<Title>(`${this.endpointBasePath}/${titleId}`);
     }
 
     insertTitle(title: Title) {
         return this.httpClient.post<any>(`${this.endpointBasePath}`, title);
     }
 
-    updateTitle(oldId: number, title: Title) {
-        return this.httpClient.put<any>(`${this.endpointBasePath}/${oldId}`, title);
+    updateTitle(oldTitleId: number, title: Title) {
+        return this.httpClient.put<any>(`${this.endpointBasePath}/${oldTitleId}`, title);
     }
 
     get endpointBasePath() {

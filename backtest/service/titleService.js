@@ -1,11 +1,12 @@
 const db = require('../db/db');
 
 async function getAll() {
-    const data = await db.query('SELECT * FROM title ORDER BY id');
+    const data = await db.query('SELECT id, titleName FROM title ORDER BY id');
     return data;
 }
 
 async function getByPage(page, size, orderBy, order) {
+    console.log(page, size, orderBy, order);
     const queryTotal = 'SELECT COUNT(*) as totalItems FROM title'
     const [total] = await db.query(queryTotal);
     const lastPage = Math.ceil(total.totalItems / size);
@@ -35,7 +36,7 @@ async function get(id) {
 }
 
 async function create(title) {
-    const result = await db.query(`INSERT INTO title(id, titleName) VALUES ( '${title.id}', '${title.titleName}')`);
+    const result = await db.query(`INSERT INTO title(id, titleName) VALUES ( ${title.id}', '${title.titleName}')`);
     let err = 'Error in creating title';
     if (result.affectedRows) {
         err = 'Title created successfully';

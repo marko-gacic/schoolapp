@@ -2,7 +2,7 @@ const config = {
     db: {
         host: "localhost",
         user: "root",
-		connectionLimit: 10000000,
+        connectionLimit: 1024,
         password: "123456",
         database: "project1"
     }

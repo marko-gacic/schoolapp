@@ -5,12 +5,13 @@
   </button>
 </div>
 
+<hr>
 
 
 <input type="text" [(ngModel)]="searchTerm" class="form-control" (keyup)="search()" placeholder="Search">
 
 
-
+<hr>
 <table class="table table-strped">
 
   <thead>
@@ -39,11 +40,11 @@
       <td>{{ sub.yearOfStudy }}</td>
       <td>{{ sub.semester }}</td>
       <td>
-        <button class="btn btn-outline-primary" [routerLink]="['/subject/subject-form', sub.id]"
+        <button class="btn btn-outline-success" [routerLink]="['/subject/subject-form', sub.id]"
           [queryParams]="{'page': currentPage.page, 'size': currentPage.size, 'orderBy': currentPage.orderBy, 'order': currentPage.order}">
           <bi name="pencil"></bi><span class="btn-text-responsive">{{'COMMON.EDIT' | translate}}</span>
         </button>
-        <button class="btn btn-outline-primary" (click)="onDetailsClick(sub, subDetailsTemplate)">
+        <button class="btn btn-outline-info" (click)="onDetailsClick(sub, subDetailsTemplate)">
           <bi name="card-text"></bi><span class="btn-text-responsive">{{'COMMON.DETAILS' | translate}}</span>
         </button>
         <button class="btn btn-outline-danger" (click)="onDeleteClick(sub)">
@@ -55,6 +56,7 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true  "></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+<hr>
 <div class="d-flex justify-content-center">
   <ngb-pagination [collectionSize]="currentPage.totalItems" [pageSize]="currentPage.size" [(page)]="currentPage.page"
     [boundaryLinks]="true" (pageChange)="loadSubject()">

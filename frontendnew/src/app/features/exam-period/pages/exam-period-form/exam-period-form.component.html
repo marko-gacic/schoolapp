@@ -60,13 +60,13 @@
             </ng-container>
 
             <ng-container matColumnDef="end">
-                <mat-header-cell mat-sort-header sortActionDescription="Sort by email" *matHeaderCellDef> End
+                <mat-header-cell mat-sort-header sortActionDescription="Sort by " *matHeaderCellDef> End
                 </mat-header-cell>
                 <mat-cell *matCellDef="let examPeriod"> {{examPeriod.end | date:'shortDate'}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="status">
-                <mat-header-cell mat-sort-header sortActionDescription="Sort by postalCode" *matHeaderCellDef> Status
+                <mat-header-cell mat-sort-header sortActionDescription="Sort by " *matHeaderCellDef> Status
                 </mat-header-cell>
                 <mat-cell *matCellDef="let examPeriod"> {{examPeriod.status}} </mat-cell>
             </ng-container>

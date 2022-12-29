@@ -1,11 +1,14 @@
 <h2>{{'Exam' }}</h2>
 
+<hr>
 
 <div class="m-2">
     <button type="button" class="btn btn-outline-primary" [routerLink]="['/exam/exam-form']">
         <bi name="plus"></bi>{{'Add Exam'}}
     </button>
 </div>
+
+<hr>
 
 <table class="table table-straped">
     <thead>
@@ -22,25 +25,28 @@
         <tr *ngFor="let exam of exams">
             <td>{{exam.id}}</td>
             <td>{{subjectMap.get(exam.subject.id)?.name}}</td>
-            <td>{{professorMap.get(exam.professor.id)?.firstName}}</td>
+            <td>{{professorMap.get(exam.professor.id)?.firstName}} {{professorMap.get(exam.professor.id)?.lastName}}
+            </td>
             <td>{{exam.examPeriod}}</td>
             <!-- <td>{{examPeriodMap.get(exam.examPeriod.id)?.periodName}}</td> -->
             <td>{{exam.date | date:'shortDate'}}</td>
             <td>
-                <button class="btn btn-outline-primary" [routerLink]="['/exam/exam-form', exam.id]"
+                <button class="btn btn-outline-success" [routerLink]="['/exam/exam-form', exam.id]"
                     [queryParams]="{'page': currentPage.page, 'size': currentPage.size, 'orderBy': currentPage.orderBy, 'order': currentPage.order}">
                     <bi name="pencil"></bi><span class="btn-text-responsive">{{'COMMON.EDIT' | translate}}</span>
                 </button>
-                <button class="btn btn-outline-primary" (click)="onDetailsClick(exam, examDetailsTemplate)">
+                <button class="btn btn-outline-info" (click)="onDetailsClick(exam, examDetailsTemplate)">
                     <bi name="card-text"></bi><span class="btn-text-responsive">{{'COMMON.DETAILS' | translate}}</span>
                 </button>
                 <button class="btn btn-outline-danger" (click)="onDeleteClick(exam)">
-                    <bi name="trash"></bi><span class="btn-text-responsive"></span>
+                    <bi name="trash"></bi><span class="btn-text-responsive"> Delete</span>
                 </button>
             </td>
         </tr>
     </tbody>
 </table>
+
+<hr>
 <div class="d-flex justify-content-center">
     <ngb-pagination [collectionSize]="currentPage.totalItems" [pageSize]="currentPage.size" [(page)]="currentPage.page"
         [boundaryLinks]="true" (pageChange)="loadExams()">

@@ -68,7 +68,7 @@
 
         <div class="d-flex flex-column">
           <label for="title">{{'Title' | translate}}</label>
-          <select class="form-control" type="text" id="city" formControlName="city">
+          <select class="form-control" type="text" id="title" formControlName="title">
             <option *ngFor="let title of titles$|async" [ngValue]="title.id">
               {{title.titleName}}
             </option>
