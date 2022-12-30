@@ -74,7 +74,7 @@ async function create(professor) {
 }
 
 async function update(id, professor) {
-    const query = "UPDATE professor SET firstName = ?, lastName = ?, phone = ?, relocationDate = ?, city = ?, address = ?, email = ? WHERE id = ?";
+    const query = "UPDATE professor SET firstName = ?, lastName = ?, phone = ?, relocationDate = ?, city = ?, address = ?, email = ?, title = ? WHERE id = ?";
     const result
         = await db.query(query, [
             professor.firstName,
@@ -83,7 +83,9 @@ async function update(id, professor) {
             new Date(professor.relocationDate).toISOString().split('T')[0],
             professor.city,
             professor.address,
-            professor.email, id]);
+            professor.email,
+            professor.title,
+            id]);
     let err = 'Error in updating professor';
     if (result.affectedRows) {
         err = 'Professor updated successfully';

@@ -14,9 +14,9 @@ async function getByPage(page, size, orderBy, order) {
     const query = `SELECT exam.*, 
     subject.name as subjectName, professor.firstName as professorName, 
     examperiod.periodName as examperiodName FROM exam 
-    INNER JOIN subject ON exam.subject = subject.id 
-    INNER JOIN professor ON exam.professor = professor.id 
-    INNER JOIN examperiod ON exam.examperiod = examperiod.id
+    left JOIN subject ON exam.subject = subject.id 
+    left JOIN professor ON exam.professor = professor.id 
+    left JOIN examperiod ON exam.examperiod = examperiod.id
     ORDER BY ${orderBy} ${order} LIMIT ${size} OFFSET ${offset}`;
     let data = await db.query(query);
 

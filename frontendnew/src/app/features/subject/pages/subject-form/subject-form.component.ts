@@ -27,25 +27,25 @@ export class SubjectFormComponent implements OnInit {
         private route: ActivatedRoute
     ) {
         const subject = this.route.snapshot.data['subject'];
+        this.buildForm(subject);
 
     }
 
     ngOnInit(): void {
-        this.subjectForm = this.formBuilder.group({
-
-            id: new FormControl(''),
-            name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(45), Validators.pattern('[a-zA-Z ]*')]),
-            description: new FormControl('', [Validators.minLength(3), Validators.maxLength(200), Validators.pattern('[a-zA-Z ]*')]),
-            noOfESP: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(1), Validators.pattern('[0-9 ]*')]),
-            yearOfStudy: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(1), Validators.pattern('[0-9]*')]),
-            semester: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
-
-        });
-
         console.log(this.subjectForm.valid);
-
     }
 
+    buildForm(subject?: Sub) {
+        this.subjectForm = this.formBuilder.group({
+            id: [subject?.id],
+            name: [subject?.name, [Validators.required, Validators.minLength(3), Validators.maxLength(45), Validators.pattern('[a-zA-Z ]*')],],
+            description: [subject?.description, [Validators.required, Validators.minLength(3), Validators.maxLength(200), Validators.pattern('[a-zA-Z ]*')],],
+            noOfESP: [subject?.noOfESP, [Validators.required, Validators.min(1), Validators.max(1), Validators.pattern('[0-9]*')],],
+            yearOfStudy: [subject?.yearOfStudy, [Validators.required, Validators.min(1), Validators.max(1), Validators.pattern('[0-9]*')],],
+            semester: [subject?.semester, [Validators.required, Validators.min(1), Validators.max(50)],],
+
+        });
+    }
 
     saveSubject() {
         const subject = this.subjectForm?.getRawValue();

@@ -28,7 +28,6 @@
             <td>{{professorMap.get(exam.professor.id)?.firstName}} {{professorMap.get(exam.professor.id)?.lastName}}
             </td>
             <td>{{exam.examPeriod}}</td>
-            <!-- <td>{{examPeriodMap.get(exam.examPeriod.id)?.periodName}}</td> -->
             <td>{{exam.date | date:'shortDate'}}</td>
             <td>
                 <button class="btn btn-outline-success" [routerLink]="['/exam/exam-form', exam.id]"

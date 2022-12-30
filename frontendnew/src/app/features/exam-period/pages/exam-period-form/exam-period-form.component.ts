@@ -128,11 +128,11 @@ export class ExamPeriodFormComponent implements OnInit {
         const subscription = this.httpExamPeriod.delete(examPeriodToDelete.id).subscribe(
             {
                 next: (response) => {
-                    this.toastService.showToast({ header: 'Deleting Exam Period', message: 'Subject Deleted', delay: 2000, classNames: 'bg-success' });
+                    this.toastService.showToast({ header: 'Deleting Exam Period', message: 'Exam Period Deleted', delay: 2000, classNames: 'bg-success' });
                     this.loadExamPeriod();
                 },
                 error: (error) => {
-                    this.toastService.showToast({ header: 'Deleting Exam Period', message: 'Error Deleting Subject', delay: 2000, classNames: 'bg-danger' });
+                    this.toastService.showToast({ header: 'Deleting Exam Period', message: 'Error Deleting Exam Period', delay: 2000, classNames: 'bg-danger' });
                 }
             }
         );

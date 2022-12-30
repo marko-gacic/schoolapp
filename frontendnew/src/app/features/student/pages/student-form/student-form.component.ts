@@ -31,16 +31,15 @@ export class StudentFormComponent implements OnInit {
     }
     buildForm(student?: Student) {
         this.studentForm = this.formBuilder.group({
-
-            id: new FormControl(''),
-            indexNumber: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(4), Validators.pattern('[0-9]*')]),
-            indexYear: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(4), Validators.pattern('[0-9]*'), Validators.min(2000), Validators.max(2100)]),
-            firstName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30), Validators.pattern('[a-zA-Z]*')]),
-            lastName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30), Validators.pattern('[a-zA-Z]*')]),
-            email: new FormControl('', [Validators.required, Validators.email]),
-            address: new FormControl('', [Validators.required, Validators.minLength(3)]),
-            currentYearOfStudy: new FormControl('', [Validators.required, Validators.min(1), Validators.max(8)]),
-            city: new FormControl('', [Validators.required]),
+            id: [student?.id],
+            indexNumber: [student?.indexNumber, [Validators.required, Validators.minLength(4), Validators.maxLength(4), Validators.pattern('[0-9]*')],],
+            indexYear: [student?.indexYear, [Validators.required, Validators.minLength(4), Validators.maxLength(4), Validators.pattern('[0-9]*'), Validators.min(2000), Validators.max(2100)],],
+            firstName: [student?.firstName, [Validators.required, Validators.minLength(3), Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*')],],
+            lastName: [student?.lastName, [Validators.required, Validators.minLength(3), Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*')],],
+            email: [student?.email, [Validators.required, Validators.email],],
+            address: [student?.address, [Validators.required, Validators.minLength(3)],],
+            currentYearOfStudy: [student?.currentYearOfStudy, [Validators.required, Validators.minLength(1), Validators.maxLength(8), Validators.pattern('[0-9 ]*')],],
+            city: [student?.city, [Validators.required],],
         });
 
     }

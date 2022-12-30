@@ -49,11 +49,11 @@ export class ExamFormComponent implements OnInit {
 
     buildForm(exam?: Exam) {
         this.examForm = this.formBuilder.group({
-            id: new FormControl(''),
-            subject: new FormControl('', [Validators.required]),
-            professor: new FormControl('', [Validators.required]),
-            date: new FormControl('', [Validators.required]),
-            examPeriod: new FormControl('', [Validators.required]),
+            id: [exam?.id],
+            subject: [exam?.subject, [Validators.required]],
+            professor: [exam?.professor, [Validators.required]],
+            date: [exam?.date, [Validators.required]],
+            examPeriod: [exam?.examPeriod, [Validators.required]],
 
         });
     }

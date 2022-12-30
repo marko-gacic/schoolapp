@@ -39,21 +39,21 @@ export class ProfessorFormComponent implements OnInit {
         this.loadCities();
         this.loadTitles();
 
+
+
     }
-
-
 
     buildForm(professor?: Professor) {
         this.professorForm = this.formBuilder.group({
-            id: new FormControl(''),
-            firstName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*')]),
-            lastName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*')]),
-            title: new FormControl('', [Validators.required]),
-            email: new FormControl('', [Validators.required, Validators.email]),
-            address: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern('[a-zA-Z ]*')]),
-            phone: new FormControl('', [Validators.required, Validators.minLength(9), Validators.maxLength(30)]),
-            relocationDate: new FormControl('', [Validators.required]),
-            city: new FormControl('', [Validators.required])
+            id: [professor?.id],
+            firstName: [professor?.firstName, [Validators.required, Validators.minLength(3), Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*')],],
+            lastName: [professor?.lastName, [Validators.required, Validators.minLength(3), Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*')],],
+            title: [professor?.title, [Validators.required],],
+            email: [professor?.email, [Validators.required, Validators.email],],
+            address: [professor?.address, [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern('[a-zA-Z ]*')],],
+            phone: [professor?.phone, [Validators.required, Validators.minLength(9), Validators.maxLength(30)],],
+            relocationDate: [professor?.relocationDate, [Validators.required],],
+            city: [professor?.city, [Validators.required],],
         });
     }
 

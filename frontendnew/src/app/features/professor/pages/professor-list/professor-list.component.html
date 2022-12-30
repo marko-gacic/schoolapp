@@ -41,7 +41,8 @@
       <td>
         <button class="btn btn-outline-success" [routerLink]="['/professor/professor-form', pro.id]"
           [queryParams]="{'page': currentPage.page, 'size': currentPage.size, 'orderBy': currentPage.orderBy, 'order': currentPage.order}">
-          <bi name="pencil"></bi><span class="btn-text-responsive">{{'COMMON.EDIT' | translate}}</span>
+          <bi name="pencil"></bi>
+          <span class="btn-text-responsive">Edit</span>
         </button>
         <button class="btn btn-outline-info" (click)="onDetailsClick(pro, proDetailsTemplate)">
           <bi name="card-text"></bi><span class="btn-text-responsive">{{'COMMON.DETAILS' | translate}}</span>

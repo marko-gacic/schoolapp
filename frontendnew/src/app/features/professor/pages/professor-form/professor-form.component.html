@@ -3,7 +3,6 @@
     <div class="col-md-6 offset-md-3">
       <form [formGroup]="professorForm" (ngSubmit)="onSave()" *ngIf="professorForm">
 
-
         <div class="d-flex flex-column">
           <label for="firstName">{{'PROFESSOR.FIRST_NAME' | translate }}</label>
           <input matInput class="form-control" type="text" id="firstName" formControlName="firstName" required>

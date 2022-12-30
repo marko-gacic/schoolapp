@@ -117,8 +117,6 @@ export class TitleListComponent implements OnInit, OnDestroy {
         this.modalService.open(titleDetailsTemplate);
     }
 
-
-
     get tempContext() {
         return { number: 10 };
     }

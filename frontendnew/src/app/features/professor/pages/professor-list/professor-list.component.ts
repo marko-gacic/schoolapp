@@ -49,7 +49,6 @@ export class ProfessorListComponent implements OnInit {
         this.loadCities();
         this.loadProfessors();
         this.loadTitles();
-
     }
 
     loadPageFromQueryParams() {
@@ -94,8 +93,6 @@ export class ProfessorListComponent implements OnInit {
     }
 
     onSort(sortEvent: SortEvent) {
-        console.log(sortEvent, 'sortEvent');
-
         this.sortableHeaders?.forEach(
             sortableHeader => {
                 if (sortableHeader.sortable !== sortEvent.columnName) {
