@@ -42,6 +42,10 @@ export class UserAuthDataService {
         this.storage.clear();
         this._loggedUser = undefined;
     }
+
+
+
+
 }
 
 

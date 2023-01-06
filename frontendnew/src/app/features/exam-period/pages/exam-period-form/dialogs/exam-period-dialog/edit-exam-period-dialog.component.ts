@@ -14,7 +14,7 @@ export class EditExamPeriodDialogComponent implements OnInit {
 
     examPeriodForm = this.fb.group({
         id: [],
-        name: ['', Validators.required],
+        periodName: ['', Validators.required],
         start: ['', Validators.required],
         end: ['', Validators.required],
         status: ['', [Validators.required, Validators.email, Validators.minLength(3)]],
@@ -27,9 +27,9 @@ export class EditExamPeriodDialogComponent implements OnInit {
         private snackBar: MatSnackBar,
         @Inject(MAT_DIALOG_DATA) public data: any
     ) {
-        const { id, name, start, end, status } = this.data
+        const { id, periodName, start, end, status } = this.data
         this.examPeriodForm.setValue({
-            id, name, start, end, status
+            id, periodName, start, end, status
         })
 
     }

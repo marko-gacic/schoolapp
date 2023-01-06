@@ -48,13 +48,13 @@
         <mat-table [dataSource]="examPeriods" class="mat-elevation-z5">
 
             <ng-container matColumnDef="periodName">
-                <mat-header-cell mat-sort-header sortActionDescription="Sort by name" *matHeaderCellDef> Name
+                <mat-header-cell mat-sort-header sortActionDescription="Sort by " *matHeaderCellDef> Exam Name
                 </mat-header-cell>
                 <mat-cell *matCellDef="let examPeriod"> {{examPeriod.periodName}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="start">
-                <mat-header-cell mat-sort-header sortActionDescription="Sort by last name" *matHeaderCellDef> Start
+                <mat-header-cell mat-sort-header sortActionDescription="Sort by last " *matHeaderCellDef> Start
                 </mat-header-cell>
                 <mat-cell *matCellDef="let examPeriod"> {{examPeriod.start | date:'shortDate' }} </mat-cell>
             </ng-container>

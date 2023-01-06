@@ -28,6 +28,7 @@ app.use('/subject', subjectRouter);
 app.use('/title', titleRouter);
 app.use('/exam', examRouter);
 app.use('/examperiod', examperiodRouter);
+app.use('/register', userRouter);
 
 
 

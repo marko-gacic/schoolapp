@@ -18,6 +18,13 @@
     <a ngbNavLink routerLink="/home">{{'MENU.HOME' | translate}}</a>
   </li>
 
+
+
+  <li ngbNavItem *ngIf="!userAuthData.loggedUser">
+    <a ngbNavLink routerLink="/register">{{'Register' | translate}}</a>
+  </li>
+
+
   <li ngbNavItem>
     <div ngbDropdown class="d-inline-block mx-3">
       <a id="dropdownLanguages" ngbDropdownToggle>{{currentLanguage}}</a>
@@ -38,6 +45,15 @@
         <button ngbDropdownItem>
           <bi name="gear"></bi>Settings
         </button>
+        <button ngbDropdownItem>
+          <bi name="person"></bi>Profile
+        </button>
+        <button ngbDropdownItem>
+          <bi name="question"></bi>Help
+        </button>
+        <div ngbDropdownItem divider></div>
+
+
         <button ngbDropdownItem (click)="logoutUser()">
           <bi name="power"></bi>{{'MENU.LOGOUT' | translate}}
         </button>

@@ -10,6 +10,18 @@ async function login(user) {
 
 }
 
+async function register(user) {
+    const rows = await db.query('SELECT * FROM user WHERE userName = ?', [user.username]);
+    if (rows && rows.length > 0) {
+        return undefined;
+    }
+    const result = await db.query('INSERT INTO user (userName, password, email) VALUES (?, ?, ?)', [user.username, user.password, user.email]);
+    user.id = result.insertId;
+    return user;
+}
+
+
+
 
 
 module.exports = {

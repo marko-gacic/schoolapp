@@ -13,4 +13,12 @@ export class HttpAuthService {
   login(userLogin: { username: string, password: string }) {
     return this.httpClient.post('http://localhost:3000/user', userLogin);
   }
+
+  register(userRegister: { email: string, password: string, confirmPassword: string }) {
+    return this.httpClient.post('http://localhost:3000/register', userRegister);
+  }
+
+
+
+
 }
