@@ -20,10 +20,7 @@ async function register(user) {
     return user;
 }
 
-
-
-
-
 module.exports = {
-    login
+    login,
+    register
 }

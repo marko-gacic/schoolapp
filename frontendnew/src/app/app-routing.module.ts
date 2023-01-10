@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { UserProfileComponent } from './features/user-profile/user-profile.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
@@ -35,6 +36,14 @@ const routes: Routes = [
     path: 'exam',
     loadChildren: () => import('./features/exam/exam.module').then(m => m.ExamModule)
   },
+
+  {
+    path: 'user-profile',
+    component: UserProfileComponent,
+    data: { title: 'User Profile' }
+  },
+
+
 ];
 
 @NgModule({

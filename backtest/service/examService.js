@@ -12,8 +12,10 @@ async function getByPage(page, size, orderBy, order) {
     page = page <= lastPage ? page : lastPage;
     const offset = (page - 1) * size;
     const query = `SELECT exam.*, 
-    subject.name as subjectName, professor.firstName as professorName, 
-    examperiod.periodName as examperiodName FROM exam 
+    subject.name as subjectName,
+     professor.firstName as professorName, 
+    examperiod.periodName as examperiodName
+     FROM exam 
     left JOIN subject ON exam.subject = subject.id 
     left JOIN professor ON exam.professor = professor.id 
     left JOIN examperiod ON exam.examperiod = examperiod.id
