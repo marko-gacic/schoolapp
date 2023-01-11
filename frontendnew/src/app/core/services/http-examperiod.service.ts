@@ -30,10 +30,7 @@ export class HttpExamPeriodService {
 
     getAll(): Observable<ExamPeriod[]> {
         return this.httpClient.get<ExamPeriod[]>(`${this.endpointBasePath}`);
-
     }
-
-
 
     get(id: number): Observable<ExamPeriod> {
         return this.httpClient.get<ExamPeriod>(`${this.endpointBasePath}/${id}`);

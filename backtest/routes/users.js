@@ -28,21 +28,44 @@ router.post(
   },
 );
 
-/* User Registration */
-router.post('/register', async function (req, res, next) {
-  let user = req.body;
-  try {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+/* User Registration with same user name error */
+
+router.post(
+  "/register",
+  body("username").isLength({ min: 3 }),
+  body("password").isLength({ min: 3 }),
+  body("email").isEmail(),
+  async function (req, res, next) {
+    try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
+
+      const user = await userService.register(req.body);
+      if (user) {
+        res.json(user);
+      } else {
+        res.status(401).json({ error: "User is not authorized!" });
+      }
+    } catch (err) {
+      console.log("User registration error", err.message);
+      next(err);
     }
-    user = await userService.register(user);
-    res.json(user);
+  },
+);
+
+
+router.get(':id', async function (req, res, next) {
+  try {
+    res.json(await userService.get(req.params.id));
   } catch (err) {
-    console.log("User registration error", err.message);
+    console.error(`Error while getting user with id = ${id} `, err.message);
     next(err);
   }
 });
+
+
 
 
 

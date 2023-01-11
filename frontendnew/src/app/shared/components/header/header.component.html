@@ -15,7 +15,8 @@
     <a ngbNavLink routerLink="/exam">{{'Exam ' | translate}}</a>
 
   <li ngbNavItem *ngIf="userAuthData.loggedUser" class="flex-grow-1 flex-shirnk-1 text-center">
-    <a ngbNavLink routerLink="/home">{{'MENU.HOME' | translate}}</a>
+    <a ngbNavLink routerLink="/home">{{'MENU.HOME' | translate}}
+    </a>
   </li>
 
 
@@ -27,6 +28,7 @@
 
   <li ngbNavItem>
     <div ngbDropdown class="d-inline-block mx-3">
+      <bi name="flag"></bi>
       <a id="dropdownLanguages" ngbDropdownToggle>{{currentLanguage}}</a>
       <div ngbDropdownMenu aria-labelledby="dropdownLanguages">
         <button ngbDropdownItem (click)="onLanguageChange('en')">English</button>
@@ -45,7 +47,7 @@
         <button ngbDropdownItem>
           <bi name="gear"></bi>Settings
         </button>
-        <button ngbDropdownItem>
+        <button ngbDropdownItem (click)="onProfile()">
           <bi name="person"></bi>Profile
         </button>
         <button ngbDropdownItem>

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { HttpAuthService } from "src/app/core/services/http-auth.service";
 import { Router } from "@angular/router";
 import { UserAuthDataService } from "src/app/core/services/user-auth-data.service";
+import { passwordStrengthValidator } from "src/app/shared/components/costume-validators/password-strenght-validator.component";
 
 @Component({
     selector: "app-register",
@@ -29,21 +30,12 @@ export class RegisterComponent implements OnInit {
     buildForm(register?: any) {
 
         this.registerForm = this.fb.group({
-            username: [register?.username || '', Validators.required],
-            email: [register?.email || '', Validators.required],
-            password: [register?.password || '', Validators.required],
-            confirmPassword: [register?.confirmPassword || '', Validators.required]
+            username: [register?.username, Validators.required],
+            email: [register?.email, Validators.required, Validators.email],
+            password: [register?.password, Validators.required, Validators.minLength(6), Validators.maxLength(20), passwordStrengthValidator()],
+            confirmPassword: [register?.confirmPassword, Validators.required, Validators.minLength(6), Validators.maxLength(20), passwordStrengthValidator()],
+            updateOn: ['blur'],
         });
-
-
-
-
-        // this.registerForm = this.fb.group({
-        //     userName: ['', Validators.required],
-        //     email: ['', Validators.required],
-        //     password: ['', Validators.required],
-        //     confirmPassword: ['', Validators.required]
-        // });
 
     }
 

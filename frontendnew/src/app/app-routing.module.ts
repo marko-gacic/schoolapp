@@ -17,7 +17,8 @@ const routes: Routes = [
   },
   {
     path: 'professor',
-    loadChildren: () => import('./features/professor/professor.module').then(m => m.ProfessorModule)
+    loadChildren: () => import('./features/professor/professor.module').then(m => m.ProfessorModule),
+
   },
   { path: '', pathMatch: 'full', redirectTo: '/login' },
   {

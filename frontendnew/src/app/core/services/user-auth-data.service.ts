@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { User } from '../models';
 
 @Injectable({
@@ -6,13 +8,30 @@ import { User } from '../models';
 })
 export class UserAuthDataService {
 
-    private _loggedUser?: User;
+    endpointPrefix = 'user';
 
-    constructor() {
+    private _loggedUser?: User;
+    httpClient: any;
+
+    constructor(
+        private http: HttpClient
+    ) {
         const userStingData = this.storage.getItem('loggedUser');
         if (userStingData) {
             this._loggedUser = JSON.parse(userStingData);
         }
+    }
+
+    getLoggedUser(id: number) {
+        return this.http.get<User>(`${this.endpointBasePath}/${id}`);
+    }
+
+    updateUser(user: User) {
+        return this.http.put<User>(`${this.endpointBasePath}/${user.id}`, user);
+    }
+
+    get() {
+        return this.http.get<User>(`${this.endpointBasePath}`);
     }
 
     get loggedUser(): User | undefined {
@@ -43,6 +62,11 @@ export class UserAuthDataService {
         this._loggedUser = undefined;
     }
 
+
+
+    get endpointBasePath() {
+        return `${environment.serverUrl}/${this.endpointPrefix}`;
+    }
 
 
 

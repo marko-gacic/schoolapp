@@ -92,6 +92,7 @@ export interface TitleDTO {
 }
 
 export interface User {
+    image: any;
     firstName: any;
     lastName: any;
     id: number;

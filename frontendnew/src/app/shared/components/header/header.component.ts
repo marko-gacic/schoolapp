@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { UserAuthDataService } from 'src/app/core/services/user-auth-data.service';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -41,6 +42,10 @@ export class HeaderComponent implements OnInit {
 
   registerUser() {
     this.router.navigate(['/register']);
+  }
+
+  onProfile() {
+    this.router.navigate(['/user-profile']);
   }
 
 }
