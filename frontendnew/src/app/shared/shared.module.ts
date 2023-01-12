@@ -23,6 +23,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
+import { SideNavComponent } from './components/side-nav/side-nav.component';
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: false,
@@ -39,7 +40,8 @@ const globalRippleConfig: RippleGlobalOptions = {
     HeaderComponent,
     GlobalToastComponent,
     ConfirmDialogComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    SideNavComponent
 
   ],
   imports: [

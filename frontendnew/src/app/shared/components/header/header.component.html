@@ -1,66 +1,80 @@
-<ul ngbNav class="flex-no-wrap justify-content-between bg-light">
-  <li ngbNavItem *ngIf="userAuthData.loggedUser">
-    <a ngbNavLink routerLink="/student">{{'MENU.STUDENT' | translate}}</a>
-  </li>
-  <li ngbNavItem *ngIf="userAuthData.loggedUser">
-    <a ngbNavLink routerLink="/professor">{{'MENU.PROFESSOR' | translate}}</a>
-  </li>
-  <li ngbNavItem *ngIf="userAuthData.loggedUser">
-    <a ngbNavLink routerLink="/subject">{{'MENU.SUBJECT' | translate}}</a>
+<nav class="navbar navbar-expand navbar-dark bg-dark px-2">
+  <div class="side-nav-button p-2 me-3 text-light">
+    <i class="fas fa-bars"></i>
+  </div>
 
-  <li ngbNavItem *ngIf="userAuthData.loggedUser">
-    <a ngbNavLink routerLink="/exam-period">{{'Exam Period' | translate}}</a>
+  <a class="navbar-brand px-4" routerLink="/home">Home</a>
+  <div class="navbar-collapse">
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#">{{'MENU.STUDENT' |
+          translate}}</a>
+        <ul class="dropdown-menu dropdown-menu-dark">
+          <li><a class="dropdown-item" routerLink="/student">{{'All Students' | translate}}</a></li>
+          <li><a class="dropdown-item" routerLink="/student/student-form">{{'New Student' | translate}}</a></li>
+        </ul>
 
-  <li ngbNavItem *ngIf="userAuthData.loggedUser">
-    <a ngbNavLink routerLink="/exam">{{'Exam ' | translate}}</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#">{{'MENU.PROFESSOR' |
+          translate}}</a>
+        <ul class="dropdown-menu dropdown-menu-dark">
+          <li><a class="dropdown-item" routerLink="/professor">{{'All Professors' | translate}}</a></li>
+          <li><a class="dropdown-item" routerLink="/professor/professor-form">{{'New Professor' | translate}}</a></li>
+        </ul>
 
-  <li ngbNavItem *ngIf="userAuthData.loggedUser" class="flex-grow-1 flex-shirnk-1 text-center">
-    <a ngbNavLink routerLink="/home">{{'MENU.HOME' | translate}}
-    </a>
-  </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#">{{'MENU.SUBJECT' |
+          translate}}</a>
+        <ul class="dropdown-menu dropdown-menu-dark">
+          <li><a class="dropdown-item" routerLink="/subject">{{'All Subjects' | translate}}</a></li>
+          <li><a class="dropdown-item" routerLink="/subject/subject-form">{{'New Subject' | translate}}</a></li>
+        </ul>
 
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#">{{'Exam Period' |
+          translate}}</a>
+        <ul class="dropdown-menu dropdown-menu-dark">
+          <li><a class="dropdown-item" routerLink="/exam-period">{{'All Exam Periods' | translate}}</a></li>
+          <li><a class="dropdown-item" routerLink="/exam-period/exam-period-form">{{'New Exam Period' | translate}}</a>
+          </li>
+        </ul>
 
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" href="#">{{'Exam' |
+          translate}}</a>
+        <ul class="dropdown-menu dropdown-menu-dark">
+          <li><a class="dropdown-item" routerLink="/exam">{{'All Exams' | translate}}</a></li>
+          <li><a class="dropdown-item" routerLink="/exam/exam-form">{{'New Exam' | translate}}</a></li>
+        </ul>
+    </ul>
+  </div>
 
-  <li ngbNavItem *ngIf="!userAuthData.loggedUser">
-    <a ngbNavLink routerLink="/register">{{'Register' | translate}}</a>
-  </li>
+  <div class="profile-logo dropstart">
+    <button class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown">
+      Admin
+    </button>
+    <ul class="dropdown-menu dropdown-menu-dark">
+      <li><a class="dropdown-item" routerLink="/home">{{'MENU.HOME' | translate}}</a></li>
+      <li><a class="dropdown-item" routerLink="/user-profile">{{'Profile' | translate}}</a></li>
+      <li><a class="dropdown-item" routerLink="/register">{{'Register' | translate}}</a></li>
+      <li><a class="dropdown-item" routerLink="/login">{{'Login' | translate}}</a></li>
+      <li><a class="dropdown-item" routerLink="/logout">{{'Logout' | translate}}</a></li>
+      <li><a class="dropdown-item" routerLink="/change-password">{{'Change Password' | translate}}</a></li>
+      <li><a class="dropdown-item" routerLink="/forgot-password">{{'Forgot Password' | translate}}</a></li>
+    </ul>
+  </div>
 
-
-  <li ngbNavItem>
-    <div ngbDropdown class="d-inline-block mx-3">
-      <bi name="flag"></bi>
-      <a id="dropdownLanguages" ngbDropdownToggle>{{currentLanguage}}</a>
-      <div ngbDropdownMenu aria-labelledby="dropdownLanguages">
-        <button ngbDropdownItem (click)="onLanguageChange('en')">English</button>
-        <button ngbDropdownItem (click)="onLanguageChange('it')">Italian</button>
-        <button ngbDropdownItem (click)="onLanguageChange('jp')">Japanese</button>
-        <button ngbDropdownItem (click)="onLanguageChange('ru')">Russian</button>
-        <button ngbDropdownItem (click)="onLanguageChange('sp')">Spanish</button>
-        <button ngbDropdownItem (click)="onLanguageChange('sr')">Serbian</button>
-      </div>
-    </div>
-
-  <li ngbNavItem>
-    <div ngbDropdown class="d-inline-block mx-3" *ngIf="userAuthData.loggedUser">
-      <a id="dropdownLanguages" ngbDropdownToggle>{{userFullName}}</a>
-      <div ngbDropdownMenu aria-labelledby="dropdownLanguages">
-        <button ngbDropdownItem>
-          <bi name="gear"></bi>Settings
-        </button>
-        <button ngbDropdownItem (click)="onProfile()">
-          <bi name="person"></bi>Profile
-        </button>
-        <button ngbDropdownItem>
-          <bi name="question"></bi>Help
-        </button>
-        <div ngbDropdownItem divider></div>
-
-
-        <button ngbDropdownItem (click)="logoutUser()">
-          <bi name="power"></bi>{{'MENU.LOGOUT' | translate}}
-        </button>
-      </div>
-    </div>
-  </li>
-
-</ul>
+  <div class="language-logo dropstart">
+    <button class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown">
+      <i class="fas fa-globe"></i>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-dark">
+      <li><a class="dropdown-item" (click)="onLanguageChange('en')">English</a></li>
+      <li><a class="dropdown-item" (click)="onLanguageChange('it')">Italian</a></li>
+      <li><a class="dropdown-item" (click)="onLanguageChange('jp')">Japanese</a></li>
+      <li><a class="dropdown-item" (click)="onLanguageChange('ru')">Russian</a></li>
+      <li><a class="dropdown-item" (click)="onLanguageChange('sp')">Spanish</a></li>
+      <li><a class="dropdown-item" (click)="onLanguageChange('sr')">Serbian</a></li>
+    </ul>
+  </div>
+</nav>
