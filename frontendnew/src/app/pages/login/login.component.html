@@ -1,23 +1,33 @@
-<form class="vh-100 d-flex justify-content-center align-items-center" *ngIf="loginForm" (ngSubmit)="onLogin()">
-  <div class="col-lg-6 col-md-8 col-sm-10 p-4 border border-primary">
-    <h2>{{'LOGIN.TITLE' | translate}}</h2>
-    <div class="d-flex flex-column">
-      <label for="username">{{'LOGIN.USERNAME' | translate}}</label>
-      <input type="text" id="username" class="form-control">
-      <p class="alert alert-danger" *ngIf="showControlError(loginForm,'username')">
-        Username is required
-      </p>
+<body>
+
+  <form class="form" *ngIf="loginForm" (ngSubmit)="onLogin()">
+    <div class="">
+      <h2>{{'LOGIN.TITLE' | translate}}</h2>
+      <div class="input">
+        <div class="inputBox">
+          <label for="username">{{'LOGIN.USERNAME' | translate}}</label>
+          <input type="text" id="username" placeholder="example@gmail.com">
+          <p class="alert alert-danger" *ngIf="showControlError(loginForm,'username')">
+            Username is required
+          </p>
+        </div>
+
+        <div class="inputBox">
+          <label for="password">{{'LOGIN.PASSWORD' | translate}}</label>
+          <input type="password" id="password" placeholder="*****">
+          <p class="alert alert-danger" *ngIf="showControlError(loginForm,'password')">
+            Password is required
+          </p>
+        </div>
+        <div class="inputBox">
+          <input type="submit" name="" value="Sign In">
+
+          <input type="submit" [routerLink]="['/register']" value="Register">
+        </div>
+      </div>
+
+      <p class="forget">Forget Password ? <a href="#">Click Here</a> </p>
     </div>
-    <div class="d-flex flex-column">
-      <label for="password">{{'LOGIN.PASSWORD' | translate}}</label>
-      <input type="password" id="password" class="form-control">
-      <p class="alert alert-danger" *ngIf="showControlError(loginForm,'password')">
-        Password is required
-      </p>
-    </div>
-    <div class="d-flex flex-row-reverse mt-2">
-      <button type="submit" class="btn btn-outline-primary">{{'LOGIN.TITLE' | translate}}</button>
-      <button type="button" class="btn btn-outline-danger" [routerLink]="['/register']">{{'Register' }}</button>
-    </div>
-  </div>
-</form>
+
+  </form>
+</body>

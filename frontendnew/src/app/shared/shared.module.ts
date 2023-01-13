@@ -105,7 +105,8 @@ const globalRippleConfig: RippleGlobalOptions = {
     MatSnackBarModule,
     MatAutocompleteModule,
     MatSelectModule,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    SideNavComponent
 
 
 
