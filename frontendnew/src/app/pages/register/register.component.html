@@ -1,4 +1,60 @@
-<form class="vh-100 d-flex justify-content-center align-items-center" (ngSubmit)="onRegister()">
+<body>
+
+    <form class="form" *ngIf="registerForm" (ngSubmit)="onRegister()">
+        <div class="">
+            <h2>{{'LOGIN.TITLE' | translate}}</h2>
+            <div class="input">
+                <div class="inputBox">
+                    <label for="username">{{'LOGIN.USERNAME' | translate}}</label>
+                    <input type="text" id="username" placeholder="Enter your desired username">
+                    <p class="alert alert-danger" *ngIf="showControlError(registerForm,'username')">
+                        Username is required
+                    </p>
+                </div>
+
+                <div class="inputBox">
+                    <label for="email">{{'Email' | translate}}</label>
+                    <input type="email" id="email" placeholder=" example@gmail.com
+                    ">
+                    <p class="alert alert-danger" *ngIf="showControlError(registerForm,'email')">
+                        Email is required
+                    </p>
+                </div>
+
+                <div class="inputBox">
+                    <label for="password">{{'LOGIN.PASSWORD' | translate}}</label>
+                    <input type="password" id="password" placeholder="**********">
+                    <p class="alert alert-danger" *ngIf="showControlError(registerForm,'password')">
+                        Password is required
+                    </p>
+                </div>
+
+                <div class="inputBox">
+                    <label for="confirmPassword">{{'Confirm Password' | translate}}</label>
+                    <input type="password" id="confirmPassword" placeholder="**********">
+                    <p class="alert alert-danger" *ngIf="showControlError(registerForm,'confirmPassword')">
+                        Confirm Password is required
+                    </p>
+                </div>
+
+                <div class="inputBox">
+                    <input type="submit" name="" value="Sign In" [routerLink]="['/login']">
+
+                    <input type="submit" [routerLink]="['/register']" value="Register">
+                </div>
+            </div>
+
+            <p class="forget">Forget Password ? <a href="#">Click Here</a> </p>
+        </div>
+
+    </form>
+</body>
+
+
+
+
+
+<!-- <form class="vh-100 d-flex justify-content-center align-items-center" (ngSubmit)="onRegister()">
     <div class="col-lg-6 col-md-8 col-sm-10 p-4 border border-primary">
         <h2>{{'Register' | translate}}</h2>
         <div class="d-flex flex-column">
@@ -35,4 +91,4 @@
                 translate}}</button>
         </div>
     </div>
-</form>
+</form> -->

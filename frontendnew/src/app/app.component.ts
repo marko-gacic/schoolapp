@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent {
   title = 'frontendnew';
+  sideNavStatus: boolean = false;
 
 
   constructor(private translateService: TranslateService) {

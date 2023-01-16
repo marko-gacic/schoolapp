@@ -1,11 +1,20 @@
 <div class="container-fluid g-0">
-  <app-header></app-header>
+  <app-header (sideNavToggled)="sideNavStatus = $event;"></app-header>
+
+
   <main>
-    <app-side-nav></app-side-nav>
+    <app-side-nav [sideNavStatus]="sideNavStatus" [ngClass]="{'app-side-nav-open': sideNavStatus}"></app-side-nav>
+    <div class="display-area p-2" [ngClass]="{'display-area-shrink':sideNavStatus}">
+      <router-outlet></router-outlet>
+      <app-global-toast></app-global-toast>
+    </div>
+
   </main>
 
-  <app-global-toast>
+
+
+  <!-- <app-global-toast>
   </app-global-toast>
-  <router-outlet></router-outlet>
+  <router-outlet></router-outlet> -->
 
 </div>

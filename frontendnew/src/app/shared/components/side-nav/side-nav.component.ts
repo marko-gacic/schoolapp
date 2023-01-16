@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-side-nav',
@@ -6,6 +6,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./side-nav.component.css']
 })
 export class SideNavComponent implements OnInit {
+
+  @Input() sideNavStatus: boolean = false;
+
+  list = [
+    { name: 'Home', icon: 'home', link: '/home' },
+    { name: 'Students', icon: 'people', link: 'student/student-list' },
+    { name: 'Professors', icon: 'person', link: 'professor/professor-list' },
+    { name: 'Subjects', icon: 'book', link: 'subject/subject-list' },
+    { name: 'Exams', icon: 'school', link: 'exam/exam-list' },
+
+
+
+
+
+  ]
 
   constructor() { }
 

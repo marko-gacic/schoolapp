@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { UserAuthDataService } from 'src/app/core/services/user-auth-data.service';
@@ -10,6 +10,8 @@ import { UserAuthDataService } from 'src/app/core/services/user-auth-data.servic
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  @Output() sideNavToggled = new EventEmitter<boolean>();
+  menuStatus = false;
 
 
   currentLanguage = 'en';
@@ -46,6 +48,11 @@ export class HeaderComponent implements OnInit {
 
   onProfile() {
     this.router.navigate(['/user-profile']);
+  }
+
+  onToggleSideNav() {
+    this.menuStatus = !this.menuStatus;
+    this.sideNavToggled.emit(this.menuStatus);
   }
 
 }
