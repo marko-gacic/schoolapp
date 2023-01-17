@@ -3,49 +3,52 @@
     <div class="col-md-6 offset-md-3">
       <form [formGroup]="professorForm" (ngSubmit)="onSave()" *ngIf="professorForm">
 
-        <div class="d-flex flex-column">
+        <div class="inputBox">
           <label for="firstName">{{'PROFESSOR.FIRST_NAME' | translate }}</label>
-          <input matInput class="form-control" type="text" id="firstName" formControlName="firstName" required>
+          <input matInput class="form-control" type="text" id="firstName" placeholder="Name" formControlName="firstName"
+            required>
           <mat-error *ngIf="professorForm.controls.firstName.touched && professorForm.controls.firstName.invalid">
             <span *ngIf="professorForm.controls.firstName.errors">First name is
               required, minLength(3), maxLength(30), a-zA-Z</span>
           </mat-error>
         </div>
 
-        <div class="d-flex flex-column">
+        <div class="inputBox">
           <label for="lastName">{{'PROFESSOR.LAST_NAME' | translate}}</label>
-          <input matInput class="form-control" type="text" id="lastName" formControlName="lastName" required>
+          <input matInput class="form-control" type="text" id="lastName" placeholder="Last Name"
+            formControlName="lastName" required>
           <mat-error *ngIf="professorForm.controls.lastName.touched && professorForm.controls.lastName.invalid">
             <span *ngIf="professorForm.controls.lastName.errors">Last name is required, minLength(3), maxLength(30),
               a-zA-Z </span>
           </mat-error>
         </div>
 
-        <div class="d-flex flex-column">
+        <div class="inputBox">
           <label for="email">{{'PROFESSOR.EMAIL' | translate}}</label>
-          <input class="form-control" type="text" id="email" formControlName="email">
+          <input class="form-control" type="text" id="email" formControlName="email" placeholder="email">
           <mat-error *ngIf="professorForm.controls.email.touched && professorForm.controls.email.invalid">
             <span *ngIf="professorForm.controls.email.errors">Email must contain @ </span>
           </mat-error>
         </div>
 
-        <div class="d-flex flex-column">
+        <div class="inputBox">
           <label for="address">{{'PROFESSOR.ADDRESS' | translate }}</label>
-          <input class="form-control" type="text" id="address" formControlName="address">
+          <input class="form-control" type="text" id="address" formControlName="address" placeholder="Enter Address">
         </div>
 
-        <div class="d-flex flex-column">
+        <div class="inputBox">
           <label for="phone">{{'PROFESSOR.PHONE' | translate }}</label>
-          <input matInput class="form-control" type="text" id="phone" formControlName="phone" required>
+          <input matInput class="form-control" type="text" id="phone" placeholder="999999999" formControlName="phone"
+            required>
           <mat-error *ngIf="professorForm.controls.phone.touched && professorForm.controls.phone.invalid">
             <span *ngIf="professorForm.controls.phone.errors">Phone minimum number 9</span>
           </mat-error>
         </div>
 
-        <div appearance="fill" fxFlex>
+        <div appearance="fill" fxFlex class="inputBox">
           <label for='relocationDate'>{{'PROFESSOR.RELOCATION_DATE' | translate }}</label>
           <input matInput [matDatepicker]="picker" type="text" id="relocationDate" formControlName="relocationDate"
-            required>
+            placeholder="DD/MM/YYYY" required>
           <mat-error
             *ngIf="professorForm.controls.relocationDate.touched && professorForm.controls.relocationDate.invalid">
             <span *ngIf="professorForm.controls.relocationDate.errors">Relocation date is
@@ -56,7 +59,7 @@
           <mat-datepicker #picker></mat-datepicker>
         </div>
 
-        <div class="d-flex flex-column">
+        <div class="inputBox">
           <label for="city">{{'PROFESSOR.CITY' | translate}}</label>
           <select class="form-control" type="text" id="city" formControlName="city">
             <option *ngFor="let city of cities$|async" [ngValue]="city.zip_code">
@@ -65,7 +68,7 @@
           </select>
         </div>
 
-        <div class="d-flex flex-column">
+        <div class="inputBox">
           <label for="title">{{'Title' | translate}}</label>
           <select class="form-control" type="text" id="title" formControlName="title">
             <option *ngFor="let title of titles$|async" [ngValue]="title.id">

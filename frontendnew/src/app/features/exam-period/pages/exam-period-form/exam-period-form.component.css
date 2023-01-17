@@ -8,7 +8,17 @@ table {
     justify-content: space-around;
     overflow-x: hidden;
     height: 90%;
+    color: #fff;
 }
+
+mat-label {
+    color: rgb(116, 111, 111);
+
+
+
+}
+
+
 
 .container-form {
     display: flex;
@@ -17,6 +27,12 @@ table {
     justify-content: center;
     margin-top: 150px;
     padding: 20px;
+    color: #fff;
+    background-color: rgba(34, 34, 34, 1);
+    border-radius: 10px;
+    box-shadow: -2px -2px 6px rgba(255, 255, 255, 0.1),
+        2px 2px 6px rgba(0, 0, 0, 0.8);
+
 }
 
 .container-table {
@@ -42,11 +58,13 @@ mat-cell {
 .mat-column-name {
     flex: none;
     width: 100px;
+    color: #fff;
 }
 
 .mat-column-start {
     flex: none;
     width: 100px;
+    color: #fff;
 }
 
 .mat-column-end {
@@ -69,7 +87,7 @@ mat-cell {
     width: 100px;
 }
 
-@media only screen and (max-width: 1600px) {
+@media only screen and (max-width: 1280px) {
 
     .main-container {
         display: flex;
@@ -90,6 +108,7 @@ mat-cell {
     mat-form-field {
         margin-bottom: 5px;
         width: 100%;
+        color: #fff;
     }
 
 }
