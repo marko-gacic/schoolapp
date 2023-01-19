@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LiteraturesComponent } from './features/literatures/literatures.component';
 import { UserProfileComponent } from './features/user-profile/user-profile.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -42,6 +43,11 @@ const routes: Routes = [
     path: 'user-profile',
     component: UserProfileComponent,
     data: { title: 'User Profile' }
+  },
+  {
+    path: 'literature',
+    component: LiteraturesComponent,
+    data: { title: 'Literature' }
   },
 
 

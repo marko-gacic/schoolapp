@@ -10,6 +10,7 @@ var subjectRouter = require('./routes/subject');
 var titleRouter = require('./routes/title');
 var examRouter = require('./routes/exam');
 var examperiodRouter = require('./routes/examperiod');
+var literatureRouter = require('./routes/literature');
 
 
 var app = express();
@@ -29,6 +30,8 @@ app.use('/title', titleRouter);
 app.use('/exam', examRouter);
 app.use('/examperiod', examperiodRouter);
 app.use('/register', userRouter);
+app.use('/login', userRouter);
+app.use('/literature', literatureRouter);
 
 
 

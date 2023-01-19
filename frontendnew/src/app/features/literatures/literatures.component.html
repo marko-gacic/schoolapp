@@ -1,0 +1,27 @@
+<div class="container">
+    <h1 class="text-center my-5">Add Literature</h1>
+    <form (ngSubmit)="onSubmit()" method="POST" action="/literature" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" formControlName="name">
+        </div>
+        <div class="form-group">
+            <label for="authors">Authors</label>
+            <input type="text" class="form-control" id="authors" formControlName="authors">
+        </div>
+        <div class="form-group">
+            <label for="issn">ISSN</label>
+            <input type="text" class="form-control" id="issn" formControlName="issn">
+        </div>
+        <div class="form-group">
+            <label for="professor_id">Professor ID</label>
+            <input type="text" class="form-control" id="professor_id" formControlName="professor_id">
+        </div>
+        <div class="form-group">
+            <label for="file">File</label>
+            <input name="pdf" type="file" class="form-control-file" id="file" (change)="onFileSelected($event)"
+                formControlName="file">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
