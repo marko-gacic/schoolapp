@@ -38,16 +38,16 @@ const routes: Routes = [
     path: 'exam',
     loadChildren: () => import('./features/exam/exam.module').then(m => m.ExamModule)
   },
+  {
+    path: 'literature',
+    loadChildren: () => import('./features/literature/literature.module').then(m => m.LiteratureModule)
+  },
+
 
   {
     path: 'user-profile',
     component: UserProfileComponent,
     data: { title: 'User Profile' }
-  },
-  {
-    path: 'literature',
-    component: LiteraturesComponent,
-    data: { title: 'Literature' }
   },
 
 

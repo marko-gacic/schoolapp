@@ -25,6 +25,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 
+
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: false,
   animation: {
@@ -41,7 +42,8 @@ const globalRippleConfig: RippleGlobalOptions = {
     GlobalToastComponent,
     ConfirmDialogComponent,
     DeleteDialogComponent,
-    SideNavComponent
+    SideNavComponent,
+
 
   ],
   imports: [
@@ -68,7 +70,9 @@ const globalRippleConfig: RippleGlobalOptions = {
     MatPaginatorModule,
     MatSnackBarModule,
     MatAutocompleteModule,
-    MatSelectModule
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
 
 
 
@@ -106,7 +110,9 @@ const globalRippleConfig: RippleGlobalOptions = {
     MatAutocompleteModule,
     MatSelectModule,
     DeleteDialogComponent,
-    SideNavComponent
+    SideNavComponent,
+    FormsModule,
+    ReactiveFormsModule,
 
 
 

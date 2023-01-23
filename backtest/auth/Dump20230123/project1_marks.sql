@@ -16,34 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `exam2`
+-- Table structure for table `marks`
 --
 
-DROP TABLE IF EXISTS `exam2`;
+DROP TABLE IF EXISTS `marks`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `exam2` (
+CREATE TABLE `marks` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `subject` int unsigned NOT NULL,
+  `mark` int DEFAULT NULL,
   `date` datetime DEFAULT NULL,
-  `examperiod` int unsigned NOT NULL,
-  `professor` int unsigned NOT NULL,
+  `student` int NOT NULL,
+  `exam` int unsigned NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
-  KEY `fk_exam_subject1_idx` (`subject`),
-  KEY `fk_exam_examperiod1_idx` (`examperiod`),
-  KEY `fk_exam_professor1_idx1` (`professor`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
+  KEY `fk_marks_student1_idx` (`student`),
+  KEY `fk_marks_exam1_idx` (`exam`),
+  CONSTRAINT `fk_marks_exam1` FOREIGN KEY (`exam`) REFERENCES `exam` (`id`),
+  CONSTRAINT `fk_marks_student1` FOREIGN KEY (`student`) REFERENCES `student` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `exam2`
+-- Dumping data for table `marks`
 --
 
-LOCK TABLES `exam2` WRITE;
-/*!40000 ALTER TABLE `exam2` DISABLE KEYS */;
-INSERT INTO `exam2` VALUES (1,3,'2002-02-20 22:00:00',2,0),(2,3,'2002-02-20 22:00:00',4,0),(3,43,'2002-02-20 22:00:00',3,0),(4,11,'2002-02-20 22:00:00',3,0);
-/*!40000 ALTER TABLE `exam2` ENABLE KEYS */;
+LOCK TABLES `marks` WRITE;
+/*!40000 ALTER TABLE `marks` DISABLE KEYS */;
+/*!40000 ALTER TABLE `marks` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-23 15:18:16
+-- Dump completed on 2023-01-23 15:18:15

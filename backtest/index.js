@@ -13,6 +13,7 @@ var examperiodRouter = require('./routes/examperiod');
 var literatureRouter = require('./routes/literature');
 
 
+
 var app = express();
 app.use(express.json());
 app.use(cors({
@@ -32,6 +33,13 @@ app.use('/examperiod', examperiodRouter);
 app.use('/register', userRouter);
 app.use('/login', userRouter);
 app.use('/literature', literatureRouter);
+
+
+
+
+
+
+
 
 
 

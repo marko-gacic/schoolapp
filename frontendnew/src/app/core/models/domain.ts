@@ -151,3 +151,12 @@ export interface ExamRegistrationDTO {
     status: string
 }
 
+export interface Literature {
+    id: number
+    name: string
+    authors: string
+    issn: number
+    professor: Professor
+    fileName: any
+}
+

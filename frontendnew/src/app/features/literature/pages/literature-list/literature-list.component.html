@@ -1,0 +1,44 @@
+<h2>Literature</h2>
+
+<div class="m-2">
+    <button type="button" class="btn btn-outline-primary" [routerLink]="['/literature/literature-form']">
+        <bi name="plus"></bi>Add Literature
+    </button>
+</div>
+
+<table class="table table-straped">
+    <thead>
+        <tr>
+            <th sortable="id" (sort)="onSort($event)">ID</th>
+            <th sortable="name" (sort)="onSort($event)">Name</th>
+            <th sortable="authors" (sort)="onSort($event)">Author</th>
+            <th sortable="issn" (sort)="onSort($event)">ISSN</th>
+            <th sortable="professor" (sort)="onSort($event)">Professor</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let literature of literatures">
+            <td>{{literature.id}}</td>
+            <td>{{literature.name}}</td>
+            <td>{{literature.authors}}</td>
+            <td>{{literature.issn}}</td>
+            <td>{{professorMap.get(literature.professor.id)?.firstName}}
+                {{professorMap.get(literature.professor.id)?.lastName}}
+            <td>
+                <button class="btn btn-outline-success" [routerLink]="['/literature/literature-form', literature.id]"
+                    [queryParams]="{'page': currentPage.page, 'size': currentPage.size, 'orderBy': currentPage.orderBy, 'order': currentPage.order}">
+                    <bi name="download"></bi><span class="btn-text-responsive">Download</span>
+                </button>
+
+
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+<div class="d-flex justify-content-center">
+    <ngb-pagination [collectionSize]="currentPage.totalItems" [pageSize]="currentPage.size" [(page)]="currentPage.page"
+        [boundaryLinks]="true" (pageChange)="loadLiteratures()">
+    </ngb-pagination>
+</div>

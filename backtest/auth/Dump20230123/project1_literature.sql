@@ -16,34 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `exam2`
+-- Table structure for table `literature`
 --
 
-DROP TABLE IF EXISTS `exam2`;
+DROP TABLE IF EXISTS `literature`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `exam2` (
+CREATE TABLE `literature` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `subject` int unsigned NOT NULL,
-  `date` datetime DEFAULT NULL,
-  `examperiod` int unsigned NOT NULL,
-  `professor` int unsigned NOT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `authors` varchar(45) DEFAULT NULL,
+  `issn` int DEFAULT NULL,
+  `professor` int NOT NULL,
+  `fileName` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
-  KEY `fk_exam_subject1_idx` (`subject`),
-  KEY `fk_exam_examperiod1_idx` (`examperiod`),
-  KEY `fk_exam_professor1_idx1` (`professor`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
+  KEY `fk_literature_professor1_idx` (`professor`),
+  CONSTRAINT `fk_literature_professor1` FOREIGN KEY (`professor`) REFERENCES `professor` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `exam2`
+-- Dumping data for table `literature`
 --
 
-LOCK TABLES `exam2` WRITE;
-/*!40000 ALTER TABLE `exam2` DISABLE KEYS */;
-INSERT INTO `exam2` VALUES (1,3,'2002-02-20 22:00:00',2,0),(2,3,'2002-02-20 22:00:00',4,0),(3,43,'2002-02-20 22:00:00',3,0),(4,11,'2002-02-20 22:00:00',3,0);
-/*!40000 ALTER TABLE `exam2` ENABLE KEYS */;
+LOCK TABLES `literature` WRITE;
+/*!40000 ALTER TABLE `literature` DISABLE KEYS */;
+INSERT INTO `literature` VALUES (1,'Srpski','Marko Gacic',123,1,NULL);
+/*!40000 ALTER TABLE `literature` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

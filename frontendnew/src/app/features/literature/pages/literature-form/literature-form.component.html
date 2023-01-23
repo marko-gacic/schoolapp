@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form [formGroup]="literatureForm" (ngSubmit)="onSave()" *ngIf="literatureForm">
+                <div class="inputBox">
+                    <label for="name">{{'Name' | translate }}</label>
+                    <input class="form-control" type="text" id="address" formControlName="name"
+                        placeholder="Enter Name">
+                </div>
+
+                <div class="inputBox">
+                    <label for="authors">{{'Author' | translate}}</label>
+                    <input class="form-control" type="text" id="authors" formControlName="authors"
+                        placeholder="Enter Author">
+                </div>
+
+                <div class="inputBox">
+                    <label for="issn">{{'ISSN' | translate}}</label>
+                    <input class="form-control" type="text" id="issn" formControlName="issn" placeholder="Enter ISSN">
+                </div>
+
+                <div class="inputBox">
+                    <label for="professor">{{'Professor' | translate}}</label>
+                    <select class="form-control" type="text" id="professor" formControlName="professor">
+                        <option *ngFor="let prof of professors$|async" [ngValue]="prof.id">
+                            {{prof.firstName}} {{prof.lastName}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="inputBox">
+                    <label for="pdf">{{'PDF' | translate}}</label>
+                    <input class="form-control" type="file" (change)="onFileSelected($event)" id="pdf" required>
+                    <div *ngIf="literatureForm?.get('fileName')?.value">
+                        <a [href]="literatureForm.get('fileName')?.value" target="_blank">View current PDF</a>
+                    </div>
+                </div>
+                <div class="d-flex flex-row-reverse justify-content-around mt-3">
+                    <button type="submit" class="btn btn-outline-primary"
+                        [disabled]="!(literatureForm.valid && literatureForm.dirty)">{{'COMMON.SAVE' |
+                        translate}}</button>
+                    <button type="button" class="btn btn-outline-danger" [routerLink]="['/literature/literature-list']"
+                        queryParamsHandling="preserve">{{'COMMON.CANCEL' | translate}}</button>
+                </div>
+
+
+
+            </form>
+        </div>
+    </div>
+</div>
