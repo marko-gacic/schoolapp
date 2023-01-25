@@ -40,6 +40,7 @@ export class LiteratureFormComponent implements OnInit {
       id: [literature?.id],
       name: [literature?.name, [Validators.required]],
       authors: [literature?.authors, [Validators.required]],
+      issn: [literature?.issn, [Validators.required]],
       professor: [literature?.professor, [Validators.required]],
       fileName: [literature?.fileName, [Validators.required]],
 

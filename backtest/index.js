@@ -1,16 +1,20 @@
 var express = require('express');
+const port = 3000;
+const cors = require('cors');
+
+
+var bodyParser = require('body-parser');
 var dashboard = require('./routes/dashboard');
 var studentRouter = require('./routes/student');
 var userRouter = require('./routes/users');
-const cors = require('cors');
 var professorRouter = require('./routes/professor');
-const port = 3000;
 var cityRouter = require('./routes/cities');
 var subjectRouter = require('./routes/subject');
 var titleRouter = require('./routes/title');
 var examRouter = require('./routes/exam');
 var examperiodRouter = require('./routes/examperiod');
 var literatureRouter = require('./routes/literature');
+var marksRouter = require('./routes/marks');
 
 
 
@@ -33,24 +37,24 @@ app.use('/examperiod', examperiodRouter);
 app.use('/register', userRouter);
 app.use('/login', userRouter);
 app.use('/literature', literatureRouter);
-
-
-
-
-
-
-
-
+app.use('/marks', marksRouter);
 
 
 app.use((err, req, res, next) => {
+
   const statusCode = err.statusCode || 500;
   console.error(err.message, err.stack);
   res.status(statusCode).json({ message: err.message });
   return;
+
 });
+
+
 
 
 app.listen(port, () => {
   console.log(`Test backend at http://localhost:${port}`);
 });
+
+
+

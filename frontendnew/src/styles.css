@@ -21,7 +21,6 @@ th[sortable].desc::before {
   -ms-transform: rotate(180deg);
 }
 
-
 th {
   white-space: nowrap;
   color: rgb(172, 167, 167);
@@ -32,10 +31,6 @@ th {
   padding: 0.5rem;
   background-color: #1d2b3a;
   text-align: center;
-
-
-
-
 
 }
 
@@ -51,7 +46,6 @@ td {
   text-align: center;
 }
 
-
 bi {
   width: 1rem;
   height: 1rem;
@@ -62,10 +56,7 @@ bi {
   margin-right: 0.5rem;
   text-align: center;
 
-
 }
-
-
 
 @media only screen and (max-width: 600px) {
   .btn-text-responsive {
@@ -83,27 +74,7 @@ body {
   color: rgb(196, 191, 191);
   padding-top: 4rem;
 
-
-
-
-
 }
-
-/* body {
-  margin: 5px;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: rgba(34, 34, 34, 1);
-  color: rgb(196, 191, 191);
-  font-size: 1.2rem;
-  font-weight: 400;
-  line-height: 1.5;
-  letter-spacing: 0.00938em;
-  text-align: left;
-  padding-top: 4rem;
-
-} */
-
-
 
 .btn {
   display: inline-block;
@@ -127,7 +98,6 @@ body {
     2px 2px 6px rgba(0, 0, 0, 0.8);
 }
 
-
 .btn:hover {
 
   transition: ease-in-out 0.3s;
@@ -136,14 +106,9 @@ body {
 
 }
 
-
-
 img {
   max-width: 100%;
   height: auto;
-
-
-
 }
 
 app-header {
@@ -176,7 +141,6 @@ app-side-nav {
   transition-duration: 1s;
   z-index: 3;
 
-
 }
 
 .app-side-nav-open {
@@ -190,7 +154,6 @@ app-side-nav {
   width: calc(100% - 250px);
   transition-duration: 1s;
   height: calc(100vh - 4rem);
-
 
 }
 
