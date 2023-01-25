@@ -47,16 +47,16 @@ async function get(id) {
 }
 
 async function create(literature) {
-    const { name, authors, issn, professor_id, fileName } = literature;
-    const query = `INSERT INTO literature (name, authors, issn, professor_id,fileName) VALUES ('${name}', '${authors}', '${issn}', ${professor_id},'${fileName}')`;
+    const { name, authors, issn, professor, fileName } = literature;
+    const query = `INSERT INTO literature (name, authors, issn, professor,fileName) VALUES ('${name}', '${authors}', '${issn}', ${professor},'${fileName}')`;
     const result = await db.query(query);
     literature.id = result.insertId;
     return literature;
 }
 
 async function update(literature) {
-    const { id, name, authors, issn, professor_id, fileName } = literature;
-    const query = `UPDATE literature SET name = '${name}', authors = '${authors}', issn = '${issn}', professor_id = ${professor_id},fileName='${fileName}' WHERE id = ${id}`;
+    const { id, name, authors, issn, professor, fileName } = literature;
+    const query = `UPDATE literature SET name = '${name}', authors = '${authors}', issn = '${issn}', professor = ${professor},fileName='${fileName}' WHERE id = ${id}`;
     await db.query(query);
     return literature;
 }

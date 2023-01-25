@@ -63,19 +63,47 @@ export class LiteratureFormComponent implements OnInit {
   }
 
   onSave() {
-    this.saveLiterature().pipe(take(1)).subscribe((message: any) => {
+    const literature = this.literatureForm?.getRawValue();
+    const file = this.literatureForm?.get('fileName')?.value;
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('literature', JSON.stringify(literature));
+    this.httpLiterature.postLiterature(literature).subscribe((message: any) => {
       this.toastService.showToast({
         message: 'message',
-        header: 'Exam',
+        header: 'Literature',
         classNames: 'bg-success',
       });
       this.router.navigate(['./literature/literature-list'], {
         queryParamsHandling: 'preserve'
       });
-
     });
-
   }
+
+
+
+
+
+
+
+
+
+
+
+  // onSave() {
+  //   this.saveLiterature().pipe(take(1)).subscribe((message: any) => {
+  //     this.toastService.showToast({
+  //       message: 'message',
+  //       header: 'Exam',
+  //       classNames: 'bg-success',
+  //     });
+  //     this.router.navigate(['./literature/literature-list'], {
+  //       queryParamsHandling: 'preserve'
+  //     });
+
+  //   });
+
+  // }
 
   onCancel() {
     this.router.navigate(['./literature/literature-list'], {
