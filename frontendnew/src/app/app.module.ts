@@ -20,7 +20,6 @@ import { UserProfileComponent } from './features/user-profile/user-profile.compo
 
 
 
-
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -35,6 +34,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoginComponent,
     RegisterComponent,
     UserProfileComponent,
+
 
 
   ],

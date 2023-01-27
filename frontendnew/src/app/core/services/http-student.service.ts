@@ -26,6 +26,10 @@ export class HttpStudentService {
 
     }
 
+    getAllStudents() {
+        return this.httpClient.get<Student[]>(`${this.endpointBasePath}`);
+    }
+
     get(id: number) {
         return this.httpClient.get<StudentDTO>(`${this.endpointBasePath}/${id}`);
     }

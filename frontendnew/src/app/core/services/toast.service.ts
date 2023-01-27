@@ -5,6 +5,12 @@ import { ToastMessage } from "src/app/shared/components/global-toast/global-toas
     providedIn: "root",
 })
 export class ToastService {
+    showError(arg0: string) {
+        throw new Error('Method not implemented.');
+    }
+    showSuccess(arg0: string) {
+        throw new Error('Method not implemented.');
+    }
     messages: ToastMessage[] = [];
 
     constructor() { }

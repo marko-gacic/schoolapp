@@ -66,11 +66,11 @@ export class LiteratureFormComponent implements OnInit {
     const literature = this.literatureForm?.getRawValue();
     const file = this.literatureForm?.get('fileName')?.value;
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('pdf', file);
     formData.append('literature', JSON.stringify(literature));
     this.httpLiterature.postLiterature(literature).subscribe((message: any) => {
       this.toastService.showToast({
-        message: 'message',
+        message: 'Literature saved successfully',
         header: 'Literature',
         classNames: 'bg-success',
       });

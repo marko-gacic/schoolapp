@@ -18,6 +18,20 @@ export class HttpAuthService {
     return this.httpClient.post('http://localhost:3000/register', userRegister);
   }
 
+  logout() {
+    localStorage.removeItem('token');
+  }
+
+  get token() {
+    return localStorage.getItem('token');
+  }
+
+  get isAuthenticated() {
+    return !!this.token;
+  }
+
+
+
 
 
 

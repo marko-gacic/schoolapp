@@ -26,10 +26,7 @@
             <td>{{professorMap.get(literature.professor.id)?.firstName}}
                 {{professorMap.get(literature.professor.id)?.lastName}}
             <td>
-                <button class="btn btn-outline-success" [routerLink]="['/literature/literature-form', literature.id]"
-                    [queryParams]="{'page': currentPage.page, 'size': currentPage.size, 'orderBy': currentPage.orderBy, 'order': currentPage.order}">
-                    <bi name="download"></bi><span class="btn-text-responsive">Download</span>
-                </button>
+                <button type="submit" class="btn btn-outline-primary" (click)="downloadPdf()">Download PDF</button>
 
 
             </td>

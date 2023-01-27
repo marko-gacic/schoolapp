@@ -1,0 +1,73 @@
+<h2>{{'Marks'}}</h2>
+<div class="m-2">
+    <button type="button" class="btn btn-outline-primary" [routerLink]="['/marks/marks-form']">
+        <bi name="plus"></bi>{{'Add Mark'}}
+    </button>
+
+</div>
+
+<hr>
+
+<input type="text" [(ngModel)]="searchTerm" class="form-control" (keyup)="onSearch()" placeholder="{{'Search'}}">
+
+<hr>
+
+<table class="table table-straped">
+    <thead>
+        <tr>
+            <th sortable="id" (sort)="onSort($event)">ID</th>
+            <th sortable="mark" (sort)="onSort($event)">{{'Mark'}}</th>
+            <th sortable="student" (sort)="onSort($event)">{{'Student'}}</th>
+            <th sortable="subject" (sort)="onSort($event)">{{'Subject'}}</th>
+            <th sortable="professor" (sort)="onSort($event)">{{'Professor'}}</th>
+            <th sortable="date" (sort)="onSort($event)">{{'Date'}}</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let mark of marks; let i = index">
+            <td>{{ mark.id }}</td>
+            <td>{{ mark.mark }}</td>
+            <td>{{studentMap.get(mark.student.id)?.firstName}} {{studentMap.get(mark.student.id)?.lastName}} </td>
+            <td>{{subjectMap.get(mark.subject.id)?.name}}</td>
+            <td>{{professorMap.get(mark.professor.id)?.firstName}} {{professorMap.get(mark.professor.id)?.lastName}}
+            </td>
+            <td>{{ mark.date | date : format }}</td>
+            <td>
+                <button class="btn btn-outline-success" [routerLink]="['/marks/marks-form', mark.id]"
+                    [queryParams]="{'page': currentPage.page, 'size': currentPage.size, 'orderBy': currentPage.orderBy, 'order': currentPage.order}">
+                    <bi name="pencil"></bi>
+                    <span class="btn-text-responsive">Edit</span>
+                </button>
+                <button class="btn btn-outline-info" (click)="onDetailsClick(mark, markDetailsTemplate)">
+                    <bi name="card-text"></bi><span class="btn-text-responsive">{{'Details'}}</span>
+                </button>
+                <button class="btn btn-outline-danger" (click)="onDeleteClick(mark)">
+                    <bi name="trash"></bi><span class="btn-text-responsive">{{'Delete'}}</span>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+<div class="d-flex justify-content-center">
+    <ngb-pagination [collectionSize]="currentPage.totalItems" [pageSize]="currentPage.size" [(page)]="currentPage.page"
+        [boundaryLinks]="true" (pageChange)="loadMarks()">
+    </ngb-pagination>
+</div>
+<ng-template #markDetailsTemplate let-modal>
+    <div class="modal-body">
+        <h4>{{'Marks Details'}}</h4>
+        <ul class="list-unstyled">
+            <li><strong>{{'ID'}}:</strong> {{selectedMark?.id}}</li>
+            <li><strong>{{'Mark'}}:</strong> {{selectedMark?.mark}}</li>
+            <li><strong>{{'Student'}}:</strong> {{selectedMark?.student?.firstName}} </li>
+            <li><strong>{{'Subject'}}:</strong> {{selectedMark?.subject?.id}}</li>
+            <li><strong>{{'Professor'}}:</strong> {{selectedMark?.professor?.firstName}} </li>
+            <li><strong>{{'Date'}}:</strong> {{selectedMark?.date | date : format}}</li>
+        </ul>
+        <div class="mt-2 d-flex flex-row-reverse">
+            <button (click)="modal.close('OK')">Ok</button>
+        </div>
+    </div>
+</ng-template>

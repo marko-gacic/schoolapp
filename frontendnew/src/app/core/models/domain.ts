@@ -160,3 +160,37 @@ export interface Literature {
     fileName: any
 }
 
+export interface LiteratureDTO {
+    id: number
+    name: string
+    authors: string
+    issn: number
+    professor: number
+    fileName: any
+}
+
+export interface Marks {
+    id: number
+    student: Student
+    mark: number
+    subject: Sub
+    exam: Exam
+    date: Date | string
+    professor: Professor
+    examPeriod: ExamPeriod
+
+
+}
+
+export interface MarksDTO {
+    id: number
+    student: number
+    mark: number
+    exam: number
+    date: Date | string
+    professor: number
+    examPeriod: number
+    subject: number
+
+}
+

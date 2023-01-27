@@ -28,8 +28,6 @@ router.get('/page', async function (req, res, next) {
     }
 });
 
-
-
 router.get('/:id', async function (req, res, next) {
     try {
         res.json(await professorService.get(req.params.id));
@@ -56,9 +54,6 @@ router.put('/:id', async function (req, res, next) {
         next(err);
     }
 });
-
-
-
 
 router.delete('/:id', async function (req, res, next) {
     try {

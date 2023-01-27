@@ -9,6 +9,9 @@ import { Page, PageResponse } from "../models/dtos";
     providedIn: "root"
 })
 export class HttpLiteratureService {
+    downloadPdf() {
+        return this.httpClient.get(`${this.endpointBasePath}/pdf`, { responseType: "blob" });
+    }
 
     endpointPrefix = "literature";
 

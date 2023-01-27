@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <title>Marks Form</title>
+</head>
+
+<body>
+    <div class="container">
+        <form [formGroup]="marksForm" (ngSubmit)="save()" *ngIf="marksForm">
+            <input type="hidden" formControlName="id">
+            <div class="form-group">
+                <label>Student</label>
+                <select formControlName="student" class="form-control">
+                    <option *ngFor="let student of students$ | async" [value]="student">{{student.firstName}} {{
+                        student.lastName }}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Subject</label>
+                <select formControlName="subject" class="form-control">
+                    <option *ngFor="let subject of subjects$ | async" [value]="subject">{{subject.name}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Exam</label>
+                <select formControlName="exam" class="form-control">
+                    <option *ngFor="let exam of exams$ | async" [value]="exam">{{exam.id}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Professor</label>
+                <select formControlName="professor" class="form-control">
+                    <option *ngFor="let professor of professors$ | async" [value]="professor">
+                        {{professor.firstName}} {{professor.lastName}}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Mark</label>
+                <input type="number" formControlName="mark" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Date</label>
+                <input type="date" formControlName="date" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+</body>
+
+</html>

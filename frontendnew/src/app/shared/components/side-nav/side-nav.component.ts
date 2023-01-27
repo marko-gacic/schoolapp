@@ -16,7 +16,9 @@ export class SideNavComponent implements OnInit {
     { name: 'Subjects', icon: 'book', link: 'subject/subject-list' },
     { name: 'Exams', icon: 'school', link: 'exam/exam-list' },
     { name: 'Literatures', icon: 'library_books', link: '/literature' },
+    { name: 'Marks', icon: 'assignment', link: '/marks' },
     { name: 'User Profile', icon: 'person', link: 'user-profile' },
+
 
   ]
 

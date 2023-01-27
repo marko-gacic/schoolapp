@@ -11,6 +11,7 @@ import { Page, PageResponse } from "../models/dtos";
 
 export class HttpExamService {
 
+
     endpointPrefix = 'exam';
 
     constructor(private httpClient: HttpClient) { }
