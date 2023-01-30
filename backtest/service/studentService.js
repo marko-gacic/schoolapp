@@ -93,11 +93,70 @@ async function remove(id) {
     return { err };
 }
 
+async function filterData(filters) {
+    let query = "SELECT * FROM student";
+    let queryParams = [];
+    if (filters.firstName) {
+        query += " WHERE firstName LIKE ?";
+        queryParams.push("%" + filters.firstName + "%");
+    }
+    if (filters.lastName) {
+        if (queryParams.length > 0) {
+            query += " AND";
+        } else {
+            query += " WHERE";
+        }
+        query += " lastName LIKE ?";
+        queryParams.push("%" + filters.lastName + "%");
+    }
+    if (filters.indexYear) {
+        if (queryParams.length > 0) {
+            query += " AND";
+        } else {
+            query += " WHERE";
+        }
+        query += " indexYear = ?";
+        queryParams.push(filters.indexYear);
+    }
+    if (filters.currentYearOfStudy) {
+        if (queryParams.length > 0) {
+            query += " AND";
+        } else {
+            query += " WHERE";
+        }
+        query += " currentYearOfStudy = ?";
+        queryParams.push(filters.currentYearOfStudy);
+    }
+    if (filters.city) {
+        if (queryParams.length > 0) {
+            query += " AND";
+        } else {
+            query += " WHERE";
+        }
+        query += " city = ?";
+        queryParams.push(filters.city);
+    }
+    if (filters.indexNumber) {
+        if (queryParams.length > 0) {
+            query += " AND";
+        } else {
+            query += " WHERE";
+        }
+        query += " indexNumber LIKE ?";
+        queryParams.push("%" + filters.indexNumber + "%");
+    }
+
+
+
+}
+
+
 module.exports = {
     getAll,
     getByPage,
     get,
     create,
     update,
-    remove
+    remove,
+    filterData
 }

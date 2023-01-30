@@ -45,6 +45,11 @@ export class HttpStudentService {
     delete(id: number) {
         return this.httpClient.delete<Response>(`${this.endpointBasePath}/${id}`);
     }
+
+    filterData(filter: string) {
+        return this.httpClient.get<Student[]>(`${this.endpointBasePath}/filter/${filter}`);
+    }
+
     get endpointBasePath() {
         return `${environment.serverUrl}/${this.endpointPrefix}`;
     }

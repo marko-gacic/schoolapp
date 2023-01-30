@@ -20,7 +20,27 @@ async function register(user) {
     return user;
 }
 
+async function resetPassword(user) {
+    const rows = await db.query('SELECT * FROM user WHERE userName = ?', [user.username]);
+    if (rows && rows.length > 0) {
+        const result = await db.query('UPDATE user SET password = ? WHERE userName = ?', [user.password, user.username]);
+        return result.affectedRows > 0;
+    }
+    return false;
+}
+
+async function changePassword(user) {
+    const rows = await db.query('SELECT * FROM user WHERE userName = ? AND password = ?', [user.username, user.oldPassword]);
+    if (rows && rows.length > 0) {
+        const result = await db.query('UPDATE user SET password = ? WHERE userName = ?', [user.password, user.username]);
+        return result.affectedRows > 0;
+    }
+    return false;
+}
+
 module.exports = {
     login,
-    register
+    register,
+    resetPassword,
+    changePassword
 }

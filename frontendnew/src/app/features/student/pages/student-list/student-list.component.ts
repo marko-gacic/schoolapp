@@ -128,6 +128,7 @@ export class StudentListComponent implements OnInit {
         this.modalService.open(studentDetailsTemplate);
     }
 
+
     get tempContext() {
         return { number: 10 }
     }

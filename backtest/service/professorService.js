@@ -102,11 +102,89 @@ async function remove(id) {
     return { err };
 }
 
+async function filterData(filters) {
+    let query = 'SELECT * FROM professor';
+    let queryParams = [];
+    if (filters.firstName) {
+        query -= ' WHERE firstName LIKE ?';
+        queryParams.push("%" + filters.firstName + "%");
+    }
+
+    if (filters.lastName) {
+        if (queryParams.length > 0) {
+            query += ' AND lastName LIKE ?';
+        } else {
+            query += ' WHERE lastName LIKE ?';
+        }
+        queryParams.push("%" + filters.lastName + "%");
+    }
+
+    if (filters.phone) {
+        if (queryParams.length > 0) {
+            query += ' AND phone LIKE ?';
+        } else {
+            query += ' WHERE phone LIKE ?';
+        }
+        queryParams.push("%" + filters.phone + "%");
+    }
+
+    if (filters.relocationDate) {
+        if (queryParams.length > 0) {
+            query += ' AND relocationDate LIKE ?';
+        } else {
+            query += ' WHERE relocationDate LIKE ?';
+        }
+        queryParams.push("%" + filters.relocationDate + "%");
+    }
+
+    if (filters.city) {
+        if (queryParams.length > 0) {
+            query += ' AND city LIKE ?';
+        } else {
+            query += ' WHERE city LIKE ?';
+        }
+        queryParams.push("%" + filters.city + "%");
+    }
+
+    if (filters.address) {
+        if (queryParams.length > 0) {
+            query += ' AND address LIKE ?';
+        } else {
+            query += ' WHERE address LIKE ?';
+        }
+        queryParams.push("%" + filters.address + "%");
+    }
+
+    if (filters.email) {
+        if (queryParams.length > 0) {
+            query += ' AND email LIKE ?';
+        } else {
+            query += ' WHERE email LIKE ?';
+        }
+        queryParams.push("%" + filters.email + "%");
+    }
+
+    if (filters.title) {
+        if (queryParams.length > 0) {
+            query += ' AND title LIKE ?';
+        } else {
+            query += ' WHERE title LIKE ?';
+        }
+        queryParams.push("%" + filters.title + "%");
+    }
+
+
+
+}
+
+
+
 module.exports = {
     getAll,
     getByPage,
     get,
     create,
     update,
-    remove
+    remove,
+    filterData
 }

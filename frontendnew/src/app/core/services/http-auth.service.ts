@@ -22,6 +22,21 @@ export class HttpAuthService {
     localStorage.removeItem('token');
   }
 
+  resetPassword(email: string) {
+    return this.httpClient.post('http://localhost:3000/reset-password', { email });
+  }
+
+  forgotPassword(email: string) {
+    return this.httpClient.post('http://localhost:3000/forgot-password', { email });
+  }
+
+
+  changePassword(userChangePassword: { username: string, password: string, newPassword: string }) {
+
+
+
+  }
+
   get token() {
     return localStorage.getItem('token');
   }

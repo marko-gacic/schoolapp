@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const userService = require("../service/userService");
 const { body, validationResult } = require("express-validator");
+const nodemailer = require('nodemailer');
 
 /* User Login */
 router.post(
@@ -62,6 +63,74 @@ router.get(':id', async function (req, res, next) {
     next(err);
   }
 });
+
+router.post('/forgotPassword', async function (req, res, next) {
+  const email = req.body;
+  const user = await userService.forgotPassword(email);
+  if (!user) {
+    return res.status(400).json({ message: 'User not found' });
+  }
+  res.status(200).json({ message: 'Email sent successfully' });
+});
+
+const transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false,
+  auth: {
+    user: 'your email',
+    pass: ' your password',
+  },
+});
+
+const mailOptions = {
+  from: 'your email',
+  to: "email of the user",
+  subject: 'Reset Password',
+  text: 'Click on the link to reset your password'
+}
+
+transporter.sendMail(mailOptions, function (error, info) {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
+
+
+
+router.post('/resetPassword', async function (req, res, next) {
+  const { id, password } = req.body;
+  const user = await userService.resetPassword(id, password);
+  if (!user) {
+    return res.status(400).json({ message: 'User not found' });
+  }
+  res.status(200).json({ message: 'Password reset successfully' });
+});
+
+router.post('/changePassword', async function (req, res, next) {
+  const { id, oldPassword, newPassword } = req.body;
+  const user = await userService.changePassword(id, oldPassword, newPassword);
+  if (!user) {
+    return res.status(400).json({ message: 'User not found' });
+  }
+  res.status(200).json({ message: 'Password changed successfully' });
+});
+
+router.get('/', async function (req, res, next) {
+  try {
+    res.json(await userService.getAll());
+  } catch (err) {
+    console.error(`Error while getting all users `, err.message);
+    next(err);
+  }
+});
+
+
+
+
+
 
 
 

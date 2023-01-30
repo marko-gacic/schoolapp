@@ -200,3 +200,15 @@ app-side-nav .nav-item.active .nav-text {
   font-size: 0.8rem;
   margin-top: 0.5rem;
 }
+
+.modal-body {
+  background-color: #585555;
+  padding: 1em;
+  text-align: left;
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: 500;
+  border-radius: 10px;
+  box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.158),
+    5px 5px 15px rgba(0, 0, 0, 0.5);
+}

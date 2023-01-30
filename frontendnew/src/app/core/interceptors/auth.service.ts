@@ -27,4 +27,25 @@ export class AuthService {
             })
         )
     }
+
+    logout() {
+        localStorage.removeItem(this.TOKEN_NAME);
+        this._isLoggedIn$.next(false);
+    }
+
+    resetPassword(email: string) {
+        return this.apiService.resetPassword(email);
+    }
+
+    forgotPassword(email: string) {
+        return this.apiService.forgotPassword(email);
+    }
+
+
+
+    changePassword(userChangePassword: { username: string, password: string, newPassword: string }) {
+        return this.apiService.changePassword(userChangePassword);
+    }
+
+
 }

@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserProfileComponent } from './features/user-profile/user-profile.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 
 
 const routes: Routes = [
@@ -45,6 +47,19 @@ const routes: Routes = [
   {
     path: 'marks',
     loadChildren: () => import('./features/marks/marks.module').then(m => m.MarksModule)
+  },
+
+  {
+    path: 'reset-password',
+    component: ResetPasswordComponent,
+    data: { title: 'Reset Password' }
+  },
+
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent,
+    data: { title: 'Forgot Password' }
+
   },
 
 

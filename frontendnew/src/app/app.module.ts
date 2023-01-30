@@ -16,8 +16,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './pages/register/register.component';
 import { UserProfileComponent } from './features/user-profile/user-profile.component';
-
-
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -34,6 +34,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoginComponent,
     RegisterComponent,
     UserProfileComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent
 
 
 
