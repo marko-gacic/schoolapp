@@ -3,6 +3,7 @@ const { isLoggedIn } = require('../auth/authMiddleware');
 const router = express.Router();
 router.use(isLoggedIn);
 const markService = require('../service/marksService');
+const studentService = require('../service/studentService');
 
 router.get('/', function (req, res) {
     let currentDate = new Date();
@@ -64,6 +65,15 @@ router.delete('/:id', async function (req, res, next) {
         res.json(await markService.delete(req.params.id));
     } catch (err) {
         console.error(`Error while deleting mark `, err.message);
+        next(err);
+    }
+});
+
+router.get('/subject-with-highest-average-grade', async function (req, res, next) {
+    try {
+        res.json(await studentService.getSubjectWithHighestAverageGrade());
+    } catch (err) {
+        console.error(`Error while getting subject with highest average grade `, err.message);
         next(err);
     }
 });

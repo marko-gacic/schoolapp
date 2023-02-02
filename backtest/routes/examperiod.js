@@ -64,4 +64,18 @@ router.delete('/:id', async function (req, res, next) {
     }
 });
 
+router.get('/active-exam-period', (req, res) => {
+    examService.getActiveExamPeriod((err, examPeriod) => {
+        if (err) {
+            return res.status(500).json({ message: 'Error finding exam period' });
+        }
+
+        if (examPeriod) {
+            return res.status(200).json(examPeriod);
+        }
+
+        return res.status(404).json({ message: 'No active exam period' });
+    });
+});
+
 module.exports = router;

@@ -1,5 +1,17 @@
 const userService = require('../service/userService');
 
+/**
+ * It checks if the request has an authorization header, if it does, it parses the token from the
+ * header, if it can, it decodes the token, if it can, it splits the username and password from the
+ * token, if it can, it checks if the user exists, if it does, it sets the user to the request object,
+ * and finally, it calls the next function.
+ * 
+ * If any of the above steps fail, it returns an error.
+ * @param req - The request object.
+ * @param res - The response object.
+ * @param next - a function that you call when you want to pass control to the next middleware function
+ * in the stack.
+ */
 const isLoggedIn = async (req, res, next) => {
   try {
 
@@ -26,7 +38,15 @@ const isLoggedIn = async (req, res, next) => {
   } catch (error) {
     res.status(400).json({ error });
   }
+
+
+
+
 };
+
+
+
+
 
 
 // export custom middleware

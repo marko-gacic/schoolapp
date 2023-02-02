@@ -73,11 +73,21 @@ async function remove(id) {
     return { err };
 }
 
+async function getActiveExamPeriod() {
+    const data = await db.query('SELECT * FROM examperiod WHERE active = true');
+    if (data && data.length > 0) {
+        return data[0];
+    }
+    let err = `Invalid id ${id}`;
+    return { err };
+}
+
 module.exports = {
     getAll,
     getByPage,
     get,
     create,
     update,
-    remove
+    remove,
+    getActiveExamPeriod
 }

@@ -65,4 +65,15 @@ router.delete('/:id', async function (req, res, next) {
     }
 });
 
+router.get('/search/:keyword', async function (req, res, next) {
+    try {
+        res.json(await examService.search(req.params.keyword));
+    } catch (err) {
+        console.error(`Error while searching exam `, err.message);
+        next(err);
+    }
+});
+
+
+
 module.exports = router;

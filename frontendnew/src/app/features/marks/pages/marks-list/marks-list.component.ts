@@ -83,13 +83,7 @@ export class MarksListComponent implements OnInit {
     }
   }
 
-  loadSubjects() {
-    this.httpSubject.getAll().subscribe(subjects => {
-      subjects.forEach(subject => {
-        this.subjectMap.set(subject.id, subject);
-      });
-    });
-  }
+
 
   loadMarks() {
     this.httpMarks.getByPage(this.currentPage).subscribe(
@@ -129,6 +123,15 @@ export class MarksListComponent implements OnInit {
         });
       }
     )
+  }
+
+  loadSubjects() {
+    this.httpSubject.getAll().subscribe(
+      subjects => {
+        subjects.forEach(subject => {
+          this.subjectMap.set(subject.id, subject);
+        });
+      });
   }
 
   loadExamPeriodMap() {

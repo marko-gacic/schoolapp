@@ -1,5 +1,10 @@
 const db = require('../db/db');
 
+/**
+ * If the user exists and the password is correct, return the user, otherwise return undefined.
+ * @param user - {
+ * @returns The user object with the password property set to an empty string.
+ */
 async function login(user) {
     const rows = await db.query('SELECT * FROM user WHERE userName = ?', [user.username]);
     if (rows && rows.length > 0 && rows[0].password == user.password) {

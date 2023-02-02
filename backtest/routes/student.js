@@ -20,7 +20,7 @@ router.get('/page', async function (req, res, next) {
         const orderBy = req.query.orderBy ? req.query.orderBy : 'id';
         const order = req.query.order ? req.query.order : 'asc';
 
-        console.log('page',req.query.page,page,size,orderBy,order);
+        console.log('page', req.query.page, page, size, orderBy, order);
         res.json(await studentService.getByPage(page, size, orderBy, order));
     } catch (err) {
         console.error(`Error while getting students `, err.message);
@@ -63,6 +63,9 @@ router.delete('/:id', async function (req, res, next) {
         next(err);
     }
 });
- 
+
+
+
+
 
 module.exports = router;

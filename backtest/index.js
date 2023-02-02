@@ -18,6 +18,7 @@ var marksRouter = require('./routes/marks');
 
 
 
+
 var app = express();
 app.use(express.json());
 app.use(cors({
@@ -38,6 +39,8 @@ app.use('/register', userRouter);
 app.use('/login', userRouter);
 app.use('/literature', literatureRouter);
 app.use('/marks', marksRouter);
+app.use('/resetPassword', userRouter);
+app.use('/changePassword', userRouter);
 
 
 app.use((err, req, res, next) => {

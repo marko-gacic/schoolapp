@@ -130,11 +130,45 @@ async function remove(id) {
     return { message };
 }
 
+// get subject student with highest mark for each subject
+async function getHighestMark() {
+    const query = `select marks.*,
+    student.firstName  studentName,
+    exam.id  examName,
+    professor.firstName  professorName,
+    examperiod.periodName  examperiodName,
+    subject.name  subjectName
+    from marks
+    left join student on marks.student = student.id
+    left join exam on marks.exam = exam.id
+    left join professor on marks.professor = professor.id
+    left join examperiod on marks.examperiod = examperiod.id
+    left join subject on marks.subject = subject.id
+    where marks.mark = (select max(marks.mark) from marks where marks.subject = subject.id)`;
+    console.log(query);
+    try {
+        const result = await runQuery(query);
+        return result;
+    } catch (error) {
+        console.error(error);
+        return error;
+    }
+}
+
+
+
+
+
+
+
+
+
 module.exports = {
     getAll,
     getByPage,
     get,
     create,
     update,
-    remove
+    remove,
+    getHighestMark
 }

@@ -1,51 +1,62 @@
-<html>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form [formGroup]="marksForm" (ngSubmit)="save()" *ngIf="marksForm">
 
-<head>
-    <title>Marks Form</title>
-</head>
+                <div class="d-flex flex-column">
+                    <label for="student">{{'Student' | translate}}</label>
+                    <select class="form-control" type="text" id="student" formControlName="student">
+                        <option *ngFor="let student of students$|async" [ngValue]="student.id">
+                            {{student.firstName}} {{student.lastName}}
+                        </option>
+                    </select>
+                </div>
 
-<body>
-    <div class="container">
-        <form [formGroup]="marksForm" (ngSubmit)="save()" *ngIf="marksForm">
-            <input type="hidden" formControlName="id">
-            <div class="form-group">
-                <label>Student</label>
-                <select formControlName="student" class="form-control">
-                    <option *ngFor="let student of students$ | async" [value]="student">{{student.firstName}} {{
-                        student.lastName }}</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Subject</label>
-                <select formControlName="subject" class="form-control">
-                    <option *ngFor="let subject of subjects$ | async" [value]="subject">{{subject.name}}</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Exam</label>
-                <select formControlName="exam" class="form-control">
-                    <option *ngFor="let exam of exams$ | async" [value]="exam">{{exam.id}}</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Professor</label>
-                <select formControlName="professor" class="form-control">
-                    <option *ngFor="let professor of professors$ | async" [value]="professor">
-                        {{professor.firstName}} {{professor.lastName}}
-                    </option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Mark</label>
-                <input type="number" formControlName="mark" class="form-control">
-            </div>
-            <div class="form-group">
-                <label>Date</label>
-                <input type="date" formControlName="date" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-primary">Save</button>
-        </form>
+                <div class="d-flex flex-column">
+                    <label for="subject">{{'Subject' | translate}}</label>
+                    <select class="form-control" type="text" id="subject" formControlName="subject">
+                        <option *ngFor="let sub of subjects$|async" [ngValue]="sub.id">
+                            {{sub.name}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="d-flex flex-column">
+                    <label for="professor">{{'Professor' | translate}}</label>
+                    <select class="form-control" type="text" id="professor" formControlName="professor">
+                        <option *ngFor="let prof of professors$|async" [ngValue]="prof.id">
+                            {{prof.firstName}} {{prof.lastName}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="d-flex flex-column">
+                    <label for="mark">{{'Mark' | translate}}</label>
+                    <input class="form-control" type="number" id="mark" formControlName="mark">
+                </div>
+
+                <div class="d-flex flex-column">
+                    <label for="date">{{'Date' | translate}}</label>
+                    <input class="form-control" type="date" id="date" formControlName="date">
+                </div>
+
+                <div class="d-flex flex-column">
+                    <label for="exam">{{'Exam' | translate}}</label>
+                    <select class="form-control" type="text" id="exam" formControlName="exam">
+                        <option *ngFor="let exam of exams$|async" [ngValue]="exam.id">
+                            {{exam.id}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="d-flex flex-row-reverse justify-content-around mt-3">
+                    <button type="submit" class="btn btn-outline-primary"
+                        [disabled]="!(marksForm.valid && marksForm.dirty)">{{'COMMON.SAVE' | translate}}</button>
+                    <button type="button" class="btn btn-outline-danger" [routerLink]="['/exam/exam-list']"
+                        queryParamsHandling="preserve">{{'COMMON.CANCEL' | translate}}</button>
+                </div>
+
+            </form>
+        </div>
     </div>
-</body>
-
-</html>
+</div>

@@ -98,8 +98,6 @@ transporter.sendMail(mailOptions, function (error, info) {
   }
 });
 
-
-
 router.post('/resetPassword', async function (req, res, next) {
   const { id, password } = req.body;
   const user = await userService.resetPassword(id, password);
