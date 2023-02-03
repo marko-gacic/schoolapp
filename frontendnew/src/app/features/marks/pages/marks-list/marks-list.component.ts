@@ -103,7 +103,12 @@ export class MarksListComponent implements OnInit {
         });
       }
     )
+
+
   }
+
+
+
 
   // loadExamMap() {
   //   this.httpExam.getAll().subscribe(
@@ -132,6 +137,8 @@ export class MarksListComponent implements OnInit {
           this.subjectMap.set(subject.id, subject);
         });
       });
+    console.log(this.subjectMap);
+
   }
 
   loadExamPeriodMap() {

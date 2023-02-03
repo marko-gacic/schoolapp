@@ -56,6 +56,7 @@ export interface Sub {
     noOfESP: number;
     yearOfStudy: number;
     semester: string;
+    professor: Professor;
 }
 
 export interface SubDTO {

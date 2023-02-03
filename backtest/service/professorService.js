@@ -21,6 +21,7 @@ async function getByPage(page, size, orderBy, order) {
     console.log(query);
     let data = await db.query(query);
     console.log('data', data);
+
     data = data.map(man => {
         const city = { ...man, city: { zip_code: man.city, name: man.cityName } };
         delete city.cityName;

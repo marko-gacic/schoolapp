@@ -28,20 +28,17 @@ export class TitleListComponent implements OnInit, OnDestroy {
 
     subscriptions = new Subscription();
 
-    //************************   Priimer za asynPipe */
     allTitles$?: Observable<Title[]>;
+
     constructor(private httpTitle: HttpTitleService,
         private toastService: ToastService,
         private modalService: NgbModal,
         private activeRoute: ActivatedRoute) { }
 
     ngOnInit(): void {
-        // this.httpTitle.getAll().subscribe(
-        //   (titles) => this.titles = titles
-        // );
-        /// ************  pimer za async pipe
+
         this.allTitles$ = this.httpTitle.getAll();
-        // *****************************************
+
         const page = Number(this.activeRoute.snapshot.queryParams['page']);
         if (page) { this.currentPage.page = page; }
 

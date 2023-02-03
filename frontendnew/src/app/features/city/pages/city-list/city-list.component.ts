@@ -28,20 +28,16 @@ export class CityListComponent implements OnInit, OnDestroy {
   subscriptions = new Subscription();
 
 
-  //************************   Priimer za asynPipe */
   allCities$?: Observable<City[]>;
+
   constructor(private httpCity: HttpCityService,
     private toastService: ToastService,
     private modalService: NgbModal,
     private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // this.httpCity.getAll().subscribe(
-    //   (cities) => this.cities = cities
-    // );
-    /// ************  pimer za async pipe
+
     this.allCities$ = this.httpCity.getAll();
-    // *****************************************
     const page = Number(this.activeRoute.snapshot.queryParams['page']);
     if (page) { this.currentPage.page = page; }
 
@@ -60,7 +56,6 @@ export class CityListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
-
 
   loadCitiesByPage() {
     const subscription = this.httpCity.getByPage(this.currentPage).subscribe(
@@ -89,7 +84,6 @@ export class CityListComponent implements OnInit, OnDestroy {
     this.currentPage = { page: 1, size: this.currentPage.size, orderBy: sortEvent.columnName, order: sortEvent.direction, totalItems: 0 };
     this.loadCitiesByPage();
   }
-
 
   onDeleteClick(cityToDelete: City) {
     const modalRef = this.modalService.open(ConfirmDialogComponent);
@@ -120,8 +114,6 @@ export class CityListComponent implements OnInit, OnDestroy {
     this.selectedCity = city;
     this.modalService.open(cityDetailsTemplate);
   }
-
-
 
   get tempContext() {
     return { number: 10 };

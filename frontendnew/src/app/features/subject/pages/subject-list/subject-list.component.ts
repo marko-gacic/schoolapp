@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, QueryList, TemplateRef, ViewChild } from "@angular/core";
 import { SortableHeaderDirective, SortEvent } from "src/app/shared/directives/sortable-header.directive";
-import { Sub } from "src/app/core/models";
+import { Professor, Sub } from "src/app/core/models";
 import { HttpSubjectService } from "src/app/core/services/http-subject.service";
 import { Page } from "src/app/core/models/dtos";
 import { ActivatedRoute } from "@angular/router";
@@ -12,6 +12,7 @@ import { ToastService } from "src/app/core/services/toast.service";
 import { MatTableDataSource } from '@angular/material/table';
 
 import { Sort } from "@angular/material/sort";
+import { HttpProfessorService } from "src/app/core/services/http-professor.service";
 
 
 
@@ -23,17 +24,24 @@ import { Sort } from "@angular/material/sort";
 export class SubjectListComponent implements OnInit {
     currentPage: Page = { page: 1, size: 5, orderBy: 'name', order: 'asc', totalItems: 10 };
     subject?: Sub[];
+    professors?: Professor[];
+
     availablePageSizes = [3, 5, 10, 15, 20, 25, 30, 50, 100];
     @ViewChild(SortableHeaderDirective)
     sortableHeaders?: QueryList<SortableHeaderDirective>;
+
     selectedSub?: Sub;
+    selectedProfessor?: Professor;
     subscriptions = new Subscription();
+
     allSub$?: Observable<Sub[]>;
+    allProf$?: Observable<Professor[]>;
     dataSource: any;
-    displayedColumns: string[] = ['id', 'name', 'description', 'noOfESP', 'yearOfStudy', 'semester', 'details', 'edit', 'delete'];
+    displayedColumns: string[] = ['id', 'name', 'professor', 'description', 'noOfESP', 'yearOfStudy', 'semester', 'details', 'edit', 'delete'];
     responseMessage: any;
     value: any;
     searchTerm: string = '';
+    professorMap: Map<number, Professor> = new Map();
 
 
 
@@ -45,6 +53,7 @@ export class SubjectListComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private modalService: NgbModal,
         private toastService: ToastService,
+        private httpProfessor: HttpProfessorService
 
 
     ) { }
@@ -53,6 +62,7 @@ export class SubjectListComponent implements OnInit {
         this.loadSubject();
         this.loadPageFromQueryParams();
         this.tableData();
+        this.loadProfessorMap();
     }
 
     loadPageFromQueryParams() {
@@ -70,6 +80,16 @@ export class SubjectListComponent implements OnInit {
 
     }
 
+    loadProfessorMap() {
+        this.httpProfessor.getAllProfessors().subscribe(
+            professors => {
+                professors.forEach(professor => {
+                    this.professorMap.set(professor.id, professor);
+                });
+            }
+        )
+    }
+
     loadSubject() {
         this.httpSubject.getByPage(this.currentPage).subscribe(
             subjectPage => {
@@ -79,6 +99,9 @@ export class SubjectListComponent implements OnInit {
             }
         )
     }
+
+
+
 
     onSort(sortEvent: SortEvent) {
         this.sortableHeaders?.forEach(

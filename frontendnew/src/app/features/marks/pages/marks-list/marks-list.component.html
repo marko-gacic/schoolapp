@@ -59,12 +59,12 @@
     <div class="modal-body">
         <h4>{{'Marks Details'}}</h4>
         <ul class="list-unstyled">
-            <li><strong>{{'ID'}}:</strong> {{selectedMark?.id}}</li>
-            <li><strong>{{'Mark'}}:</strong> {{selectedMark?.mark}}</li>
-            <li><strong>{{'Student'}}:</strong> {{selectedMark?.student?.firstName}} </li>
-            <li><strong>{{'Subject'}}:</strong> {{selectedMark?.subject?.id}}</li>
-            <li><strong>{{'Professor'}}:</strong> {{selectedMark?.professor?.firstName}} </li>
-            <li><strong>{{'Date'}}:</strong> {{selectedMark?.date | date : format}}</li>
+            <li>ID: {{ selectedMark?.id }}</li>
+            <li>Mark: {{ selectedMark?.mark }}</li>
+            <li>Student: {{ selectedMark?.student?.firstName}}</li>
+            <li>Subject: {{ selectedMark?.subject?.name }}</li>
+            <li>Professor: {{selectedMark?.professor?.firstName}}</li>
+            <li>Date: {{selectedMark?.date | date : format}}</li>
         </ul>
         <div class="mt-2 d-flex flex-row-reverse">
             <button (click)="modal.close('OK')">Ok</button>

@@ -20,6 +20,7 @@
       <th sortable="id" (sort)="onSort($event)">ID</th>
 
       <th sortable="name" (sort)="onSort($event)">{{'SUBJECT.NAME' | translate}}</th>
+      <th sortable="professor" (sort)="onSort($event)">{{'Professor' | translate}}</th>
       <th sortable="description" (sort)="onSort($event)">{{'SUBJECT.DESCRIPTION' |
         translate}}</th>
       <th sortable="noOfESP" (sort)="onSort($event)">{{'SUBJECT.NO_OF_ESP' |
@@ -35,6 +36,7 @@
     <tr *ngFor="let sub of subject; ">
       <td>{{ sub.id }}</td>
       <td>{{ sub.name }}</td>
+      <td>{{professorMap.get(sub.professor.id)?.firstName}} {{professorMap.get(sub.professor.id)?.lastName}}</td>
       <td>{{ sub.description }}</td>
       <td>{{ sub.noOfESP }}</td>
       <td>{{ sub.yearOfStudy }}</td>
@@ -68,6 +70,7 @@
     <ul class="list-unstyled">
       <li>ID: {{ selectedSub?.id }}</li>
       <li>Name: {{ selectedSub?.name }}</li>
+      <li>Professor: {{ selectedSub?.professor?.firstName }}</li>
       <li>Description: {{ selectedSub?.description }}</li>
       <li>NoOfESP: {{ selectedSub?.noOfESP }}</li>
       <li>YearOfStudy: {{ selectedSub?.yearOfStudy }}</li>

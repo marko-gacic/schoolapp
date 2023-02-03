@@ -45,6 +45,18 @@ const isLoggedIn = async (req, res, next) => {
 };
 
 
+//compare the password  entered by the user with the password stored in the database
+const comparePassword = async (password, hash) => {
+  try {
+    return await bcrypt.compare(password, hash);
+  } catch (error) {
+    throw new Error("Error comparing password");
+  }
+};
+
+
+
+
 
 
 

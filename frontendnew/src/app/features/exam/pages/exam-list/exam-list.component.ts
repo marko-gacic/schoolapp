@@ -80,6 +80,8 @@ export class ExamListComponent implements OnInit {
                 this.subjectMap.set(subject.id, subject);
             });
         });
+        console.log(this.subjectMap);
+
     }
 
     loadProfessors() {

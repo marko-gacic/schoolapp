@@ -17,8 +17,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
-
-
 router.get('/', async function (req, res, next) {
     try {
         res.json(await literatureService.getAll());
@@ -61,6 +59,7 @@ router.post('/', upload.single('pdf'), async function (req, res, next) {
     }
 });
 
+
 router.put('/:id', async function (req, res, next) {
     try {
         res.json(await literatureService.update(req.params.id, req.body));
@@ -78,5 +77,7 @@ router.delete('/:id', async function (req, res, next) {
         next(err);
     }
 });
+
+
 
 module.exports = router;
