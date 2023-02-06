@@ -1,5 +1,6 @@
 const express = require('express');
 const { isLoggedIn } = require('../auth/authMiddleware');
+const { db } = require('../config');
 const router = express.Router();
 router.use(isLoggedIn);
 const markService = require('../service/marksService');
@@ -43,8 +44,16 @@ router.get('/:id', async function (req, res, next) {
 });
 
 router.post('/', async function (req, res, next) {
+    const { mark, date, student, exam, professor, examperiod } = req.body;
+    const subject = db.getSubjectIdExamId(exam);
+    if (!db.doesProfessorTeachSubject(professor, subject)) {
+        res.send("Professor does not teach this subject");
+        return;
+    }
+
+    const newMark = { mark, date, student, exam, professor, examperiod };
     try {
-        res.json(await markService.create(req.body));
+        res.json(await markService.create(newMark));
     } catch (err) {
         console.error(`Error while creating mark `, err.message);
         next(err);

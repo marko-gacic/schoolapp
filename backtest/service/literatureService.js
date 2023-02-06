@@ -44,6 +44,9 @@ async function get(id) {
     }
     let err = `Invalid id ${id}`;
     return { err };
+
+
+
 }
 
 async function create(literature) {
@@ -67,11 +70,24 @@ async function remove(id) {
     return id;
 }
 
+async function downloadPdf(id) {
+    const data = await get(id);
+    if (!data.err) {
+        const fileName = data.fileName;
+        const pdfData = data.pdf;
+        const blob = new Blob([pdfData], { type: '/pdf' });
+        saveAs(blob, fileName);
+    } else {
+        console.error(data.err);
+    }
+}
+
 module.exports = {
     getAll,
     getByPage,
     get,
     create,
     update,
-    remove
+    remove,
+    downloadPdf
 }

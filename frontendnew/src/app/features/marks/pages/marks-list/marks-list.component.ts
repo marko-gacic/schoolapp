@@ -1,3 +1,5 @@
+
+
 import { Component, OnInit, QueryList, TemplateRef, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -40,6 +42,7 @@ export class MarksListComponent implements OnInit {
   searchTerm: string = '';
 
 
+
   constructor(
     private httpSubject: HttpSubjectService,
     private httpStudent: HttpStudentService,
@@ -59,31 +62,21 @@ export class MarksListComponent implements OnInit {
     this.loadMarks();
     this.loadSubjects();
     this.loadStudentMap();
-    // this.loadExamMap();
+    this.loadExamMap();
     this.loadPageFromQueryParams();
     this.loadProfessorMap();
 
   }
   loadPageFromQueryParams() {
-    const page = Number(this.activatedRoute.snapshot.queryParamMap.get('page'));
-    if (page) {
-      this.currentPage.page = page;
-    }
-    const size = Number(this.activatedRoute.snapshot.queryParamMap.get('size'));
-    if (size) {
-      this.currentPage.size = size;
-    }
-    const orderBy = this.activatedRoute.snapshot.queryParamMap.get('orderBy');
-    if (orderBy) {
-      this.currentPage.orderBy = orderBy;
-    }
-    const order = this.activatedRoute.snapshot.queryParamMap.get('order');
-    if (order) {
-      this.currentPage.order = order;
-    }
+    const queryParams = this.activatedRoute.snapshot.queryParamMap;
+    const page = Number(queryParams.get('page'));
+    const size = Number(queryParams.get('size'));
+    const orderBy = queryParams.get('orderBy');
+    const order = queryParams.get('order');
+    this.currentPage = {
+      page: page || 1, size: size || 3, orderBy: orderBy || 'id', order: order || 'asc', totalItems: 10
+    };
   }
-
-
 
   loadMarks() {
     this.httpMarks.getByPage(this.currentPage).subscribe(
@@ -104,21 +97,17 @@ export class MarksListComponent implements OnInit {
       }
     )
 
-
   }
 
-
-
-
-  // loadExamMap() {
-  //   this.httpExam.getAll().subscribe(
-  //     exams => {
-  //       exams.forEach(exam => {
-  //         this.examMap.set(exam.id, exam);
-  //       });
-  //     }
-  //   )
-  // }
+  loadExamMap() {
+    this.httpExam.getAll().subscribe(
+      exams => {
+        exams.forEach(exam => {
+          this.examMap.set(exam.id, exam);
+        });
+      }
+    )
+  }
 
   loadProfessorMap() {
     this.httpProfessor.getAllProfessors().subscribe(
@@ -215,8 +204,4 @@ export class MarksListComponent implements OnInit {
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
-
-
-
-
 }

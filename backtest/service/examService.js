@@ -92,12 +92,22 @@ async function remove(id) {
 
 }
 
+async function getSubjectIdExamId(id) {
+    const data = await db.query(`SELECT subject FROM exam WHERE id = ${id}`);
+    if (data && data.length > 0) {
+        return data[0];
+    }
+    let err = `Invalid id ${id}`;
+    return { err };
+}
+
 module.exports = {
     getAll,
     getByPage,
     get,
     create,
     update,
-    remove
+    remove,
+    getSubjectIdExamId
 
 }

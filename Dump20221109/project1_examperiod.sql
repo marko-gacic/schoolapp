@@ -42,7 +42,7 @@ CREATE TABLE `examperiod` (
 
 LOCK TABLES `examperiod` WRITE;
 /*!40000 ALTER TABLE `examperiod` DISABLE KEYS */;
-INSERT INTO `examperiod` VALUES (14,'Marko222','2023-01-12','2023-01-11','0'),(15,'Marko222dfs','2023-02-15','2023-02-06','0'),(16,'asdasd','2023-02-10','2023-02-08','0'),(17,'Srpski','2022-12-23','2022-12-22','0'),(18,'Danas','2022-12-29','2022-12-28','0'),(19,'Test2','2022-12-14','2022-12-12','0'),(20,'Test222','2022-12-16','2022-12-15','0'),(22,'Stojan','2022-12-26','2022-12-25','0'),(24,'admin@gmail.com','2022-12-30','2022-12-29','0');
+INSERT INTO `examperiod` VALUES (15,'Marko222dfs','2023-02-15','2023-02-06','0'),(16,'asdasd','2023-02-10','2023-02-08','0'),(17,'Srpski','2022-12-23','2022-12-22','0'),(18,'Danas','2022-12-29','2022-12-28','0'),(19,'Test2','2022-12-14','2022-12-12','0'),(20,'Test222','2022-12-16','2022-12-15','0'),(22,'Stojan','2022-12-26','2022-12-25','0'),(24,'admin@gmail.com','2022-12-30','2022-12-29','0');
 /*!40000 ALTER TABLE `examperiod` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-23 15:18:15
+-- Dump completed on 2023-02-06 16:09:14

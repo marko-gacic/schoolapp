@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -8,24 +9,19 @@ import { Page, PageResponse } from '../models/dtos';
 @Injectable({
     providedIn: 'root'
 })
-
 export class HttpExamPeriodService {
-
-
     endpointPrefix = 'examperiod';
 
     constructor(private httpClient: HttpClient) { }
 
-    getByPage(page: Page) {
-
+    getByPage(page: Page): Observable<PageResponse<ExamPeriod>> {
         const params = new HttpParams()
-            .set('page', page.page)
-            .set('size', page.size)
+            .set('page', page.page.toString())
+            .set('size', page.size.toString())
             .set('orderBy', page.orderBy)
             .set('order', page.order);
 
         return this.httpClient.get<PageResponse<ExamPeriod>>(`${this.endpointBasePath}/page`, { params });
-
     }
 
     getAll(): Observable<ExamPeriod[]> {
@@ -36,18 +32,19 @@ export class HttpExamPeriodService {
         return this.httpClient.get<ExamPeriod>(`${this.endpointBasePath}/${id}`);
     }
 
-    post(examPeriod: ExamPeriod): Observable<Response> {
-        return this.httpClient.post<Response>(`${this.endpointBasePath}`, examPeriod);
+    post(examPeriod: ExamPeriod): Observable<any> {
+        return this.httpClient.post<any>(`${this.endpointBasePath}`, examPeriod);
     }
 
-    put(examPeriod: ExamPeriod): Observable<Response> {
-        return this.httpClient.put<Response>(`${this.endpointBasePath}/${examPeriod.id}`, examPeriod);
+    put(examPeriod: ExamPeriod): Observable<any> {
+        return this.httpClient.put<any>(`${this.endpointBasePath}/${examPeriod.id}`, examPeriod);
     }
 
-    delete(id: number): Observable<Response> {
-        return this.httpClient.delete<Response>(`${this.endpointBasePath}/${id}`);
+    delete(id: number): Observable<any> {
+        return this.httpClient.delete<any>(`${this.endpointBasePath}/${id}`);
     }
-    get endpointBasePath() {
+
+    get endpointBasePath(): string {
         return `${environment.serverUrl}/${this.endpointPrefix}`;
     }
 }

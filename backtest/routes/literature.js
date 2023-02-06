@@ -8,7 +8,7 @@ const literatureService = require('../service/literatureService');
 const multer = require('multer');
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, '../pdf');
+        cb(null, 'public/pdf');
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname);
@@ -74,6 +74,19 @@ router.delete('/:id', async function (req, res, next) {
         res.json(await literatureService.delete(req.params.id));
     } catch (err) {
         console.error(`Error while deleting literature `, err.message);
+        next(err);
+    }
+});
+
+router.get('/:id', async function (req, res, next) {
+    try {
+        const literature = await literatureService.get(req.params.id);
+        const file = Buffer.from(literature.pdf, 'binary');
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=' + literature.fileName);
+        res.send(file);
+    } catch (err) {
+        console.error(`Error while downloading literature `, err.message);
         next(err);
     }
 });

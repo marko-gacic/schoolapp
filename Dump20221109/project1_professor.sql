@@ -39,7 +39,7 @@ CREATE TABLE `professor` (
   KEY `fk_professor_title21_idx` (`title`),
   CONSTRAINT `fk_professor_city1` FOREIGN KEY (`city`) REFERENCES `city` (`zip_code`),
   CONSTRAINT `fk_professor_title21` FOREIGN KEY (`title`) REFERENCES `title` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,7 +48,7 @@ CREATE TABLE `professor` (
 
 LOCK TABLES `professor` WRITE;
 /*!40000 ALTER TABLE `professor` DISABLE KEYS */;
-INSERT INTO `professor` VALUES (1,'Jelena','Babic','jelena@gmail.com','None',324234234,'1992-02-01',11000,1),(2,'Nikola','Petrovic','nik.petrovic@gmail.com','NN',222222,'1992-01-25',11000,2),(3,'Jovana ','Babic','babic.j@gmail.com','NN',333333,'1995-04-20',11000,3),(4,'Dejan','Radulov','deki@gmail.com','None',213543435,'2020-06-23',21000,3),(11,'Stojan','Vujosevic','stojke111@gmail.com','test',21312312,'2022-10-30',11000,2),(13,'Marko','Gacic','test1111@gmail.com','None',213123123,'1992-02-01',18220,1),(19,'Petar','Stanisic','petar.s@gmail.com','none',65777888,'2022-12-26',18220,5);
+INSERT INTO `professor` VALUES (1,'Jelena','Babic','jelena@gmail.com','None',324234234,'1992-02-01',11000,1),(2,'Nikola','Petrovic','nik.petrovic@gmail.com','NN',222222,'1992-01-25',11000,2),(3,'Jovana ','Babic','babic.j@gmail.com','NN',333333,'1995-04-20',11000,3),(4,'Dejan','Radulov','deki@gmail.com','None',213543435,'2020-06-23',21000,3),(11,'Stojan','Vujosevic','stojke111@gmail.com','test',21312312,'2022-10-30',11000,2),(13,'Marko','Gacic','test1111@gmail.com','None',213123123,'1992-02-01',18220,1),(19,'Petar','Stanisic','petar.s@gmail.com','none',65777888,'2022-12-26',18220,5),(20,'Nikola','Markovic','nikola.markovic@gmail.com','Beograd',123456789,'2023-02-13',11000,3);
 /*!40000 ALTER TABLE `professor` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -61,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-23 15:18:15
+-- Dump completed on 2023-02-06 16:09:13

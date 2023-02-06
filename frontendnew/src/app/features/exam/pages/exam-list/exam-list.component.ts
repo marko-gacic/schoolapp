@@ -25,10 +25,13 @@ export class ExamListComponent implements OnInit {
     subjectMap: Map<number, Sub> = new Map();
     professorMap: Map<number, Professor> = new Map();
     examPeriodMap: Map<number, ExamPeriod> = new Map();
+
     currentPage: Page = { page: 1, size: 5, orderBy: 'date', order: 'asc', totalItems: 10 };
     exams?: Exam[];
     availablePageSizes = [3, 5, 10, 15, 20, 25, 30, 50, 100];
+
     @ViewChildren(SortableHeaderDirective)
+
     sortableHeaders?: QueryList<SortableHeaderDirective>;
     format: string = 'dd/MM/yyyy';
     subscriptions = new Subscription();
@@ -56,22 +59,14 @@ export class ExamListComponent implements OnInit {
     }
 
     loadPageFromQueryParams() {
-        const page = Number(this.activatedRoute.snapshot.queryParamMap.get('page'));
-        if (page) {
-            this.currentPage.page = page;
-        }
-        const size = Number(this.activatedRoute.snapshot.queryParamMap.get('size'));
-        if (size) {
-            this.currentPage.size = size;
-        }
-        const orderBy = this.activatedRoute.snapshot.queryParamMap.get('orderBy');
-        if (orderBy) {
-            this.currentPage.orderBy = orderBy;
-        }
-        const order = this.activatedRoute.snapshot.queryParamMap.get('order');
-        if (order) {
-            this.currentPage.order = order;
-        }
+        const queryParams = this.activatedRoute.snapshot.queryParamMap;
+        const page = Number(queryParams.get('page'));
+        const size = Number(queryParams.get('size'));
+        const orderBy = queryParams.get('orderBy');
+        const order = queryParams.get('order');
+        this.currentPage = {
+            page: page || 1, size: size || 3, orderBy: orderBy || 'id', order: order || 'asc', totalItems: 10
+        };
     }
 
     loadSubjects() {
@@ -80,8 +75,6 @@ export class ExamListComponent implements OnInit {
                 this.subjectMap.set(subject.id, subject);
             });
         });
-        console.log(this.subjectMap);
-
     }
 
     loadProfessors() {
@@ -101,7 +94,6 @@ export class ExamListComponent implements OnInit {
     }
 
     loadExams() {
-
         this.httpExam.getByPage(this.currentPage).subscribe(
             examPage => {
                 this.exams = examPage.content;
@@ -113,7 +105,6 @@ export class ExamListComponent implements OnInit {
 
     onSort(sortEvent: SortEvent) {
         console.log(sortEvent, 'sortEvent');
-
         this.sortableHeaders?.forEach(
             sortableHeader => {
                 if (sortableHeader.sortable !== sortEvent.columnName) {

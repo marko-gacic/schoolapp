@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { Observable, Subscription, take } from "rxjs";
 import { Exam, ExamPeriod, Professor, Sub, } from "src/app/core/models";
 import { HttpExamService } from "src/app/core/services/http-exam.service";
@@ -74,27 +73,20 @@ export class ExamFormComponent implements OnInit {
 
     saveExam() {
         const exam = this.examForm?.getRawValue();
-        if (!exam.id) {
-            return this.httpExam.post(exam)
-        } else {
-            return this.httpExam.put(exam);
-        }
+        return !exam.id ? this.httpExam.post(exam) : this.httpExam.put(exam);
     }
 
     onSave() {
-        this.saveExam().pipe(take(1)).subscribe((message: any) => {
+        this.saveExam().subscribe(message => {
             this.toastService.showToast({
                 message: 'message',
                 header: 'Exam',
                 classNames: 'bg-success',
             });
-            this.router.navigate(['./exam/exam-list'], {
-                queryParamsHandling: 'preserve'
-            });
-
+            this.router.navigate(['../'], { relativeTo: this.activatedRoute });
         });
-
     }
+
 }
 
 

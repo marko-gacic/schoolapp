@@ -22,7 +22,7 @@ import { HttpProfessorService } from "src/app/core/services/http-professor.servi
     styleUrls: ['./subject-list.component.css']
 })
 export class SubjectListComponent implements OnInit {
-    currentPage: Page = { page: 1, size: 5, orderBy: 'name', order: 'asc', totalItems: 10 };
+    currentPage: Page = { page: 1, size: 3, orderBy: 'name', order: 'asc', totalItems: 10 };
     subject?: Sub[];
     professors?: Professor[];
 
@@ -43,19 +43,12 @@ export class SubjectListComponent implements OnInit {
     searchTerm: string = '';
     professorMap: Map<number, Professor> = new Map();
 
-
-
-
-
-
     constructor(
         private httpSubject: HttpSubjectService,
         private activatedRoute: ActivatedRoute,
         private modalService: NgbModal,
         private toastService: ToastService,
         private httpProfessor: HttpProfessorService
-
-
     ) { }
 
     ngOnInit(): void {
@@ -66,18 +59,14 @@ export class SubjectListComponent implements OnInit {
     }
 
     loadPageFromQueryParams() {
-        const page = Number(this.activatedRoute.snapshot.queryParams['page']);
-        if (page) { this.currentPage.page = page; }
-
-        const size = Number(this.activatedRoute.snapshot.queryParams['size']);
-        if (size) { this.currentPage.size = size; }
-
-        const orderBy = this.activatedRoute.snapshot.queryParams['orderBy'];
-        if (orderBy) { this.currentPage.orderBy = orderBy; }
-
-        const order = this.activatedRoute.snapshot.queryParams['order'];
-        if (order) { this.currentPage.order = order; }
-
+        const queryParams = this.activatedRoute.snapshot.queryParamMap;
+        const page = Number(queryParams.get('page'));
+        const size = Number(queryParams.get('size'));
+        const orderBy = queryParams.get('orderBy');
+        const order = queryParams.get('order');
+        this.currentPage = {
+            page: page || 1, size: size || 3, orderBy: orderBy || 'id', order: order || 'asc', totalItems: 10
+        };
     }
 
     loadProfessorMap() {
@@ -100,9 +89,6 @@ export class SubjectListComponent implements OnInit {
         )
     }
 
-
-
-
     onSort(sortEvent: SortEvent) {
         this.sortableHeaders?.forEach(
             sortableHeader => {
@@ -124,8 +110,6 @@ export class SubjectListComponent implements OnInit {
         );
     }
 
-
-
     tableData() {
         this.httpSubject.getSubject().subscribe(
             (response) => {
@@ -146,8 +130,6 @@ export class SubjectListComponent implements OnInit {
             return subject.name.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
         })
     }
-
-
 
     deleteSubject(subToDelete: Sub) {
         const subscription = this.httpSubject.delete(subToDelete.id).subscribe(

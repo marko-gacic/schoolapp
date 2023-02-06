@@ -79,6 +79,14 @@ async function remove(id) {
     return { err };
 }
 
+async function doesProfessorTeachSubject(professor, subject) {
+    const data = await db.query(`SELECT * FROM subject WHERE professor = ${professor} AND id = ${subject}`);
+    if (data && data.length > 0) {
+        return true;
+    }
+    return false;
+}
+
 module.exports = {
     getAll,
     getByPage,
@@ -86,4 +94,5 @@ module.exports = {
     create,
     update,
     remove,
+    doesProfessorTeachSubject
 };

@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { City } from '../models';
@@ -10,13 +10,13 @@ import { Page, PageResponse } from '../models/dtos';
 export class HttpCityService {
 
     endpointPrefix = 'city';
+    endpointBase = `${environment.serverUrl}/${this.endpointPrefix}`;
 
     constructor(private httpClient: HttpClient) { }
 
     getAll() {
-        return this.httpClient.get<City[]>(`${this.endpointBasePath}`); //, { headers});
+        return this.httpClient.get<City[]>(this.endpointBase);
     }
-
 
     getByPage(page: Page) {
 
@@ -26,27 +26,24 @@ export class HttpCityService {
             .set('orderBy', page.orderBy)
             .set('order', page.order);
 
-        return this.httpClient.get<PageResponse<City>>(`${this.endpointBasePath}/page`, { params });
+        return this.httpClient.get<PageResponse<City>>(`${this.endpointBase}/page`, { params });
 
     }
 
     deleteCity(zipCode: number) {
-        return this.httpClient.delete<any>(`${this.endpointBasePath}/${zipCode}`);
+        return this.httpClient.delete<any>(`${this.endpointBase}/${zipCode}`);
     }
 
     getCity(zipCode: number) {
-        return this.httpClient.get<City>(`${this.endpointBasePath}/${zipCode}`);
+        return this.httpClient.get<City>(`${this.endpointBase}/${zipCode}`);
     }
 
     insertCity(city: City) {
-        return this.httpClient.post<any>(`${this.endpointBasePath}`, city);
+        return this.httpClient.post<any>(this.endpointBase, city);
     }
 
     updateCity(oldZipCode: number, city: City) {
-        return this.httpClient.put<any>(`${this.endpointBasePath}/${oldZipCode}`, city);
+        return this.httpClient.put<any>(`${this.endpointBase}/${oldZipCode}`, city);
     }
 
-    get endpointBasePath() {
-        return `${environment.serverUrl}/${this.endpointPrefix}`;
-    }
 }

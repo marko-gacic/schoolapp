@@ -9,27 +9,25 @@ import { Page, PageResponse } from "../models/dtos";
     providedIn: "root"
 })
 export class HttpLiteratureService {
-    downloadPdf() {
-        return this.httpClient.get(`${this.endpointBasePath}/pdf`, { responseType: "blob" });
-    }
-
     endpointPrefix = "literature";
 
     constructor(private httpClient: HttpClient) { }
 
-    getByPage(page: Page) {
+    downloadPdf() {
+        return this.httpClient.get(`${this.endpointBasePath}/pdf`, { responseType: "blob" });
+    }
 
+    getByPage(page: Page) {
         const params = new HttpParams()
-            .set("page", page.page)
-            .set("size", page.size)
+            .set("page", page.page.toString())
+            .set("size", page.size.toString())
             .set("orderBy", page.orderBy)
             .set("order", page.order);
 
         return this.httpClient.get<PageResponse<Literature>>(`${this.endpointBasePath}/page`, { params });
-
     }
 
-    getLiterature(id: number) {
+    getLiterature(id: number): Observable<Literature> {
         return this.httpClient.get<Literature>(`${this.endpointBasePath}/${id}`);
     }
 
@@ -41,11 +39,11 @@ export class HttpLiteratureService {
         return this.httpClient.put<Response>(`${this.endpointBasePath}/${literature.id}`, literature);
     }
 
-    deleteLiterature(id: number) {
+    deleteLiterature(id: number): Observable<Response> {
         return this.httpClient.delete<Response>(`${this.endpointBasePath}/${id}`);
     }
 
-    getAllLiteratures() {
+    getAllLiteratures(): Observable<Literature[]> {
         return this.httpClient.get<Literature[]>(`${this.endpointBasePath}`);
     }
 
