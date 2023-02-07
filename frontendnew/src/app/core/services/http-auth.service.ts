@@ -30,11 +30,8 @@ export class HttpAuthService {
     return this.httpClient.post('http://localhost:3000/forgot-password', { email });
   }
 
-
   changePassword(userChangePassword: { username: string, password: string, newPassword: string }) {
-
-
-
+    return this.httpClient.post('http://localhost:3000/change-password', userChangePassword);
   }
 
   get token() {
@@ -44,10 +41,5 @@ export class HttpAuthService {
   get isAuthenticated() {
     return !!this.token;
   }
-
-
-
-
-
 
 }

@@ -46,7 +46,6 @@ async function get(id) {
     return { err };
 
 
-
 }
 
 async function create(literature) {
@@ -75,7 +74,7 @@ async function downloadPdf(id) {
     if (!data.err) {
         const fileName = data.fileName;
         const pdfData = data.pdf;
-        const blob = new Blob([pdfData], { type: '/pdf' });
+        const blob = new Blob([pdfData], { type: 'pdf' });
         saveAs(blob, fileName);
     } else {
         console.error(data.err);

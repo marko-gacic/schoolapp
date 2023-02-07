@@ -62,8 +62,6 @@ export class UserAuthDataService {
         this._loggedUser = undefined;
     }
 
-
-
     get endpointBasePath() {
         return `${environment.serverUrl}/${this.endpointPrefix}`;
     }

@@ -27,7 +27,6 @@ export class HttpMarksService {
 
         return this.httpClient.get<PageResponse<Marks>>(`${this.endpointBasePath}/page`, { params });
 
-
     }
 
     getMarks(id: number) {

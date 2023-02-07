@@ -25,7 +25,6 @@ router.get('/page', async function (req, res, next) {
         const size = req.query.size ? parseInt(req.query.size) : 5;
         const orderBy = req.query.orderBy ? req.query.orderBy : 'id';
         const order = req.query.order ? req.query.order : 'ASC';
-
         console.log('page', req.query.page, page, size, orderBy, order);
         res.json(await markService.getByPage(page, size, orderBy, order));
     } catch (err) {

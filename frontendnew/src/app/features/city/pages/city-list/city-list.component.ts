@@ -98,11 +98,11 @@ export class CityListComponent implements OnInit, OnDestroy {
     const subscription = this.httpCity.deleteCity(cityToDelete.zip_code).subscribe(
       {
         next: (response) => {
-          this.toastService.showToast({ header: 'Deliting city', message: 'City deleted', delay: 2000, classNames: 'bg-success' });
+          this.toastService.showToast({ header: 'Deleting city', message: 'City deleted', delay: 2000, classNames: 'bg-success' });
           this.loadCitiesByPage();
         },
         error: error => {
-          this.toastService.showToast({ header: 'Deliting city', message: 'City was not deleted', delay: 2000, classNames: 'bg-danger' })
+          this.toastService.showToast({ header: 'Deleting city', message: 'City was not deleted', delay: 2000, classNames: 'bg-danger' })
         }
       }
     );

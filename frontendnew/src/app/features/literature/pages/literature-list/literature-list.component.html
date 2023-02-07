@@ -26,9 +26,8 @@
             <td>{{professorMap.get(literature.professor.id)?.firstName}}
                 {{professorMap.get(literature.professor.id)?.lastName}}
             <td>
-                <button type="submit" class="btn btn-outline-primary" (click)="downloadPdf()">Download PDF</button>
-
-
+                <button type="submit" class="btn btn-outline-primary" (click)="downloadPdf('fileName')">Download
+                    PDF</button>
             </td>
         </tr>
 

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -36,7 +37,8 @@ export class LiteratureListComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private modalService: NgbModal,
     private toastService: ToastService,
-    private httpLiterature: HttpLiteratureService
+    private httpLiterature: HttpLiteratureService,
+    private http: HttpClient
   ) { }
 
   ngOnInit(): void {
@@ -101,9 +103,6 @@ export class LiteratureListComponent implements OnInit {
     this.modalService.open(content, { centered: true });
   }
 
-
-
-
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
@@ -112,18 +111,17 @@ export class LiteratureListComponent implements OnInit {
     return { number: 10 }
   }
 
-  downloadPdf(): void {
-    this.httpLiterature.downloadPdf().subscribe(
-      (response: BlobPart) => {
-        const blob = new Blob([response], { type: 'pdf' });
-        const url = window.URL.createObjectURL(blob);
-        window.open(url);
+  downloadPdf(fileName: string) {
+    this.http.get(`/literature/${fileName}`, {
+      responseType: 'blob'
+    }).subscribe(
+      data => {
+        const blob = new Blob([data], { type: 'public/pdf' });
+        const fileURL = URL.createObjectURL(blob);
+        window.open(fileURL);
       }
-    )
+    );
   }
-
-
-
 
 
 }

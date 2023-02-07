@@ -1,15 +1,11 @@
 <h2>{{'Exam' }}</h2>
-
 <hr>
-
 <div class="m-2">
     <button type="button" class="btn btn-outline-primary" [routerLink]="['/exam/exam-form']">
         <bi name="plus"></bi>{{'Add Exam'}}
     </button>
 </div>
-
 <hr>
-
 <table class="table table-straped">
     <thead>
         <tr>
@@ -44,7 +40,6 @@
         </tr>
     </tbody>
 </table>
-
 <hr>
 <div class="d-flex justify-content-center">
     <ngb-pagination [collectionSize]="currentPage.totalItems" [pageSize]="currentPage.size" [(page)]="currentPage.page"
@@ -60,7 +55,6 @@
             <li>{{'Professor'}}: {{selectedExam?.professor?.firstName}}</li>
             <li>{{'Exam Period'}}: {{selectedExam?.examPeriod?.periodName}}</li>
             <li>{{'Date'}}: {{selectedExam?.date | date:'shortDate'}}</li>
-
         </ul>
         <div class="mt-2 d-flex flex-row-reverse">
             <button (click)="modal.close('OK')">Ok</button>

@@ -14,7 +14,7 @@ export class HttpLiteratureService {
     constructor(private httpClient: HttpClient) { }
 
     downloadPdf() {
-        return this.httpClient.get(`${this.endpointBasePath}/pdf`, { responseType: "blob" });
+        return this.httpClient.get(`${this.endpointBasePath}`, { responseType: "blob" });
     }
 
     getByPage(page: Page) {

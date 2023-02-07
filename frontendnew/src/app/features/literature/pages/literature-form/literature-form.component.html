@@ -29,8 +29,8 @@
                 </div>
 
                 <div class="inputBox">
-                    <label for="pdf">{{'PDF' | translate}}</label>
-                    <input class="form-control" type="file" (change)="onFileSelected($event)" id="pdf" required>
+                    <label for="fileName">{{'PDF' | translate}}</label>
+                    <input class="form-control" type="file" (change)="onFileSelected($event)" id="fileName" required>
                     <div *ngIf="literatureForm?.get('fileName')?.value">
                         <a [href]="literatureForm.get('fileName')?.value" target="_blank">View current PDF</a>
                     </div>

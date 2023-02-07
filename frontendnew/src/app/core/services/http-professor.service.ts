@@ -49,9 +49,6 @@ export class HttpProfessorService {
         return this.httpClient.get<Professor[]>(`${this.endpointBasePath}`);
     }
 
-
-
-
     get endpointBasePath() {
         return `${environment.serverUrl}/${this.endpointPrefix}`;
     }

@@ -3,19 +3,28 @@ const { isLoggedIn } = require('../auth/authMiddleware');
 const router = express.Router();
 router.use(isLoggedIn);
 const literatureService = require('../service/literatureService');
-
-
 const multer = require('multer');
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'public/pdf');
+        cb(null, '../public');
     },
     filename: function (req, file, cb) {
-        cb(null, file.originalname);
+        cb(null, Date.now() + '-' + file.originalname);
     }
 });
-const upload = multer({ storage: storage });
 
+const fileFilter = (req, file, cb) => {
+    if (file.mimetype === '../public') {
+        cb(null, true);
+    } else {
+        cb(null, false);
+    }
+};
+
+const upload = multer({
+    storage: storage
+});
 
 router.get('/', async function (req, res, next) {
     try {
@@ -32,7 +41,6 @@ router.get('/page', async function (req, res, next) {
         const size = req.query.size ? parseInt(req.query.size) : 5;
         const orderBy = req.query.orderBy ? req.query.orderBy : 'id';
         const order = req.query.order ? req.query.order : 'ASC';
-
         console.log('page', req.query.page, page, size, orderBy, order);
         res.json(await literatureService.getByPage(page, size, orderBy, order));
     } catch (err) {
@@ -50,7 +58,7 @@ router.get('/:id', async function (req, res, next) {
     }
 });
 
-router.post('/', upload.single('pdf'), async function (req, res, next) {
+router.post('/', upload.single('file'), async function (req, res, next) {
     try {
         res.json(await literatureService.create(req.body));
     } catch (err) {
@@ -60,9 +68,10 @@ router.post('/', upload.single('pdf'), async function (req, res, next) {
 });
 
 
+
 router.put('/:id', async function (req, res, next) {
     try {
-        res.json(await literatureService.update(req.params.id, req.body));
+        res.json(await literatureService.update(req.params.id));
     } catch (err) {
         console.error(`Error while updating literature `, err.message);
         next(err);
@@ -74,19 +83,6 @@ router.delete('/:id', async function (req, res, next) {
         res.json(await literatureService.delete(req.params.id));
     } catch (err) {
         console.error(`Error while deleting literature `, err.message);
-        next(err);
-    }
-});
-
-router.get('/:id', async function (req, res, next) {
-    try {
-        const literature = await literatureService.get(req.params.id);
-        const file = Buffer.from(literature.pdf, 'binary');
-        res.setHeader('Content-Type', 'application/pdf');
-        res.setHeader('Content-Disposition', 'attachment; filename=' + literature.fileName);
-        res.send(file);
-    } catch (err) {
-        console.error(`Error while downloading literature `, err.message);
         next(err);
     }
 });
