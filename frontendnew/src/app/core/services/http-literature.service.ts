@@ -9,6 +9,9 @@ import { Page, PageResponse } from "../models/dtos";
     providedIn: "root"
 })
 export class HttpLiteratureService {
+    static create(literatureData: any) {
+        throw new Error('Method not implemented.');
+    }
     endpointPrefix = "literature";
 
     constructor(private httpClient: HttpClient) { }

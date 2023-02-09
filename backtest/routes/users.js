@@ -73,30 +73,30 @@ router.post('/forgotPassword', async function (req, res, next) {
   res.status(200).json({ message: 'Email sent successfully' });
 });
 
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
-  auth: {
-    user: 'your email',
-    pass: ' your password',
-  },
-});
+// const transporter = nodemailer.createTransport({
+//   host: 'smtp.gmail.com',
+//   port: 587,
+//   secure: false,
+//   auth: {
+//     user: 'your email',
+//     pass: ' your password',
+//   },
+// });
 
-const mailOptions = {
-  from: 'your email',
-  to: "email of the user",
-  subject: 'Reset Password',
-  text: 'Click on the link to reset your password'
-}
+// const mailOptions = {
+//   from: 'your email',
+//   to: "email of the user",
+//   subject: 'Reset Password',
+//   text: 'Click on the link to reset your password'
+// }
 
-transporter.sendMail(mailOptions, function (error, info) {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('Email sent: ' + info.response);
-  }
-});
+// transporter.sendMail(mailOptions, function (error, info) {
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log('Email sent: ' + info.response);
+//   }
+// });
 
 router.post('/resetPassword', async function (req, res, next) {
   const { id, password } = req.body;

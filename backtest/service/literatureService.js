@@ -1,4 +1,7 @@
 const db = require('../db/db');
+const fs = require('fs');
+const path = require('path');
+
 
 
 async function getAll() {
@@ -45,20 +48,32 @@ async function get(id) {
     let err = `Invalid id ${id}`;
     return { err };
 
-
 }
 
-async function create(literature) {
-    const { name, authors, issn, professor, fileName } = literature;
+async function create(literature, file) {
+    const { name, authors, issn, professor } = literature;
+    const fileName = `${file.originalname}`;
+    const filePath = path.join(__dirname, '..', 'public', fileName);
     const query = `INSERT INTO literature (name, authors, issn, professor,fileName) VALUES ('${name}', '${authors}', '${issn}', ${professor},'${fileName}')`;
     const result = await db.query(query);
     literature.id = result.insertId;
     return literature;
 }
 
-async function update(literature) {
-    const { id, name, authors, issn, professor, fileName } = literature;
-    const query = `UPDATE literature SET name = '${name}', authors = '${authors}', issn = '${issn}', professor = ${professor},fileName='${fileName}' WHERE id = ${id}`;
+async function update(file, literature) {
+    const { id, name, authors, issn, professor } = literature;
+    let fileName = '';
+
+    if (file) {
+        fileName = file.originalname;
+        const filePath = path.join(__dirname, `public/${fileName}`);
+        fs.writeFileSync(filePath, file.buffer);
+    } else {
+        const currentLiterature = await get(id);
+        fileName = currentLiterature.fileName;
+    }
+
+    const query = `UPDATE literature SET name = '${name}', authors = '${authors}', issn = '${issn}', professor = ${professor}, fileName = '${fileName}' WHERE id = ${id}`;
     await db.query(query);
     return literature;
 }
@@ -69,17 +84,20 @@ async function remove(id) {
     return id;
 }
 
-async function downloadPdf(id) {
-    const data = await get(id);
-    if (!data.err) {
-        const fileName = data.fileName;
-        const pdfData = data.pdf;
-        const blob = new Blob([pdfData], { type: 'pdf' });
-        saveAs(blob, fileName);
-    } else {
-        console.error(data.err);
+async function download(id) {
+    const data = await db.query(`SELECT * FROM literature WHERE id = ${id}`);
+    if (data && data.length > 0) {
+        const fileName = data[0].fileName;
+        const filePath = path.join(__dirname, `../public/${fileName}`);
+        const file = fs.readFileSync(filePath);
+        return file;
     }
+    let err = `Invalid id ${id}`;
+    return { err };
 }
+
+
+
 
 module.exports = {
     getAll,
@@ -88,5 +106,6 @@ module.exports = {
     create,
     update,
     remove,
-    downloadPdf
+    download
+
 }

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,6 +7,7 @@ import { Professor, Literature } from 'src/app/core/models';
 import { HttpLiteratureService } from 'src/app/core/services/http-literature.service';
 import { HttpProfessorService } from 'src/app/core/services/http-professor.service';
 import { ToastService } from 'src/app/core/services/toast.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-literature-form',
@@ -18,6 +19,9 @@ export class LiteratureFormComponent implements OnInit {
   professors$!: Observable<Professor[]>;
 
   @ViewChild('fileName', { static: false }) fileName?: ElementRef;
+  images: any;
+  endpointPrefix: any;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -49,22 +53,31 @@ export class LiteratureFormComponent implements OnInit {
     this.professors$ = this.httpProfessor.getAllProfessors();
   }
 
-  onSave() {
-    const literature = this.literatureForm?.getRawValue();
-    const file = this.literatureForm?.get('fileName')?.value;
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('literature', JSON.stringify(literature));
-    this.httpLiterature.postLiterature(literature).subscribe((message: any) => {
-      this.toastService.showToast({
-        message: 'Literature saved successfully',
-        header: 'Literature',
-        classNames: 'bg-success',
+  async onSave() {
+    console.log(this.fileName);
+    const { name, authors, issn, professor, fileName } = this.literatureForm.value;
+    const literature = new FormData();
+    literature.append('name', name);
+    literature.append('authors', authors);
+    literature.append('issn', issn);
+    literature.append('professor', professor);
+    literature.append('file', this.fileName?.nativeElement.files[0]);
+
+    try {
+      const result = await this.http.post<Literature>('http://localhost:3000', literature).subscribe((message: any) => {
+        ;
+        this.toastService.showToast({
+          message: 'Literature saved successfully',
+          header: 'Literature',
+          classNames: 'bg-success',
+        });
+        this.router.navigate(['./literature/literature-list'], {
+          queryParamsHandling: 'preserve'
+        });
       });
-      this.router.navigate(['./literature/literature-list'], {
-        queryParamsHandling: 'preserve'
-      });
-    });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   onCancel() {
@@ -80,4 +93,9 @@ export class LiteratureFormComponent implements OnInit {
       this.literatureForm.get('fileName')?.setValue(fileName);
     }
   }
+
+  get endpointBasePath() {
+    return `${environment.serverUrl}/${this.endpointPrefix}`;
+  }
+
 }

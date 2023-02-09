@@ -41,6 +41,8 @@ app.use('/literature', literatureRouter);
 app.use('/marks', marksRouter);
 app.use('/resetPassword', userRouter);
 app.use('/changePassword', userRouter);
+app.use('/forgotPassword', userRouter);
+app.use('/', literatureRouter);
 
 
 app.use((err, req, res, next) => {

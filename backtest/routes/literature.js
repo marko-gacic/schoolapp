@@ -7,24 +7,20 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, '../public');
+        cb(null, 'public');
     },
     filename: function (req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname);
+        cb(null, file.originalname);
     }
 });
-
-const fileFilter = (req, file, cb) => {
-    if (file.mimetype === '../public') {
-        cb(null, true);
-    } else {
-        cb(null, false);
-    }
-};
 
 const upload = multer({
     storage: storage
 });
+
+// const upload = multer({
+//     dest: 'public'
+// });
 
 router.get('/', async function (req, res, next) {
     try {
@@ -59,8 +55,12 @@ router.get('/:id', async function (req, res, next) {
 });
 
 router.post('/', upload.single('file'), async function (req, res, next) {
+    console.log('req.file', req.file);
+    const file = req.file;
+    if (file)
+        req.body.file = file.filename;
     try {
-        res.json(await literatureService.create(req.body));
+        res.json(await literatureService.create(req.body, req.file));
     } catch (err) {
         console.error(`Error while creating literature `, err.message);
         next(err);
@@ -86,7 +86,6 @@ router.delete('/:id', async function (req, res, next) {
         next(err);
     }
 });
-
 
 
 module.exports = router;
