@@ -16,9 +16,6 @@ export class HttpLiteratureService {
 
     constructor(private httpClient: HttpClient) { }
 
-    downloadPdf() {
-        return this.httpClient.get(`${this.endpointBasePath}`, { responseType: "blob" });
-    }
 
     getByPage(page: Page) {
         const params = new HttpParams()
@@ -53,4 +50,10 @@ export class HttpLiteratureService {
     get endpointBasePath() {
         return `${environment.serverUrl}/${this.endpointPrefix}`;
     }
+
+    downloadFile(id: number): Observable<Blob> {
+        return this.httpClient.get(`${this.endpointBasePath}/${id}`, { responseType: 'blob' });
+    }
+
+
 }

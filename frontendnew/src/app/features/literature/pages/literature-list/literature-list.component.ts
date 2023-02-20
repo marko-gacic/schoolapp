@@ -111,17 +111,18 @@ export class LiteratureListComponent implements OnInit {
     return { number: 10 }
   }
 
-  downloadPdf(fileName: string) {
-    this.http.get(`/literature/${fileName}`, {
-      responseType: 'blob'
-    }).subscribe(
-      data => {
-        const blob = new Blob([data], { type: 'public/pdf' });
-        const fileURL = URL.createObjectURL(blob);
-        window.open(fileURL);
+  downloadFile() {
+    this.http.get('http://localhost:3000/download', { responseType: 'blob' }).subscribe(
+      (data: any) => {
+        const blob = new Blob([data], { type: 'public' });
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = 'fileName.pdf';
+        link.click();
       }
-    );
+    )
   }
+
 
 
 }

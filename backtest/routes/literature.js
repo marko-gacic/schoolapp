@@ -18,9 +18,6 @@ const upload = multer({
     storage: storage
 });
 
-// const upload = multer({
-//     dest: 'public'
-// });
 
 router.get('/', async function (req, res, next) {
     try {
@@ -86,6 +83,17 @@ router.delete('/:id', async function (req, res, next) {
         next(err);
     }
 });
+
+router.get('/download/:id', async function (req, res, next) {
+    try {
+        const file = await literatureService.get(req.params.id);
+        res.download(file.originalname);
+    } catch (err) {
+        console.error(`Error while downloading literature `, err.message);
+        next(err);
+    }
+});
+
 
 
 module.exports = router;
