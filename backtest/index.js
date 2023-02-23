@@ -44,6 +44,7 @@ app.use('/changePassword', userRouter);
 app.use('/forgotPassword', userRouter);
 app.use('/', literatureRouter);
 app.use('/download', literatureRouter);
+app.use('/edit', userRouter);
 
 
 app.use((err, req, res, next) => {

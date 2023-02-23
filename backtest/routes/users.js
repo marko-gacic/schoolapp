@@ -3,6 +3,22 @@ const router = express.Router();
 const userService = require("../service/userService");
 const { body, validationResult } = require("express-validator");
 const nodemailer = require('nodemailer');
+const multer = require('multer');
+
+
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+
+const upload = multer({
+  storage: storage
+});
 
 /* User Login */
 router.post(
@@ -124,6 +140,20 @@ router.get('/', async function (req, res, next) {
     next(err);
   }
 });
+
+//update user with picture upload
+router.put('/:id', upload.single('image'), async function (req, res, next) {
+  const image = req.file;
+  if (image)
+    req.body.image = file.originalname;
+  try {
+    res.json(await userService.update(req.params.id, req.body));
+  } catch (err) {
+    console.error(`Error while updating user with id = ${id} `, err.message);
+    next(err);
+  }
+});
+
 
 
 

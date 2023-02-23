@@ -51,7 +51,7 @@ export class HttpLiteratureService {
         return `${environment.serverUrl}/${this.endpointPrefix}`;
     }
 
-    downloadFile(id: number): Observable<Blob> {
+    downloadFile(id: string): Observable<Blob> {
         return this.httpClient.get(`${this.endpointBasePath}/${id}`, { responseType: 'blob' });
     }
 

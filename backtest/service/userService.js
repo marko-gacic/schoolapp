@@ -43,9 +43,22 @@ async function changePassword(user) {
     return false;
 }
 
+//async function edit (user)  with picture upload
+
+async function edit(user) {
+    const rows = await db.query('SELECT * FROM user WHERE userName = ?', [user.username]);
+    if (rows && rows.length > 0) {
+        const result = await db.query('UPDATE user SET password = ?, email = ?, picture = ? WHERE userName = ?', [user.password, user.email, user.picture, user.username]);
+        return result.affectedRows > 0;
+    }
+    return false;
+}
+
+
 module.exports = {
     login,
     register,
     resetPassword,
-    changePassword
+    changePassword,
+    edit
 }

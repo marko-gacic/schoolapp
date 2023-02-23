@@ -9,9 +9,13 @@
             <label for="password">{{'LOGIN.PASSWORD' }}</label>
             <input type="password" id="password" class="form-control">
         </div>
-        <div class="d-flex flex-column">
-            <label for="profilePicture">{{'Profile Picture' }}</label>
-            <input type="file" id="profilePicture" class="form-control-file">
+        <div class="inputBox">
+            <label for="image">{{'PDF' | translate}}</label>
+            <input class="form-control" type="image" (change)="onFileSelected($event)" id="image" #fileName name="image"
+                required>
+            <div *ngIf="userForm?.get('image')?.value">
+                <a [href]="userForm.get('image')?.value" target="_blank">View current PDF</a>
+            </div>
         </div>
         <div class="d-flex  mt-2">
             <button type="submit" class="btn btn-outline-primary">{{'Edit Profile' }}</button>
